@@ -2,16 +2,16 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Infor LN 4GL",
   "scopeName": "source.ln4gl",
-  "comment": "Keyword lists derived from Vim runtime syntax/baan.vim (Erik Remmelzwaal / Erwin Smit / Her van de Vliert). Pattern structure inspired by masal/SublimeBaan.",
+  "comment": "Keyword lists derived from Vim runtime syntax/baan.vim (Erik Remmelzwaal / Erwin Smit / Her van de Vliert). Pattern structure inspired by masal/SublimeBaan. Baan strings have no backslash escapes (embedded quotes are doubled); #strings must precede #comments so | inside quotes is not a comment.",
   "patterns": [
+    {
+      "include": "#strings"
+    },
     {
       "include": "#comments"
     },
     {
       "include": "#dll-usage"
-    },
-    {
-      "include": "#strings"
     },
     {
       "include": "#preprocessor"

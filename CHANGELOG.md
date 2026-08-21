@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Block-matching diagnostics for unmatched `if`/`endif`, `select`/`endselect`, and related pairs; idiom warnings with Quick Fix for `for … by` → `step` and stray `while … do`.
+- Settings `ln-4gl.diagnostics.enabled` and `ln-4gl.diagnostics.strictComments`.
+
+### Fixed
+
+- String scanning follows Baan rules (no backslash escapes; embedded quotes are `""`): `|` inside `"…"` is not treated as a line comment in providers or the TextMate grammar.
+
 ## [0.1.0] - 2026-08-22
 
 ### Added

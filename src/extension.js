@@ -6,8 +6,15 @@ const { hoverProvider } = require("./hover");
 const { signatureHelpProvider } = require("./signature");
 const { documentHighlightProvider } = require("./pairs");
 const { documentLinkProvider } = require("./include");
+const { activateDiagnostics, deactivateDiagnostics } = require("./diagnostics");
+const { codeActionProvider } = require("./codeActions");
 
+/**
+ * @param {vscode.ExtensionContext} context
+ */
 function activate(context) {
+  activateDiagnostics(context);
+
   context.subscriptions.push(
     vscode.languages.registerDocumentSymbolProvider(
       "ln-4gl",
@@ -34,9 +41,14 @@ function activate(context) {
       "ln-4gl",
       documentLinkProvider,
     ),
+    vscode.languages.registerCodeActionsProvider("ln-4gl", codeActionProvider, {
+      providedCodeActionKinds: [vscode.CodeActionKind.QuickFix],
+    }),
   );
 }
 
-function deactivate() {}
+function deactivate() {
+  deactivateDiagnostics();
+}
 
 module.exports = { activate, deactivate };

@@ -219,12 +219,14 @@ def main() -> None:
         "comment": (
             "Keyword lists derived from Vim runtime syntax/baan.vim "
             "(Erik Remmelzwaal / Erwin Smit / Her van de Vliert). "
-            "Pattern structure inspired by masal/SublimeBaan."
+            "Pattern structure inspired by masal/SublimeBaan. "
+            "Baan strings have no backslash escapes (embedded quotes are doubled); "
+            "#strings must precede #comments so | inside quotes is not a comment."
         ),
         "patterns": [
+            {"include": "#strings"},
             {"include": "#comments"},
             {"include": "#dll-usage"},
-            {"include": "#strings"},
             {"include": "#preprocessor"},
             {"include": "#sections-4gl"},
             {"include": "#sql"},
@@ -269,6 +271,7 @@ def main() -> None:
             "strings": {
                 "name": "string.quoted.double.ln4gl",
                 "begin": r'"',
+                # No backslash escapes: \ is a plain character (e.g. "C:\temp\file").
                 # Do not end on the first quote of an LN "" escape (vscode-textmate
                 # prefers the end pattern over inner matches for a single ").
                 "end": r'"(?!")',

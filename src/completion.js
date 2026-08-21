@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 const completions = require("../data/completions.json");
 const docs = require("../data/docs.json");
+const { codePart } = require("./text");
 
 const FUNCTION_DOCS = docs;
 
@@ -12,15 +13,6 @@ const TYPE_WORDS = new Set([
   "boolean",
   "domain",
 ]);
-
-/**
- * Strip trailing | comment from a line for scanning.
- * @param {string} line
- */
-function codePart(line) {
-  const pipe = line.indexOf("|");
-  return pipe === -1 ? line : line.slice(0, pipe);
-}
 
 /**
  * @param {vscode.TextDocument} document

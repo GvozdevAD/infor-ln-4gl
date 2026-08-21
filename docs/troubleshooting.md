@@ -35,3 +35,23 @@ The include file must exist next to the current script or on `ln-4gl.includePath
 ## Remote-SSH still shows the old grammar
 
 Install the `.vsix` (or symlink) **on the remote host**, then reload the remote window. A local-only install does not apply to files opened over SSH.
+
+## Too many block diagnostics / false positives
+
+Turn off block matching:
+
+```json
+{
+  "ln-4gl.diagnostics.enabled": false
+}
+```
+
+Or keep diagnostics but treat `|` / `/* */` as code (noisy):
+
+```json
+{
+  "ln-4gl.diagnostics.strictComments": false
+}
+```
+
+Preprocessor `#if` / `#endif` and SQL `for update` are ignored by the block checker. Keywords inside strings are ignored.

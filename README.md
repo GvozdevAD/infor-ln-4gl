@@ -1,5 +1,6 @@
 # Infor LN 4GL for VS Code
 
+[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/GvozdevAD.infor-ln-4gl?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=GvozdevAD.infor-ln-4gl)
 [![CI](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml/badge.svg)](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -19,6 +20,7 @@ A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an L
 | Hover | Short notes for sections, DAL hooks, common functions, `attr.*` |
 | Signature help | Parameter hints for frequent calls (`message`, `stpapi.*`, DAL1, …) |
 | Keyword pairs | Highlight matching `if`/`endif`, `select`/`endselect`, `for`/`endfor`, … |
+| Diagnostics | Unmatched `endif` / `endselect` / …; Quick Fix for `for … by` → `step` and stray `while … do` |
 | Word pattern | Dots count: `tdsls401.orno` and `before.input` are one word |
 
 Files: `*.bc`, `*.cln`, `*.ln4gl`. For Studio dumps without an extension, run **Change Language Mode** → Infor LN 4GL, or add a file association.
@@ -36,6 +38,8 @@ Leave `files.trimTrailingWhitespace` **off** for these files; LN is picky about 
 | Setting | Default | Purpose |
 |---|---|---|
 | `ln-4gl.includePath` | `[]` | Extra directories to search for `#include` files (absolute or relative to the current file) |
+| `ln-4gl.diagnostics.enabled` | `true` | Block-matching diagnostics and idiom warnings |
+| `ln-4gl.diagnostics.strictComments` | `true` | Ignore `|` and `/* */` comments when analyzing blocks |
 
 ## Conflicts
 
@@ -54,7 +58,7 @@ Those stay on the LN server. For the language itself see **Infor ES Programmers 
 
 ## Docs
 
-- [Install from VSIX / symlink](docs/install.md)
+- [Install](docs/install.md) — Marketplace, VSIX, symlink
 - [3GL vs 4GL](docs/language.md)
 - [Development and packaging](docs/development.md)
 - [Troubleshooting](docs/troubleshooting.md)

@@ -6,6 +6,7 @@
   "publisher": "GvozdevAD",
   "license": "MIT",
   "icon": "images/icon.png",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=GvozdevAD.infor-ln-4gl",
   "repository": {
     "type": "git",
     "url": "https://github.com/GvozdevAD/infor-ln-4gl.git"
@@ -15,7 +16,8 @@
   },
   "categories": [
     "Programming Languages",
-    "Snippets"
+    "Snippets",
+    "Linters"
   ],
   "keywords": [
     "infor",
@@ -79,6 +81,16 @@
           },
           "default": [],
           "description": "Extra directories to search for #include files (absolute or relative to the current file)."
+        },
+        "ln-4gl.diagnostics.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable block-matching diagnostics (unmatched endif/endselect, …) and idiom warnings."
+        },
+        "ln-4gl.diagnostics.strictComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ignore | line comments and /* */ block comments when analyzing blocks."
         }
       }
     },
