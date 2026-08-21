@@ -1,0 +1,11 @@
+|**********************************************************
+|* hello.3gl.bc
+|*
+|* Pure 3GL program. There is no session and no event section.
+|* Compile with bic on the LN server, not locally.
+|**********************************************************
+
+function main()
+{
+    message("Hello World")
+}

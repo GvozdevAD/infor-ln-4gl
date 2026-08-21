@@ -1,0 +1,16 @@
+| SYNTAX TEST "source.ln4gl" "print-session style sections"
+
+declaration:
+|<------------ entity.name.section.program.ln4gl
+
+group.1:
+|<------- entity.name.section.group.ln4gl
+
+init.group:
+|<---------- entity.name.section.group.ln4gl
+
+functions:
+|<---------- entity.name.section.program.ln4gl
+
+function read.main.table()
+|         ^^^^^^^^^^^^^^ entity.name.function.ln4gl

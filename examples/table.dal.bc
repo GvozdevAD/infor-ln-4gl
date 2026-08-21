@@ -1,0 +1,40 @@
+|**********************************************************
+|* table.dal.bc
+|*
+|* DAL / 3GL hooks. These are functions with reserved names,
+|* not 4GL sections with a trailing colon.
+|**********************************************************
+
+function extern long before.save.object()
+{
+    if tdsls401.orno = "" then
+        dal.set.error.message("Order number is required")
+        return(DALHOOKERROR)
+    endif
+    return(0)
+}
+
+function extern long after.save.object()
+{
+    return(0)
+}
+
+function extern long tdsls401.orno.is.valid()
+{
+    if tdsls401.orno = "" then
+        return(DALHOOKERROR)
+    endif
+    return(0)
+}
+
+function extern long tdsls401.sflo.filter(
+    ref string o.select,
+    ref string o.from,
+    ref string o.where)
+{
+    o.select = ""
+    o.from = ""
+    o.where = "tdsls401.hold = tcyesno.no"
+    return(0)
+}
+

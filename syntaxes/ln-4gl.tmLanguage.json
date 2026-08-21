@@ -1,0 +1,317 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Infor LN 4GL",
+  "scopeName": "source.ln4gl",
+  "comment": "Keyword lists derived from Vim runtime syntax/baan.vim (Erik Remmelzwaal / Erwin Smit / Her van de Vliert). Pattern structure inspired by masal/SublimeBaan.",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#dll-usage"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#preprocessor"
+    },
+    {
+      "include": "#sections-4gl"
+    },
+    {
+      "include": "#sql"
+    },
+    {
+      "include": "#dal-hooks"
+    },
+    {
+      "include": "#function-header"
+    },
+    {
+      "include": "#session-vars"
+    },
+    {
+      "include": "#identifiers"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#storage"
+    },
+    {
+      "include": "#keywords-3gl"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#builtins"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.vertical-bar.ln4gl",
+          "match": "\\|.*$"
+        }
+      ]
+    },
+    "dll-usage": {
+      "patterns": [
+        {
+          "name": "comment.block.documentation.ln4gl",
+          "begin": "(?i)^\\s*(dllusage|functionusage)\\b",
+          "end": "(?i)^\\s*(enddllusage|endfunctionusage)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.documentation.ln4gl"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "keyword.other.documentation.ln4gl"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.ln4gl",
+      "begin": "\"",
+      "end": "\"(?!\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.ln4gl"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.ln4gl"
+        }
+      },
+      "patterns": [
+        {
+          "name": "constant.character.escape.ln4gl",
+          "match": "\"\""
+        }
+      ]
+    },
+    "preprocessor": {
+      "name": "meta.preprocessor.ln4gl",
+      "begin": "^\\s*(#(include|define|undef|pragma|ident|if|ifdef|ifndef|elif|else|endif))\\b",
+      "end": "$",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.directive.ln4gl"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#numbers"
+        }
+      ]
+    },
+    "sections-4gl": {
+      "patterns": [
+        {
+          "name": "entity.name.section.program.ln4gl",
+          "match": "(?i)^\\s*(declaration|functions|before\\.program|on\\.error|after\\.program|after\\.update\\.db\\.commit|before\\.display\\.object|before\\.new\\.object)\\s*:"
+        },
+        {
+          "name": "entity.name.section.form.ln4gl",
+          "match": "(?i)^\\s*(form\\.(?:\\d+|all|other)|(?:init|before|after)\\.form)\\s*:"
+        },
+        {
+          "name": "entity.name.section.group.ln4gl",
+          "match": "(?i)^\\s*(group\\.\\d+|(?:init|before|after)\\.group)\\s*:"
+        },
+        {
+          "name": "entity.name.section.choice.ln4gl",
+          "match": "(?i)^\\s*(choice\\.(?:start\\.set|first\\.view|next\\.view|prev\\.view|last\\.view|def\\.find|find\\.data|first\\.set|next\\.set|display\\.set|prev\\.set|rotate\\.curr|last\\.set|add\\.set|update\\.db|dupl\\.occur|recover\\.set|mark\\.delete|mark\\.occur|change\\.order|modify\\.set|restart\\.input|print\\.data|create\\.job|form\\.tab\\.change|first\\.frm|next\\.frm|prev\\.frm|last\\.frm|resize\\.frm|cmd\\.options|zoom|interrupt|end\\.program|abort\\.program|cont\\.process|text\\.manager|run\\.job|global\\.delete|global\\.copy|save\\.defaults|get\\.defaults|start\\.chart|start\\.query|user\\.\\d+|ask\\.helpinfo|calculator|calendar|bms|cmd\\.whats\\.this|help\\.index)|(?:before|on|after)\\.choice)\\s*:"
+        },
+        {
+          "name": "entity.name.section.field.ln4gl",
+          "match": "(?i)^\\s*(field\\.(?:all|other|[A-Za-z0-9_.]+)|init\\.field|before\\.field|before\\.input|before\\.display|selection\\.filter|before\\.zoom|before\\.checks|domain\\.error|ref\\.input|ref\\.display|check\\.input|on\\.input|when\\.field\\.changes|after\\.zoom|after\\.input|after\\.display|after\\.field)\\s*:"
+        },
+        {
+          "name": "entity.name.section.zoom.ln4gl",
+          "match": "(?i)^\\s*(zoom\\.from\\.[A-Za-z0-9_.]+|on\\.(?:entry|exit))\\s*:"
+        },
+        {
+          "name": "entity.name.section.main-table.ln4gl",
+          "match": "(?i)^\\s*(main\\.table\\.io|before\\.read|after\\.read|before\\.write|after\\.write|after\\.skip\\.write|before\\.rewrite|after\\.rewrite|after\\.skip\\.rewrite|before\\.delete|after\\.delete|after\\.skip\\.delete|read\\.view)\\s*:"
+        }
+      ]
+    },
+    "sql": {
+      "patterns": [
+        {
+          "name": "keyword.control.sql.ln4gl",
+          "match": "(?i)(?<![\\w.$])as set with\\s+\\d+\\s+rows(?![\\w.$])"
+        },
+        {
+          "name": "keyword.control.sql.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:as set with|selectempty|selecterror|for update|inner join|selectbind|enddelete|endselect|endupdate|refers to|selecteos|wherebind|whereused|group by|order by|selectdo|between|inrange|ordered|delete|exists|having|insert|select|update|where|desc|from|hint|and|asc|set|as|in)(?![\\w.$])"
+        }
+      ]
+    },
+    "dal-hooks": {
+      "patterns": [
+        {
+          "name": "support.function.hook.dal.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:after\\.commit\\.transaction|after\\.abort\\.transaction|before\\.open\\.object\\.set|before\\.destroy\\.object|after\\.destroy\\.object|before\\.change\\.object|after\\.change\\.object|set\\.object\\.defaults|before\\.save\\.object|after\\.save\\.object|before\\.get\\.object|before\\.new\\.object|method\\.is\\.allowed|after\\.get\\.object|after\\.new\\.object)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.hook.dal.ln4gl",
+          "match": "(?i)(?<![\\w.$])[A-Za-z][A-Za-z0-9_]*\\.[A-Za-z][A-Za-z0-9_]*\\.(?:check|is\\.valid|is\\.applicable|is\\.never\\.applicable|is\\.derived|is\\.readonly|is\\.mandatory|make\\.valid|update|filter)(?![\\w.$])"
+        }
+      ]
+    },
+    "function-header": {
+      "match": "(?i)\\b(function)\\s+(?:(extern)\\s+)?(?:(?:(long|double|void|string|boolean)|(?:(domain)\\s+([\\w.]+)))\\s+)?([\\w.]+)\\s*\\(",
+      "captures": {
+        "1": {
+          "name": "storage.type.function.ln4gl"
+        },
+        "2": {
+          "name": "storage.modifier.ln4gl"
+        },
+        "3": {
+          "name": "storage.type.ln4gl"
+        },
+        "4": {
+          "name": "storage.type.ln4gl"
+        },
+        "5": {
+          "name": "entity.name.type.domain.ln4gl"
+        },
+        "6": {
+          "name": "entity.name.function.ln4gl"
+        }
+      }
+    },
+    "session-vars": {
+      "patterns": [
+        {
+          "name": "variable.language.attribute.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:attr|fattr|sattr)\\.[A-Za-z_][\\w.$]*(?![\\w.$])"
+        },
+        {
+          "name": "variable.language.session.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:main\\.table\\$|zoomreturn\\$|prog\\.name\\$|curr\\.key|choice|marked|parent|pid)(?![\\w.$])"
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.parameter.host.ln4gl",
+          "match": "(?<![\\w.$]):[A-Za-z_][\\w.$]*"
+        },
+        {
+          "name": "variable.other.property.ln4gl",
+          "match": "(?i)(?<![\\w.$:])[A-Za-z][A-Za-z0-9_]*\\d[A-Za-z0-9_]*\\.[A-Za-z_][A-Za-z0-9_]*(?![\\w.$])"
+        },
+        {
+          "name": "variable.other.property.ln4gl",
+          "match": "(?i)(?<![\\w.$:])[A-Za-z][A-Za-z0-9_]*\\d[A-Za-z0-9_]*\\.\\*"
+        },
+        {
+          "name": "entity.name.type.table.ln4gl",
+          "match": "(?i)(?<![\\w.$:])[A-Za-z][A-Za-z0-9_]*\\d[A-Za-z0-9_]*(?![\\w.$])"
+        }
+      ]
+    },
+    "types": {
+      "name": "storage.type.ln4gl",
+      "match": "(?i)(?<![\\w.$])(?:function|boolean|xmlNode|common|domain|double|string|table|bset|long|void)(?![\\w.$])"
+    },
+    "storage": {
+      "name": "storage.modifier.ln4gl",
+      "match": "(?i)(?<![\\w.$])(?:extern|global|based|const|fixed|base|dim|MB)(?![\\w.$])"
+    },
+    "keywords-3gl": {
+      "name": "keyword.control.ln4gl",
+      "match": "(?i)(?<![\\w.$])(?:multibyte|reference|continue|endwhile|default|endcase|on case|endfor|prompt|repeat|return|static|break|endif|input|print|until|while|case|else|goto|step|stop|then|void|and|end|for|not|ofr|ref|at|eq|ge|gt|if|le|lt|mb|ne|or)(?![\\w.$])"
+    },
+    "constants": {
+      "name": "constant.language.ln4gl",
+      "match": "(?i)(?<![\\w.$])(?:HOOK_IS_APPLICABLE|DAL_GET_SPECIFIED|HOOK_IS_READONLY|DB\\.DELAYED\\.LOCK|HOOK_IS_DERIVED|HOOK_MANDATORY|ABORT\\.PROGRAM|DAL_GET_FIRST|HOOK_IS_VALID|SAVE\\.DEFAULTS|__function__|AUTG_DISPLAY|CONT\\.PROCESS|DAL_GET_CURR|DAL_GET_LAST|DAL_GET_NEXT|DAL_GET_PREV|DALHOOKERROR|DALNOQUERYID|GET\\.DEFAULTS|AUTG_DELETE|AUTG_INSERT|AUTG_MODIFY|DAL_DESTROY|END\\.PROGRAM|HOOK_UPDATE|MARK\\.DELETE|__object__|APPL\\.WRITE|AUTG_PRINT|DAL_UPDATE|PRINT\\.DATA|APPL\\.EXCL|APPL\\.READ|APPL\\.WAIT|APPL\\.WIDE|FIND\\.DATA|UPDATE\\.DB|__file__|__line__|AUTG_ALL|DAL_FIND|DB\\.RETRY|DEF\\.FIND|ADD\\.SET|DAL_NEW|DB\\.LOCK|empty|false|true|pi)(?![\\w.$])"
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:art\\.define\\.transaction\\.class|art\\.update\\.transaction|bclm\\.productidlicensed|art\\.begin\\.transaction|bclm\\.enabledemoperiod|change\\.menu\\.item\\.attr|change\\.menu\\.item\\.name|block\\.cipher\\.decrypt|block\\.cipher\\.encrypt|change\\.bar\\.item\\.attr|art\\.end\\.transaction|asm\\.put\\.instance\\.id|bclm\\.confirmlicense|bclm\\.releaselicense|bclm\\.requestlicense|change\\.cascade\\.menu|bms\\.receive\\.buffer|change\\.gtext\\.label|abort\\.transaction|bclm\\.customerdata|change\\.form\\.field|change\\.gpart\\.attr|change\\.sub\\.object|bclm\\.set\\.desktop|change\\.menu\\.attr|change\\.rectangle|array\\.to\\.string|bms\\.delete\\.mask|change\\.bar\\.attr|change\\.gpart\\.gc|change\\.polyline|change\\.display|change\\.mwindow|change\\.polygon|act\\.and\\.sleep|base64\\.decode|base64\\.encode|change\\.object|bms\\.add\\.mask|bms\\.receive\\$|bse\\.portset\\$|bse\\.release\\$|bse\\.tmp\\.dir\\$|change\\.gtext|add\\.ref\\.arg|ams\\.control|base\\.extern|change\\.line|change\\.menu|array\\.info|bit\\.shiftl|bit\\.shiftr|bshell\\.pid|change\\.arc|change\\.bar|change\\.pie|alloc\\.mem|aux\\.close|aux\\.print|base\\.next|bclm\\.dump|bclm\\.init|bms\\.peek\\$|brp\\.build|brp\\.field|bsh\\.mesg\\$|change\\.gc|act\\.zoom|activate|art\\.init|aux\\.open|bit\\.exor|bms\\.init|bms\\.send|bse\\.dir\\$|#output|add\\.arg|at\\.base|bit\\.and|bit\\.inv|#input|bit\\.in|bit\\.or|abort|argv\\$|atan2|acos|argc|asin|atan)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:corba\\.boa\\.process_next_event|dal\\.get\\.first\\.error\\.message|corba\\.orb\\.string_to_object|corba\\.request\\.get_response|container\\.get\\.actual\\.size|container\\.set\\.actual\\.size|dal\\.count\\.error\\.messages|dal\\.reset\\.error\\.messages|create\\.sub\\.object\\.by\\.id|container\\.actual\\.size|container\\.get\\.ifields|container\\.get\\.nfields|container\\.set\\.ifields|container\\.set\\.nfields|create\\.cascade\\.button|dal\\.get\\.error\\.message|dal\\.set\\.error\\.message|container\\.get\\.fields|container\\.set\\.fields|corba\\.request\\.delete|corba\\.request\\.invoke|corba\\.request\\.object|db\\.check\\.restricted|commit\\.transaction|corba\\.boa\\.set_impl|corba\\.request\\.send|create\\.menu\\.button|corba\\.orb\\.release|create\\.bar\\.button|create\\.new\\.symbol|create\\.sub\\.object|date\\.to\\.inputstr\\$|check\\.all\\.domain|container\\.create|container\\.resize|create\\.composite|create\\.rectangle|compress\\.pixmap|container\\.clear|copy\\.form\\.field|corba\\.available|creat\\.tmp\\.file\\$|create\\.polyline|crypt\\.password\\$|current\\.display|current\\.mwindow|db\\.change\\.order|container\\.free|container\\.size|create\\.arglist|create\\.mwindow|create\\.polygon|current\\.window|change\\.window|close\\.display|close\\.message|create\\.object|date\\.time\\.utc|check\\.domain|choice\\.again|cmp\\.password|compnr\\.check|cpu\\.is\\.debug|create\\.gtext|create\\.image|current\\.menu|create\\.line|create\\.menu|current\\.bar|dal\\.destroy|date\\.to\\.num|create\\.arc|create\\.bar|create\\.pie|cursor\\.off|dal\\.update|data\\.input|cl\\.screen|create\\.gc|cursor\\.on|copy\\.mem|date\\.num|changed|cmp\\.mem|concat\\$|dal\\.new|db\\.bind|d\\.expr|chr\\$|cosh)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:db\\.table\\.update\\.statistics|db\\.set\\.child\\.transaction|dir\\.get\\.value\\.named\\.str|db\\.get\\.physical\\.compnr|db\\.table\\.begin\\.import|dir\\.get\\.element\\.count|db\\.check\\.row\\.changed|db\\.check\\.row\\.domains|db\\.columns\\.to\\.record|db\\.record\\.to\\.columns|db\\.set\\.notransaction|db\\.transaction\\.is\\.on|dir\\.add\\.element\\.time|dir\\.get\\.element\\.name|dir\\.get\\.element\\.type|db\\.table\\.end\\.import|dir\\.add\\.element\\.int|dir\\.add\\.element\\.str|dir\\.get\\.value\\.count|db\\.ref\\.handle\\.mode|db\\.set\\.transaction|destroy\\.sub\\.object|dir\\.abandon\\.search|dir\\.execute\\.search|dir\\.get\\.last\\.error|dir\\.get\\.value\\.time|db\\.set\\.to\\.default|decompress\\.pixmap|delete\\.form\\.field|destroy\\.composite|destroy\\.menu\\.item|dir\\.create\\.object|dir\\.get\\.first\\.row|dir\\.get\\.value\\.int|dir\\.get\\.value\\.str|db\\.error\\.message|destroy\\.bar\\.item|dir\\.clear\\.object|dir\\.find\\.element|dir\\.get\\.next\\.row|dir\\.get\\.prev\\.row|db\\.create\\.index|db\\.create\\.table|db\\.detail\\.error|destroy\\.arglist|destroy\\.mwindow|dir\\.add\\.element|dir\\.free\\.object|dir\\.free\\.search|dir\\.init\\.object|db\\.clear\\.table|db\\.get\\.old\\.row|destroy\\.object|dir\\.get\\.object|db\\.drop\\.index|db\\.drop\\.table|db\\.lock\\.table|db\\.nr\\.indices|db\\.permission|db\\.row\\.length|destroy\\.gpart|db\\.indexinfo|db\\.max\\.retry|destroy\\.menu|db\\.schedule|destroy\\.bar|db\\.nr\\.rows|del\\.window|delete\\.arg|destroy\\.gc|db\\.delete|db\\.insert|db\\.unbind|db\\.update|deleteln\\$|dir\\.close|dir\\.entry|db\\.error|db\\.first|db\\.curr|db\\.last|db\\.next|db\\.prev|delch\\$|dialog|db\\.eq|db\\.ge|db\\.gt|db\\.le|db\\.lt)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:dir\\.set\\.value\\.named\\.str|encrypt\\.user\\.password|get\\.event\\.attribute|dir\\.remove\\.element|dir\\.set\\.value\\.time|get\\.db\\.system\\.info|get\\.debug\\.cpu\\.opts|dir\\.remove\\.object|dir\\.set\\.value\\.int|dir\\.set\\.value\\.str|dir\\.update\\.object|exec_dll_function|get\\.db\\.permission|dir\\.is\\.available|disable\\.commands|get\\.cascade\\.menu|get\\.display\\.data|dir\\.init\\.search|enable\\.commands|get\\.bw\\.hostname|get\\.choice\\.data|get\\.class\\.name\\$|get\\.event\\.class|get\\.gtext\\.label|get\\.indexed\\.var|dir\\.set\\.server|disable\\.fields|get\\.double\\.arg|get\\.gpart\\.attr|dir\\.open\\.tree|enable\\.fields|exec_function|get\\.composite|get\\.cust\\.code|get\\.cust\\.name|get\\.gpart\\.box|expr\\.compile|fini\\.service|first\\.window|form\\.control|format\\.round|frame\\.window|get\\.arg\\.type|get\\.db\\.count|get\\.gpart\\.gc|get\\.long\\.arg|display\\.all|display\\.fld|dump\\.screen|enum\\.descr\\$|first\\.gpart|free\\.window|get\\.mach\\.id|dir\\.rewind|do\\.all\\.occ|double\\.cmp|file\\.chmod|file\\.chown|form\\.text\\$|fstat\\.info|get\\.compnr|get\\.lic\\.no|disk\\.info|expr\\.free|file\\.stat|free\\.font|get\\.attrs|get\\.gpart|get\\.gtext|get\\.image|dir\\.open|end\\.mark|free\\.mem|get\\.argc|get\\.line|display|execute|file\\.cp|file\\.mv|file\\.rm|get\\.arc|get\\.col|do\\.occ|get\\.cp|get\\.gc|dummy|edit\\$|dte\\$|exit|fsum)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:java\\.execute\\.static\\.method\\.async|java\\.execute\\.static\\.method\\.sync|java\\.execute\\.static\\.method|get\\.session\\.permission|get\\.object\\.class\\.list|java\\.install\\.listener|get\\.sub\\.object\\.class|ims\\.setvbaproperties|get\\.screen\\.defaults|get\\.resource\\.class|get\\.var\\.from\\.field|handle\\.report\\.pool|java\\.destroy\\.queue|get\\.mwindow\\.attrs|ims\\.getproperties|java\\.lookup\\.queue|get\\.mwindow\\.mode|get\\.mwindow\\.size|get\\.object\\.class|get\\.window\\.attrs|inputstr\\.to\\.date|is\\.administrator|get\\.pixmap\\.info|get\\.status\\.text|get\\.system\\.info|iget\\.field\\.attr|java\\.get\\.bucket|get\\.string\\.arg|get\\.sub\\.object|ims\\.spool\\.line|inherit\\.object|is\\.password\\.ok|java\\.new\\.queue|get\\.rectangle|get\\.resource\\$|get\\.time\\.zone|iget\\.fld\\.attr|iget\\.frm\\.attr|iput\\.fld\\.attr|iput\\.frm\\.attr|get\\.polyline|get\\.typeface|get_function|grab\\.mwindow|group\\.exists|ims\\.clearerr|is\\.option\\.on|get\\.polygon|get\\.ref\\.var|ims\\.openfba|ims\\.openvba|ims\\.r\\.short|ims\\.w\\.short|input\\.again|input\\.field|get\\.object|get\\.symbol|ims\\.r\\.long|ims\\.rewind|ims\\.w\\.long|init\\.first|hostname\\$|ims\\.close|ims\\.error|ims\\.flush|ims\\.getc\\$|ims\\.putc\\$|ims\\.write|init\\.last|init\\.next|init\\.prev|insertln\\$|get\\.pgrp|gregdate|ims\\.gets|ims\\.puts|ims\\.read|ims\\.seek|ims\\.skip|ims\\.tell|get\\.pie|get\\.row|get\\.var|getenv\\$|halfadj|ims\\.eof|isdigit|isspace|getcwd|insch\\$)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:java\\.uninstall\\.listener|mb\\.locale\\.enumerate|make\\.path\\.absolute|mb\\.isbidi\\.language|jump\\.retry\\.point|lookupkey\\.unhash|off\\.change\\.check|java\\.put\\.bucket|mark\\.occurrence|mb\\.cast\\.to\\.str\\$|mb\\.long\\.to\\.str\\$|on\\.change\\.check|lookupkey\\.hash|many\\.to\\.string|mb\\.locale\\.info|mb\\.localename\\$|move\\.gpart\\.box|nullify\\.symbol|key\\.to\\.option|link\\.keyboard|link\\.on\\.stack|mb\\.export\\.raw|mb\\.ext\\.clean\\$|mb\\.import\\.raw|mb\\.tss\\.clean\\$|option\\.to\\.key|len\\.in\\.bytes|link\\.display|local\\.to\\.utc|mb\\.char\\.info|menu\\.control|num\\.to\\.date\\$|open\\.display|open\\.message|output\\.field|key\\.compare|last\\.window|load\\.double|mb\\.set\\.info|move\\.window|num\\.to\\.date|num\\.to\\.week|obj_in_core|kill\\.timer|last\\.gpart|list\\.fonts|load\\.float|load\\.short|map\\.window|mb\\.display|mb\\.export\\$|mb\\.hasbidi|mb\\.import\\$|mb\\.kb\\.lang|move\\.gpart|new\\.window|next\\.event|next\\.field|next\\.gpart|kill\\.pgrp|load\\.byte|load\\.font|load\\.long|load\\.menu|mb\\.isbidi|mb\\.scrpos|mb\\.strpos|no\\.scroll|not\\.fixed|load_dll|mark\\.occ|mb\\.cast\\$|mb\\.nsets|mb\\.width|not\\.curr|mb\\.char|mb\\.rev\\$|mb\\.type|message|oipstat|keyin\\$|l\\.expr|ostype|log10|mkdir|mtime|kill|lpow|lval|mess)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:resolve\\.labels\\.by\\.codepair|rdi\\.session\\.subject\\.info|parse_and_exec_function|rdi\\.date\\.input\\.format\\$|rdi\\.domain\\.enum\\.value|rdi\\.first\\.day\\.of\\.week|rdi\\.session\\.textfield|rdi\\.column\\.combined|rdi\\.domain\\.combined|rdi\\.session\\.subject|rdi\\.table\\.sequence|rdi\\.domain\\.double|rdi\\.domain\\.string|rdi\\.format\\.digits|path\\.is\\.absolute|put\\.var\\.to\\.field|query\\.sub\\.object|rdi\\.option\\.short|rdi\\.session\\.dlls|rdi\\.session\\.form|rdi\\.session\\.info|rdi\\.table\\.column|refresh\\.bar\\.menu|resize\\.gpart\\.box|put\\.indexed\\.var|rdi\\.audit\\.hosts|rdi\\.domain\\.enum|rdi\\.domain\\.long|rdi\\.option\\.info|rdi\\.session\\.key|receive\\.bucket\\$|reset\\.zoom\\.info|pending\\.events|pty\\.winsize\\.ok|put\\.double\\.arg|put\\.string\\.arg|rdi\\.domain\\.raw|rdi\\.permission|read\\.fast\\.form|pipe\\.clearerr|print\\.arglist|rdi\\.ref\\.route|rdi\\.reference|resize\\.window|push\\.by\\.name|put\\.long\\.arg|query\\.object|rdi\\.vrc\\.path|recv\\.message|print\\.const|pty\\.winsize|put\\.ref\\.var|remove\\.mark|peek\\.event|pipe\\.close|pipe\\.error|pipe\\.flush|pipe\\.write|popup\\.menu|prev\\.gpart|print\\.form|qss\\.search|query\\.font|rdi\\.column|rdi\\.domain|reactivate|pipe\\.gets|pipe\\.open|pipe\\.puts|pipe\\.read|pty\\.close|pty\\.write|put\\.attrs|rdi\\.etoc\\$|rdi\\.index|rdi\\.table|read\\.form|pathname|pipe\\.eof|pty\\.open|pty\\.read|qss\\.sort|rdi\\.ctoe|put\\.var|refresh|ptrace|pty\\.ok|random|renice|pstat)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:resolve\\.labels\\.by\\.lookupkey|set\\.transaction\\.readonly|set\\.symbol\\.strip\\.mode|select\\.event\\.input|set\\.debug\\.cpu\\.opts|set\\.fields\\.default|sha\\.compute\\.output|set\\.mwindow\\.title|set\\.mwindow\\.mode|set\\.mwindow\\.size|set\\.field\\.blank|set\\.input\\.error|sget\\.field\\.attr|seq\\.spool\\.line|set\\.strip\\.mode|sha\\.initialize|run\\.baan\\.prog|set\\.profprint|set\\.time\\.zone|sget\\.fld\\.attr|sget\\.frm\\.attr|sock\\.clearerr|send\\.message|seq\\.clearerr|seq\\.islocked|set\\.bg\\.color|set\\.fg\\.color|sha\\.add\\.data|retry\\.level|retry\\.point|send\\.bucket|send\\.signal|seq\\.r\\.short|seq\\.ungetc\\$|seq\\.w\\.short|sha\\.destroy|shift\\.gpart|sock\\.accept|rprt_close|send\\.event|seq\\.r\\.long|seq\\.rewind|seq\\.unlink|seq\\.unlock|seq\\.w\\.long|sha\\.create|rprt_open|rprt_send|send\\.wait|seq\\.close|seq\\.error|seq\\.flush|seq\\.getc\\$|seq\\.putc\\$|seq\\.write|set\\.alarm|set\\.timer|rnd\\.init|run\\.prog|seq\\.gets|seq\\.lock|seq\\.open|seq\\.puts|seq\\.read|seq\\.seek|seq\\.skip|seq\\.tell|set\\.fmax|set\\.fmin|set\\.menu|set\\.pgrp|s\\.expr\\$|seq\\.eof|set\\.max|set\\.mem|set\\.min|shiftc\\$|shiftl\\$|shiftr\\$|scroll|setenv|signal|rmdir|rnd\\.d|rnd\\.i|round|shell|sleep|rpos|sinh)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:type\\.get\\.fieldnumber|verify\\.user\\.password|sync\\.display\\.server|stpapi\\.end\\.session|switch\\.to\\.company|wait\\.and\\.activate|xma\\.init_instance|sql\\.set\\.rds\\.full|stpapi\\.get\\.field|stpapi\\.put\\.field|sql\\.select\\.bind|unlink\\.keyboard|sql\\.bind\\.input|sql\\.where\\.bind|uuid\\.generate\\$|sput\\.fld\\.attr|start\\.session|stpapi\\.delete|stpapi\\.insert|stpapi\\.update|sock\\.connect|sock\\.inherit|status\\.field|store\\.double|text\\.extends|unmap\\.window|utc\\.to\\.local|uuid\\.format\\$|which\\.gparts|sock\\.listen|status\\.mess|store\\.float|store\\.short|string\\.scan|string\\.set\\$|table\\.round|times\\.close|times\\.lines|times\\.total|type\\.define|user\\.exists|utf8\\.export|utf8\\.import|week\\.to\\.num|which\\.gpart|window\\.size|sock\\.close|sock\\.error|sock\\.flush|start\\.mark|status\\.off|store\\.byte|store\\.long|sub\\.window|toggle\\.cpu|uni\\.export|uni\\.import|sock\\.recv|sock\\.send|sql\\.break|sql\\.close|sql\\.error|sql\\.fetch|sql\\.parse|stat\\.info|status\\.on|times\\.off|type\\.free|vsprintf\\$|w\\.to\\.dat\\$|sock\\.eof|sprintf\\$|sql\\.exec|time\\.num|times\\.on|tolower\\$|toupper\\$|ttyname\\$|wrebuild|suspend|ttyname|utc\\.add|utc\\.num|strip\\$|srand|sqrt|str\\$|tab\\$|tanh|wait)(?![\\w.$])"
+        },
+        {
+          "name": "support.function.builtin.ln4gl",
+          "match": "(?i)(?<![\\w.$])(?:xmlcontainsvalidcharactersonly|xmlduplicateandappendtochilds|xmlduplicateandinsertinchilds|xml\\.findsetofsiblingnodes|xml\\.deletenodeproperties|xmlfindsetofsiblingnodes|xmldeinstallloglistener|xma\\.process_next_event|xmlgetnumrightsiblings|xmlwriteprettytostring|xml\\.getnodeproperties|xml\\.setnodeproperties|xmlduplicateandappend|xmlduplicateandinsert|xmlduplicatetoprocess|xmlgetnumleftsiblings|xmlinstallloglistener|xmlrewritedataelement|xmlstatisticssqlcache|xml\\.appendchildnode|xmlexecutedllmethod|xmlgetattributename|xmlgetnumattributes|xmldeleteattribute|xmlduplicateandadd|xmlgetrightsibling|xmlrefreshsqlcache|xml\\.duplicatenode|xml\\.findfirstnode|xmlappendtochilds|xmlfindfirstmatch|xmlgetdataelement|xmlgetleftsibling|xmlgetnumsiblings|xmlinsertinchilds|xmlnewdataelement|xmlputstringtolog|xmlreadfromstring|xmlgetfirstchild|xmlwritetostring|xmldllsignature|xmlgetattribute|xmlgetlastchild|xmlgetnumchilds|xmlnodetosymbol|xmlsetattribute|xml\\.deletenode|xml\\.insertnode|xml\\.unlinknode|xmlwritepretty|xml\\.findnodes|xmlcleanuplog|xmlexecutesql|xmlduplicate|xmlfindfirst|xmlfindmatch|xmlfindnodes|xmlgetparent|xml\\.addnode|xml\\.newnode|xmlgetdata|xmlgetname|xmlgettype|xmlinitsql|xmlnewnode|xmlsetdata|xmlsetname|xml\\.write|xmlappend|xmldelete|xmlgetlog|xmlinsert|xmlunlink|xml\\.read|xmlwrite|zoom\\.to\\$|xmlread|xmladd)(?![\\w.$])"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.ln4gl",
+          "match": "(?<![\\w.])-?\\d+\\.\\d+(?![\\w.])"
+        },
+        {
+          "name": "constant.numeric.integer.ln4gl",
+          "match": "(?<![\\w.])-?\\d+(?![\\w.])"
+        }
+      ]
+    },
+    "operators": {
+      "name": "keyword.operator.ln4gl",
+      "match": "=|<>|<=|>=|<|>|\\+|-|\\*|/|\\?|&"
+    }
+  }
+}

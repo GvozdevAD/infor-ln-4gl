@@ -1,0 +1,62 @@
+{
+  "message": {
+    "label": "message(text)",
+    "parameters": ["text"]
+  },
+  "mess": {
+    "label": "mess(code [, arg...])",
+    "parameters": ["code", "arg..."]
+  },
+  "sprintf$": {
+    "label": "sprintf$(format, ...)",
+    "parameters": ["format", "..."]
+  },
+  "stpapi.put.field": {
+    "label": "stpapi.put.field(session, field, value)",
+    "parameters": ["session", "field", "value"]
+  },
+  "stpapi.get.field": {
+    "label": "stpapi.get.field(session, field, value)",
+    "parameters": ["session", "field", "value"]
+  },
+  "dal.set.error.message": {
+    "label": "dal.set.error.message(text)",
+    "parameters": ["text"]
+  },
+  "dal.set.field": {
+    "label": "dal.set.field(table.field, value)",
+    "parameters": ["table.field", "value"]
+  },
+  "dal.new.object": {
+    "label": "dal.new.object(table)",
+    "parameters": ["table"]
+  },
+  "dal.change.object": {
+    "label": "dal.change.object(table)",
+    "parameters": ["table"]
+  },
+  "dal.save.object": {
+    "label": "dal.save.object(table)",
+    "parameters": ["table"]
+  },
+  "dal.destroy.object": {
+    "label": "dal.destroy.object(table)",
+    "parameters": ["table"]
+  },
+  "zoom.to$": {
+    "label": "zoom.to$(session, ...)",
+    "parameters": ["session", "..."]
+  },
+  "set.input.error": {
+    "label": "set.input.error(text)",
+    "parameters": ["text"]
+  },
+  "db.update": {
+    "label": "db.update(table, mode)",
+    "parameters": ["table", "mode"]
+  },
+  "db.insert": {
+    "label": "db.insert(table, mode)",
+    "parameters": ["table", "mode"]
+  }
+}

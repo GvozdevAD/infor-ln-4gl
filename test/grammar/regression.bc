@@ -1,0 +1,16 @@
+| SYNTAX TEST "source.ln4gl" "regression vs jeffersyuan bugs"
+
+IF foo then
+|<- keyword.control.ln4gl
+
+Select cxoes021.*
+|<- keyword.control.sql.ln4gl
+
+form.10:
+|<------- entity.name.section.form.ln4gl
+
+message("a""b")
+|         ^^ constant.character.escape.ln4gl
+
+x = 1 | trailing comment
+|     ^ comment.line.vertical-bar.ln4gl

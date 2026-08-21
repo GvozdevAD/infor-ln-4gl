@@ -1,0 +1,279 @@
+{
+  "selectdo": {
+    "prefix": "sel",
+    "description": "Embedded SQL selectdo block",
+    "body": [
+      "select ${1:table}.*",
+      "from $1",
+      "where $1.${2:field} = :${3:value}",
+      "selectdo",
+      "\t$0",
+      "selectempty",
+      "\t",
+      "endselect"
+    ]
+  },
+  "select for update": {
+    "prefix": "selfor",
+    "description": "select … for update with selectdo / selectempty",
+    "body": [
+      "select ${1:table}.*",
+      "from $1 for update",
+      "where $1.${2:field} = :${3:value}",
+      "selectdo",
+      "\t$0",
+      "selectempty",
+      "\t",
+      "endselect"
+    ]
+  },
+  "sql update": {
+    "prefix": "sqlupd",
+    "description": "Embedded SQL update block",
+    "body": [
+      "update ${1:table}",
+      "set ${2:field} = ${3:value}",
+      "where ${4:condition}",
+      "endupdate",
+      "$0"
+    ]
+  },
+  "sql delete": {
+    "prefix": "sqldel",
+    "description": "Embedded SQL delete block",
+    "body": [
+      "delete ${1:table}.*",
+      "from $1",
+      "where ${2:condition}",
+      "enddelete",
+      "$0"
+    ]
+  },
+  "field section": {
+    "prefix": "fld",
+    "description": "4GL field section",
+    "body": [
+      "field.${1:table}.${2:field}:",
+      "before.input:",
+      "\t$0",
+      "after.field:",
+      "\t"
+    ]
+  },
+  "choice section": {
+    "prefix": "chc",
+    "description": "4GL choice section",
+    "body": [
+      "choice.${1:print.data}:",
+      "on.choice:",
+      "\t$0"
+    ]
+  },
+  "function": {
+    "prefix": "fun",
+    "description": "3GL extern function",
+    "body": [
+      "function extern ${1:long} ${2:name}()",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+  "function main": {
+    "prefix": "main",
+    "description": "3GL program entry",
+    "body": [
+      "function main()",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+  "while endwhile": {
+    "prefix": "wh",
+    "description": "while / endwhile (prefix wh — avoids clashing with keyword while)",
+    "body": [
+      "while ${1:condition}",
+      "\t$0",
+      "endwhile"
+    ]
+  },
+  "case endcase": {
+    "prefix": "onc",
+    "description": "on case / case / endcase (prefix onc — avoids clashing with keyword case)",
+    "body": [
+      "on case ${1:expression}",
+      "case ${2:value}:",
+      "\t$0",
+      "default:",
+      "\t",
+      "endcase"
+    ]
+  },
+  "for endfor": {
+    "prefix": "forn",
+    "description": "for / endfor (prefix forn — avoids clashing with keyword for)",
+    "body": [
+      "for ${1:i} = ${2:1} to ${3:n}",
+      "\t$0",
+      "endfor"
+    ]
+  },
+  "DAL before.save.object": {
+    "prefix": "dalsave",
+    "description": "DAL2 before.save.object hook",
+    "body": [
+      "function extern long before.save.object()",
+      "{",
+      "\tif ${1:table}.${2:field} = \"\" then",
+      "\t\treturn(DALHOOKERROR)",
+      "\tendif",
+      "\treturn(0)",
+      "}"
+    ]
+  },
+  "dalnew": {
+    "prefix": "dalnew",
+    "description": "DAL1 new object + set.field + save with commit/abort",
+    "body": [
+      "ret = dal.new.object(\"${1:table}\")",
+      "dal.set.field(\"$1.${2:field}\", ${3:value})",
+      "ret = dal.save.object(\"$1\")",
+      "if ret <> 0 then",
+      "\tret = dal.get.error.message(err.msg)",
+      "\tabort.transaction()",
+      "else",
+      "\tcommit.transaction()",
+      "endif",
+      "$0"
+    ]
+  },
+  "dalup": {
+    "prefix": "dalup",
+    "description": "DAL1 change object + set.field + save with commit/abort",
+    "body": [
+      "ret = dal.change.object(\"${1:table}\")",
+      "dal.set.field(\"$1.${2:field}\", ${3:value})",
+      "ret = dal.save.object(\"$1\")",
+      "if ret <> 0 then",
+      "\tret = dal.get.error.message(err.msg)",
+      "\tabort.transaction()",
+      "else",
+      "\tcommit.transaction()",
+      "endif",
+      "$0"
+    ]
+  },
+  "daldel": {
+    "prefix": "daldel",
+    "description": "DAL1 destroy object with commit/abort",
+    "body": [
+      "ret = dal.destroy.object(\"${1:table}\")",
+      "if ret <> 0 then",
+      "\tret = dal.get.error.message(err.msg)",
+      "\tabort.transaction()",
+      "else",
+      "\tcommit.transaction()",
+      "endif",
+      "$0"
+    ]
+  },
+  "upd": {
+    "prefix": "upd",
+    "description": "db.retry.point + select for update + db.update / db.insert",
+    "body": [
+      "db.retry.point()",
+      "",
+      "select ${1:table}.*",
+      "from $1 for update",
+      "where $1.${2:field} = :${3:value}",
+      "selectdo",
+      "\t$1.${4:field} = ${5:value}",
+      "\tdb.update(t$1, db.retry)",
+      "selectempty",
+      "\t$1.$4 = $5",
+      "\tdb.insert(t$1, db.retry)",
+      "endselect",
+      "",
+      "commit.transaction()",
+      "$0"
+    ]
+  },
+  "declaration": {
+    "prefix": "decl",
+    "description": "4GL declaration section",
+    "body": [
+      "declaration:",
+      "\ttable   t${1:tdsls401}",
+      "\textern  domain ${2:tcmcs.str30}  ${3:orno}",
+      "",
+      "$0"
+    ]
+  },
+  "dllusage": {
+    "prefix": "dllu",
+    "description": "DLL documentation block",
+    "body": [
+      "dllusage",
+      "\t${1:Library description}",
+      "enddllusage",
+      "",
+      "$0"
+    ]
+  },
+  "dll skeleton": {
+    "prefix": "dll",
+    "description": "dllusage + function extern skeleton",
+    "body": [
+      "dllusage",
+      "\t${1:Library description}",
+      "enddllusage",
+      "",
+      "function extern ${2:long} ${3:name}()",
+      "{",
+      "\t$0",
+      "\treturn(0)",
+      "}"
+    ]
+  },
+  "report skeleton": {
+    "prefix": "rep",
+    "description": "Print session / report skeleton",
+    "body": [
+      "declaration:",
+      "\ttable   t${1:table}",
+      "",
+      "choice.print.data:",
+      "on.choice:",
+      "\tif rprt_open() then",
+      "\t\t${2:read.main.table}()",
+      "\t\trprt_close()",
+      "\telse",
+      "\t\tchoice.again()",
+      "\tendif",
+      "",
+      "functions:",
+      "function $2()",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+  "include": {
+    "prefix": "inc",
+    "description": "Preprocessor #include",
+    "body": [
+      "#include \"${1:file}\"",
+      "$0"
+    ]
+  },
+  "ifdef": {
+    "prefix": "ppif",
+    "description": "Preprocessor #ifdef / #endif",
+    "body": [
+      "#ifdef ${1:SYMBOL}",
+      "$0",
+      "#endif"
+    ]
+  }
+}

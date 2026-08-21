@@ -1,0 +1,95 @@
+{
+  "name": "infor-ln-4gl",
+  "displayName": "Infor LN 4GL",
+  "description": "Syntax highlighting, snippets, completion, Outline, and Go to Definition for Infor LN / Baan 3GL and 4GL.",
+  "version": "0.1.0",
+  "publisher": "GvozdevAD",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GvozdevAD/infor-ln-4gl.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "infor",
+    "ln",
+    "baan",
+    "4gl",
+    "3gl",
+    "erp"
+  ],
+  "main": "./src/extension.js",
+  "scripts": {
+    "package": "vsce package --no-dependencies",
+    "test": "node --test test/**/*.test.js",
+    "test:grammar": "vscode-tmgrammar-test -g syntaxes/ln-4gl.tmLanguage.json 'test/grammar/*.bc'",
+    "check:grammar": "python3 scripts/build-grammar.py && git diff --exit-code -- syntaxes/ln-4gl.tmLanguage.json data/completions.json",
+    "ci": "npm test && npm run test:grammar && npm run check:grammar"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.9.2",
+    "vscode-tmgrammar-test": "^0.1.3"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "ln-4gl",
+        "aliases": [
+          "Infor LN 4GL",
+          "LN 4GL",
+          "LN 3GL",
+          "Baan 4GL",
+          "Baan"
+        ],
+        "extensions": [
+          ".bc",
+          ".cln",
+          ".ln4gl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ln-4gl",
+        "scopeName": "source.ln4gl",
+        "path": "./syntaxes/ln-4gl.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ln-4gl",
+        "path": "./snippets/ln-4gl.json"
+      }
+    ],
+    "configuration": {
+      "title": "Infor LN 4GL",
+      "properties": {
+        "ln-4gl.includePath": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Extra directories to search for #include files (absolute or relative to the current file)."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[ln-4gl]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.wordBasedSuggestions": "allDocuments",
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": false
+      }
+    }
+  }
+}

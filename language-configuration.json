@@ -1,0 +1,45 @@
+{
+  "comments": {
+    "lineComment": {
+      "comment": "|"
+    }
+  },
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+  "autoClosingPairs": [
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
+    { "open": "\"", "close": "\"" }
+  ],
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""]
+  ],
+  "wordPattern": "[A-Za-z_][A-Za-z0-9_.$]*",
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(if\\b.*\\bthen\\s*$|else\\b|for\\b|while\\b|repeat\\b|case\\b|selectdo\\b|selectempty\\b|selecteos\\b|selecterror\\b|function\\b|{)\\s*$",
+    "decreaseIndentPattern": "^\\s*(endif|else|endfor|endwhile|endcase|until|endselect|selectempty|selecteos|selecterror|})\\b"
+  },
+  "folding": {
+    "markers": {
+      "start": "^\\s*(function\\b|if\\b|for\\b|while\\b|repeat\\b|select\\b|dllusage\\b|functionusage\\b|(declaration|functions|before\\.program|after\\.program|on\\.error|field\\.|choice\\.|group\\.|form\\.|main\\.table\\.io|zoom\\.from\\.)[\\w.]*:?)",
+      "end": "^\\s*(\\}|endif\\b|endfor\\b|endwhile\\b|endcase\\b|until\\b|endselect\\b|enddllusage\\b|endfunctionusage\\b|(declaration|functions|before\\.program|after\\.program|on\\.error|field\\.|choice\\.|group\\.|form\\.|main\\.table\\.io|zoom\\.from\\.)[\\w.]*:?)"
+    }
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*\\|\\*.*$",
+      "action": { "indent": "none", "appendText": "|* " }
+    },
+    {
+      "beforeText": "^\\s*\\|[^|]*$",
+      "action": { "indent": "none", "appendText": "| " }
+    }
+  ]
+}

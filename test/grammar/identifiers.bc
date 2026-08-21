@@ -1,0 +1,12 @@
+| SYNTAX TEST "source.ln4gl" "identifiers"
+
+select tdsls401.orno, tdsls401.*, :orno.f
+|       ^^^^^^^^^^^^ variable.other.property.ln4gl
+|                     ^^^^^^^^^^ variable.other.property.ln4gl
+|                                 ^^^^^^^ variable.parameter.host.ln4gl
+
+if not attr.input then
+|      ^^^^^^^^^^ variable.language.attribute.ln4gl
+
+table tcxoes021
+|     ^^^^^^^^^ entity.name.type.table.ln4gl
