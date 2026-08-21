@@ -19,6 +19,18 @@
     "label": "stpapi.get.field(session, field, value)",
     "parameters": ["session", "field", "value"]
   },
+  "stpapi.find": {
+    "label": "stpapi.find(session)",
+    "parameters": ["session"]
+  },
+  "stpapi.save": {
+    "label": "stpapi.save(session)",
+    "parameters": ["session"]
+  },
+  "stpapi.end.session": {
+    "label": "stpapi.end.session(session)",
+    "parameters": ["session"]
+  },
   "dal.set.error.message": {
     "label": "dal.set.error.message(text)",
     "parameters": ["text"]
@@ -58,5 +70,93 @@
   "db.insert": {
     "label": "db.insert(table, mode)",
     "parameters": ["table", "mode"]
+  },
+  "db.delete": {
+    "label": "db.delete(table, mode)",
+    "parameters": ["table", "mode"]
+  },
+  "db.retry.point": {
+    "label": "db.retry.point()",
+    "parameters": []
+  },
+  "db.eq": {
+    "label": "db.eq(table)",
+    "parameters": ["table"]
+  },
+  "db.first": {
+    "label": "db.first(table)",
+    "parameters": ["table"]
+  },
+  "db.next": {
+    "label": "db.next(table)",
+    "parameters": ["table"]
+  },
+  "db.prev": {
+    "label": "db.prev(table)",
+    "parameters": ["table"]
+  },
+  "db.last": {
+    "label": "db.last(table)",
+    "parameters": ["table"]
+  },
+  "db.error": {
+    "label": "db.error()",
+    "parameters": []
+  },
+  "db.error.message": {
+    "label": "db.error.message()",
+    "parameters": []
+  },
+  "db.set.to.default": {
+    "label": "db.set.to.default(table)",
+    "parameters": ["table"]
+  },
+  "len": {
+    "label": "len(string)",
+    "parameters": ["string"]
+  },
+  "pos": {
+    "label": "pos(string, substring)",
+    "parameters": ["string", "substring"]
+  },
+  "strip$": {
+    "label": "strip$(string)",
+    "parameters": ["string"]
+  },
+  "str$": {
+    "label": "str$(number)",
+    "parameters": ["number"]
+  },
+  "shiftl$": {
+    "label": "shiftl$(string, length)",
+    "parameters": ["string", "length"]
+  },
+  "shiftr$": {
+    "label": "shiftr$(string, length)",
+    "parameters": ["string", "length"]
+  },
+  "date.num": {
+    "label": "date.num()",
+    "parameters": []
+  },
+  "date.to.num": {
+    "label": "date.to.num(date)",
+    "parameters": ["date"]
+  },
+  "num.to.date$": {
+    "label": "num.to.date$(date.number)",
+    "parameters": ["date.number"]
+  },
+  "commit.transaction": {
+    "label": "commit.transaction()",
+    "parameters": []
+  },
+  "abort.transaction": {
+    "label": "abort.transaction()",
+    "parameters": []
+  },
+  "query.extend.where": {
+    "label": "query.extend.where(clause)",
+    "parameters": ["clause"]
   }
 }

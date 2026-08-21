@@ -490,6 +490,14 @@ def main() -> None:
         "db.update",
         "db.delete",
         "db.retry.point",
+        "db.eq",
+        "db.first",
+        "db.next",
+        "db.prev",
+        "db.last",
+        "db.error",
+        "db.error.message",
+        "db.set.to.default",
         "do.occ",
         "do.all.occ",
         "sprintf$",
@@ -500,7 +508,13 @@ def main() -> None:
         "lval",
         "val",
         "str$",
+        "pos",
+        "shiftl$",
+        "shiftr$",
         "enum.descr$",
+        "date.num",
+        "date.to.num",
+        "num.to.date$",
         "get.compnr",
         "switch.to.company",
         "start.session",
@@ -520,6 +534,17 @@ def main() -> None:
         "stpapi.browse.set",
         "stpapi.print.report",
         "stpapi.end.session",
+    ]
+
+    error_codes = [
+        "ELOCKED",
+        "EDUPL",
+        "ENOREC",
+        "EREFERENCE",
+        "EENDFILE",
+        "ENOCURR",
+        "EPERMISSION",
+        "EBUSY",
     ]
 
     completions = {
@@ -545,6 +570,7 @@ def main() -> None:
         "dalHooks": sorted(set(dal_named)),
         "constants": sorted(set(highlight_constants + session_named)),
         "functions": sorted(set(common_functions)),
+        "errors": sorted(set(error_codes)),
     }
     cpath = ROOT / "data" / "completions.json"
     cpath.write_text(json.dumps(completions, indent=2) + "\n")

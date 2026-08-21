@@ -13,13 +13,16 @@ A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an L
 | Feature | Notes |
 |---|---|
 | Highlighting | 3GL, 4GL sections, SQL, DAL hooks, `table.field`, `table.*`, table ids, `:hostvar`, `attr.*` |
-| Completion | Context-aware (SQL / sections / general); frequent functions with snippets |
+| Completion | Context-aware (SQL / sections / general); frequent APIs (`db.*`, strings, dates) plus error constants (`ELOCKED`, …) |
 | Snippets | High-value only: `sel`, `dalnew`, `upd`, `fld`, … Control blocks: `wh` / `forn` / `onc` (not `if` — type the keyword) |
 | Outline | 4GL sections (`field.*`, `choice.*`, …) and functions; nested events under parents |
 | Go to Definition | Jump to `function` in the same file; `#include` resolves beside the file or via `ln-4gl.includePath` |
-| Hover | Short notes for sections, DAL hooks, common functions, `attr.*` |
-| Signature help | Parameter hints for frequent calls (`message`, `stpapi.*`, DAL1, …) |
+| Find References / Rename | Occurrences and F2 rename in the current file; builtins, keywords, error codes, and 4GL section headers are blocked |
+| Hover | Short notes for sections, DAL hooks, common functions, error codes, `attr.*` |
+| Signature help | Parameter hints for frequent calls (`message`, `db.*`, `stpapi.*`, DAL1, …) |
 | Keyword pairs | Highlight matching `if`/`endif`, `select`/`endselect`, `for`/`endfor`, … |
+| Document highlights | Pair keywords or all occurrences of the identifier under the cursor |
+| Folding | `if`/`select`/`function` blocks, braces, and 4GL sections |
 | Diagnostics | Unmatched `endif` / `endselect` / …; Quick Fix for `for … by` → `step` and stray `while … do` |
 | Word pattern | Dots count: `tdsls401.orno` and `before.input` are one word |
 

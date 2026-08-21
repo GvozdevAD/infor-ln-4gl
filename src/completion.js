@@ -238,6 +238,12 @@ const completionProvider = {
           "2-",
           prefix,
         ),
+        ...itemsFor(
+          completions.errors || [],
+          vscode.CompletionItemKind.Constant,
+          "2-",
+          prefix,
+        ),
       ];
     }
 

@@ -9,8 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Find All References and Rename Symbol in the current file (builtins, keywords, and 4GL section headers cannot be renamed).
+- Document highlights for identifier occurrences (in addition to `if`/`endif` pairs).
+- `FoldingRangeProvider` for control blocks, braces, and 4GL sections.
 - Block-matching diagnostics for unmatched `if`/`endif`, `select`/`endselect`, and related pairs; idiom warnings with Quick Fix for `for … by` → `step` and stray `while … do`.
 - Settings `ln-4gl.diagnostics.enabled` and `ln-4gl.diagnostics.strictComments`.
+- Expanded frequency catalog: everyday `db.*` navigation, string/date helpers, and error constants (`ELOCKED`, `EDUPL`, …) in completion; hover docs and more signatures for those APIs.
 
 ### Fixed
 
