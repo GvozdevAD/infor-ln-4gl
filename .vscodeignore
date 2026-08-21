@@ -1,0 +1,10 @@
+.vscode/**
+.gitignore
+docs/**
+scripts/**
+test/**
+.github/**
+data/baan-vim-keywords.json
+**/*.map
+node_modules/**
+*.vsix
