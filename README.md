@@ -1,5 +1,8 @@
 # Infor LN 4GL for VS Code
 
+[![CI](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml/badge.svg)](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Syntax highlighting, snippets, completion, Outline, Go to Definition, hover, and signature help for **Infor LN / Baan 3GL and 4GL**.
 
 This is a notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an LN Studio workspace over Remote-SSH. It does **not** replace LN Studio: no check-out, no `bic` compile, no forms, no JCA adapter.

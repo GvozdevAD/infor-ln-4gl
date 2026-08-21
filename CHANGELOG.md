@@ -22,3 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sample scripts under `examples/`.
 - VSIX packaging (`npm run package`); `scripts/` and `test/` excluded from the package.
 - Unit tests (`npm test`), TextMate grammar fixtures (`npm run test:grammar`), grammar freshness check, and GitHub Actions CI.
+
+[unreleased]: https://github.com/GvozdevAD/infor-ln-4gl/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/GvozdevAD/infor-ln-4gl/releases/tag/0.1.0
