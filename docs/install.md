@@ -1,12 +1,20 @@
 # Install
 
-Marketplace install is the usual path once the extension is published. This page covers **VSIX** and a **development symlink**.
+## Marketplace (recommended)
+
+Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GvozdevAD.infor-ln-4gl), or Command Palette → **Extensions: Install Extensions** → search **Infor LN 4GL**, or:
+
+```text
+ext install GvozdevAD.infor-ln-4gl
+```
 
 On a **Remote-SSH** host, install in the *remote* window (the Windows box), not only on the local Mac.
 
+Open `examples/print-session.ui.bc`. The status bar should show **Infor LN 4GL**.
+
 ## From VSIX
 
-From the repo root:
+Useful for a specific build, offline install, or before a Marketplace update propagates:
 
 ```bash
 npm install
@@ -14,8 +22,6 @@ npm run package
 ```
 
 That produces `infor-ln-4gl-0.1.0.vsix`. Command Palette → **Extensions: Install from VSIX…** → pick the file → reload.
-
-Open `examples/print-session.ui.bc`. The status bar should show **Infor LN 4GL**.
 
 ## Development symlink
 
