@@ -4,10 +4,13 @@ const { definitionProvider } = require("./definition");
 const { completionProvider } = require("./completion");
 const { hoverProvider } = require("./hover");
 const { signatureHelpProvider } = require("./signature");
-const { documentHighlightProvider } = require("./pairs");
+const { documentHighlightProvider } = require("./highlights");
 const { documentLinkProvider } = require("./include");
 const { activateDiagnostics, deactivateDiagnostics } = require("./diagnostics");
 const { codeActionProvider } = require("./codeActions");
+const { referenceProvider } = require("./references");
+const { renameProvider } = require("./rename");
+const { foldingRangeProvider } = require("./foldingProvider");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -21,6 +24,12 @@ function activate(context) {
       documentSymbolProvider,
     ),
     vscode.languages.registerDefinitionProvider("ln-4gl", definitionProvider),
+    vscode.languages.registerReferenceProvider("ln-4gl", referenceProvider),
+    vscode.languages.registerRenameProvider("ln-4gl", renameProvider),
+    vscode.languages.registerFoldingRangeProvider(
+      "ln-4gl",
+      foldingRangeProvider,
+    ),
     vscode.languages.registerCompletionItemProvider(
       "ln-4gl",
       completionProvider,

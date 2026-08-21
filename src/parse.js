@@ -180,4 +180,5 @@ module.exports = {
   parseDocument,
   functionIndex,
   classifySection,
+  SECTION_LINE,
 };
