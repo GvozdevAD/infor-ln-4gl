@@ -1,0 +1,68 @@
+|**********************************************************
+|* print-session.ui.bc
+|*
+|* 4GL UI script pattern (print session).
+|* Structure follows the public Infor example for a print session:
+|* declaration / group / choice / field / functions.
+|**********************************************************
+
+declaration:
+    table   tcxoes021                   | Suppliers
+    table   tcxoes031                   | Countries
+
+    extern  domain  cxsuno           suno.f    fixed
+    extern  domain  cxsuno           suno.t    fixed
+
+group.1:
+init.group:
+    get.screen.defaults()
+
+choice.cont.process:
+on.choice:
+    execute(print.data)
+
+choice.print.data:
+on.choice:
+    if rprt_open() then
+        read.main.table()
+        rprt_close()
+    else
+        choice.again()
+    endif
+
+field.suno.f:
+before.input:
+    | Demo attr.* and db.retry highlighting
+    if not attr.input then
+        set.input.error("Not input")
+    endif
+when.field.changes:
+    suno.t = suno.f
+    
+functions:
+function read.main.table()
+{
+    select cxoes021.*, cxoes031.*
+    from cxoes021, cxoes031
+    where   cxoes021._index1 inrange {:suno.f}
+                                 and {:suno.t}
+    and     cxoes021.ccty refers to cxoes031
+    order by cxoes021._index1
+    selectdo
+        rprt_send()
+    selectempty
+        message("No suppliers in range")
+    endselect
+}
+
+| db.retry shares highlighting with constant DB.RETRY
+function demo.db.retry()
+{
+    db.update(tcxoes021, db.retry)
+}
+
+functions:
+function demo.function()
+{
+
+}
