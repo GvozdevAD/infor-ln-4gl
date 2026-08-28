@@ -181,4 +181,5 @@ module.exports = {
   functionIndex,
   classifySection,
   SECTION_LINE,
+  FUNCTION_LINE,
 };

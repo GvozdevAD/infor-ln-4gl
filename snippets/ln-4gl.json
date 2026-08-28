@@ -275,5 +275,67 @@
       "$0",
       "#endif"
     ]
+  },
+  "ifndef guard": {
+    "prefix": "ppifndef",
+    "description": "Preprocessor include guard (#ifndef / #define / #endif)",
+    "body": [
+      "#ifndef ${1:GUARD}",
+      "#define $1",
+      "$0",
+      "#endif"
+    ]
+  },
+  "form section": {
+    "prefix": "form",
+    "description": "4GL form section",
+    "body": [
+      "form.${1:1}:",
+      "init.form:",
+      "\t$0",
+      "before.form:",
+      "\t",
+      "after.form:",
+      "\t"
+    ]
+  },
+  "group section": {
+    "prefix": "group",
+    "description": "4GL group section",
+    "body": [
+      "group.${1:1}:",
+      "init.group:",
+      "\t$0",
+      "before.group:",
+      "\t",
+      "after.group:",
+      "\t"
+    ]
+  },
+  "main table io": {
+    "prefix": "maintable",
+    "description": "4GL main.table.io section",
+    "body": [
+      "main.table.io:",
+      "before.read:",
+      "\t$0",
+      "after.read:",
+      "\t",
+      "before.write:",
+      "\t",
+      "after.write:",
+      "\t"
+    ]
+  },
+  "zoom from section": {
+    "prefix": "zoom",
+    "description": "4GL zoom.from section",
+    "body": [
+      "zoom.from.${1:field}:",
+      "on.entry:",
+      "\t$0",
+      "on.exit:",
+      "\t"
+    ]
   }
 }

@@ -11,6 +11,7 @@ const { codeActionProvider } = require("./codeActions");
 const { referenceProvider } = require("./references");
 const { renameProvider } = require("./rename");
 const { foldingRangeProvider } = require("./foldingProvider");
+const { documentFormattingEditProvider } = require("./formatProvider");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -29,6 +30,10 @@ function activate(context) {
     vscode.languages.registerFoldingRangeProvider(
       "ln-4gl",
       foldingRangeProvider,
+    ),
+    vscode.languages.registerDocumentFormattingEditProvider(
+      "ln-4gl",
+      documentFormattingEditProvider,
     ),
     vscode.languages.registerCompletionItemProvider(
       "ln-4gl",

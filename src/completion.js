@@ -2,8 +2,12 @@ const vscode = require("vscode");
 const completions = require("../data/completions.json");
 const docs = require("../data/docs.json");
 const { codePart } = require("./text");
+const { isInsideEmbeddedSql } = require("./sql-context");
+const { detailFor, sortPrefixFor } = require("./catalog");
+const { detectScriptKind } = require("./script-context");
 
 const FUNCTION_DOCS = docs;
+const COMPLETION_CAP = 200;
 
 const TYPE_WORDS = new Set([
   "long",
@@ -17,11 +21,14 @@ const TYPE_WORDS = new Set([
 /**
  * @param {vscode.TextDocument} document
  * @param {vscode.Position} position
- * @returns {"sql" | "sectionLine" | "dalHeader" | "general"}
+ * @returns {"sql" | "sectionLine" | "dalHeader" | "preprocessor" | "general"}
  */
 function detectContext(document, position) {
   if (isInSql(document, position)) {
     return "sql";
+  }
+  if (isPreprocessorContext(document, position)) {
+    return "preprocessor";
   }
   if (isDalHeader(document, position)) {
     return "dalHeader";
@@ -55,33 +62,26 @@ function isSectionLine(document, position) {
  * @param {vscode.Position} position
  */
 function isInSql(document, position) {
-  let depth = 0;
-  for (let i = position.line; i >= 0; i--) {
-    let text = codePart(document.lineAt(i).text);
-    if (i === position.line) {
-      text = text.slice(0, position.character);
-    }
-    const lower = text.toLowerCase();
-    // Count endselect then select on the same line carefully (right to left tokens)
-    const tokens = [];
-    const re = /\b(endselect|selectdo|selectempty|selecteos|selecterror|select)\b/gi;
-    let m;
-    while ((m = re.exec(lower)) !== null) {
-      tokens.push(m[1].toLowerCase());
-    }
-    for (let t = tokens.length - 1; t >= 0; t--) {
-      const tok = tokens[t];
-      if (tok === "endselect") {
-        depth--;
-      } else if (tok === "select") {
-        depth++;
-      }
-    }
-    if (depth > 0) {
-      return true;
-    }
+  return isInsideEmbeddedSql(
+    document.getText(),
+    position.line,
+    position.character,
+  );
+}
+
+/**
+ * @param {vscode.TextDocument} document
+ * @param {vscode.Position} position
+ */
+function isPreprocessorContext(document, position) {
+  const line = document.lineAt(position.line).text;
+  const code = codePart(line);
+  if (!/^\s*#/.test(code)) {
+    return false;
   }
-  return false;
+  const pipe = line.indexOf("|");
+  const limit = pipe >= 0 ? pipe : line.length;
+  return position.character <= limit;
 }
 
 /**
@@ -134,27 +134,31 @@ function matchesPrefix(label, prefix) {
  * @param {vscode.CompletionItemKind} kind
  * @param {string} sortPrefix
  * @param {string} wordPrefix
- * @param {{ functions?: boolean }} [opts]
+ * @param {{ functions?: boolean, scriptKind?: string, dalHook?: boolean }} [opts]
  */
 function itemsFor(list, kind, sortPrefix, wordPrefix, opts = {}) {
   const out = [];
+  const scriptKind = opts.scriptKind || "general";
   for (const label of list) {
     if (!matchesPrefix(label, wordPrefix)) {
       continue;
     }
     const item = new vscode.CompletionItem(label, kind);
-    item.sortText = `${sortPrefix}${label.toLowerCase()}`;
+    const prefix =
+      opts.functions || opts.dalHook
+        ? sortPrefixFor(label, /** @type any */ (scriptKind), opts.dalHook)
+        : sortPrefix;
+    item.sortText = `${prefix}${label.toLowerCase()}`;
     if (opts.functions) {
-      const doc = FUNCTION_DOCS[label] || FUNCTION_DOCS[label.toLowerCase()];
+      const doc =
+        detailFor(label) ||
+        FUNCTION_DOCS[label] ||
+        FUNCTION_DOCS[label.toLowerCase()];
       if (doc) {
         item.detail = doc;
         item.documentation = doc;
       }
-      if (label.endsWith("$")) {
-        item.insertText = new vscode.SnippetString(`${label}($0)`);
-      } else {
-        item.insertText = new vscode.SnippetString(`${label}($0)`);
-      }
+      item.insertText = new vscode.SnippetString(`${label}($0)`);
     } else if (kind === vscode.CompletionItemKind.Snippet && label.endsWith(":")) {
       item.insertText = new vscode.SnippetString(`${label}\n\t$0`);
     }
@@ -200,6 +204,13 @@ const completionProvider = {
         "0-",
         prefix,
       );
+    } else if (ctx === "preprocessor") {
+      items = itemsFor(
+        completions.preprocessor || [],
+        vscode.CompletionItemKind.Keyword,
+        "0-",
+        prefix,
+      );
     } else if (ctx === "dalHeader") {
       const types = completions.keywords.filter((k) => TYPE_WORDS.has(k.toLowerCase()));
       items = [
@@ -209,9 +220,11 @@ const completionProvider = {
           vscode.CompletionItemKind.Method,
           "0-",
           prefix,
+          { scriptKind: "dal", dalHook: true },
         ),
       ];
     } else {
+      const scriptKind = detectScriptKind(document);
       items = [
         ...itemsFor(
           completions.keywords,
@@ -224,13 +237,14 @@ const completionProvider = {
           vscode.CompletionItemKind.Function,
           "1-",
           prefix,
-          { functions: true },
+          { functions: true, scriptKind },
         ),
         ...itemsFor(
           completions.dalHooks,
           vscode.CompletionItemKind.Method,
           "1-",
           prefix,
+          { scriptKind, dalHook: true },
         ),
         ...itemsFor(
           completions.constants,
@@ -245,6 +259,16 @@ const completionProvider = {
           prefix,
         ),
       ];
+      if (items.length > COMPLETION_CAP) {
+        items.sort((a, b) =>
+          (a.sortText || a.label).localeCompare(
+            b.sortText || b.label,
+            undefined,
+            { sensitivity: "base" },
+          ),
+        );
+        items = items.slice(0, COMPLETION_CAP);
+      }
     }
 
     return items;

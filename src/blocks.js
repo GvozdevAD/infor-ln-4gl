@@ -10,6 +10,12 @@ const {
   isForUpdate,
   isPreprocessorLine,
 } = require("./keywords");
+const { isInsideEmbeddedSql } = require("./sql-context");
+
+/** @type {typeof PAIRS[number] | undefined} */
+const IF_PAIR = PAIRS.find((p) => p.open[0] === "if");
+/** @type {typeof PAIRS[number] | undefined} */
+const ON_CASE_PAIR = PAIRS.find((p) => p.open[0] === "on case");
 
 /**
  * @typedef {{
@@ -61,10 +67,25 @@ function analyzeBlocks(text, opts = {}) {
     const stack = [];
 
     walkLines(text, { includeComments }, (line, tokens) => {
+      const inSql = isInsideEmbeddedSql(text, line);
       for (let ti = 0; ti < tokens.length; ti++) {
         const t = tokens[ti];
         const role = roleInPair(t.word, spec);
         if (!role) {
+          continue;
+        }
+        if (
+          inSql &&
+          spec === IF_PAIR &&
+          role === "middle"
+        ) {
+          continue;
+        }
+        if (
+          inSql &&
+          spec === ON_CASE_PAIR &&
+          role === "close"
+        ) {
           continue;
         }
         if (role === "open" && isForUpdate(tokens, ti)) {

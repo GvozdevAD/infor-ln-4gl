@@ -26,7 +26,7 @@ LN Studio dumps sometimes have no suffix. **Change Language Mode** → Infor LN 
 
 Keep `files.trimTrailingWhitespace` **off** for `ln-4gl`. LN Tools often stores trailing spaces; stripping them makes a noisy diff and can upset what the server stored. This extension sets that default for `[ln-4gl]`.
 
-If another formatter or “format on save” rewrites the file, turn it off for this language.
+**Format Document** only rewrites leading indentation. It does not trim trailing spaces. Format on save is **off** by default for this language (`editor.formatOnSave: false`); turn it on only if you want indent fixes on every save. Disable the formatter with `ln-4gl.format.enabled: false` if another tool should own formatting.
 
 ## `#include` does not jump
 

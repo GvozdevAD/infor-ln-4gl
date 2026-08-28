@@ -52,6 +52,56 @@ describe("analyzeBlocks", () => {
     const issues = analyzeBlocks(text);
     assert.ok(issues.some((i) => i.code === "ln-4gl.elseOutsideIf"));
   });
+
+  it("accepts on case with case labels and default", () => {
+    const text = `on case i.ttid
+                        case 2: | Assembly units
+                                    l.item = sprintf$("D2301001.0.06.%@999999@", i.elid)
+                                    break
+                        case 3: | Details
+                                    l.item = sprintf$("D2302001.0.06.%@999999@", i.elid)
+                                    break
+            default:
+                        dal.set.error.message("@msg", i.ttid)
+                        return(DALHOOKERROR)
+            endcase
+`;
+    const issues = analyzeBlocks(text);
+    assert.equal(
+      issues.filter((i) => i.message.includes("case")).length,
+      0,
+    );
+  });
+
+  it("flags unclosed on case", () => {
+    const text = "on case x\n\tcase 1:\n\t\tbreak\n";
+    const issues = analyzeBlocks(text);
+    assert.ok(
+      issues.some(
+        (i) => i.code === "ln-4gl.unclosedOpen" && i.message.includes("on case"),
+      ),
+    );
+  });
+
+  it("ignores else and endcase inside embedded SQL CASE", () => {
+    const text =
+      "select case when a = 1 then 'x' else 'y' endcase\nfrom t\nselectdo\n\tnop\nendselect\n";
+    const issues = analyzeBlocks(text);
+    assert.equal(issues.filter((i) => i.code === "ln-4gl.elseOutsideIf").length, 0);
+    assert.equal(issues.filter((i) => i.code === "ln-4gl.unmatchedClose").length, 0);
+  });
+
+  it("accepts if / elif / else / endif chain", () => {
+    const text = "if a then\n\tnop\nelif b then\n\tnop\nelse\n\tnop\nendif\n";
+    const issues = analyzeBlocks(text);
+    assert.equal(issues.length, 0);
+  });
+
+  it("flags elif outside if", () => {
+    const text = "elif a then\n\tnop\n";
+    const issues = analyzeBlocks(text);
+    assert.ok(issues.some((i) => i.code === "ln-4gl.elseOutsideIf"));
+  });
 });
 
 describe("analyzeIdioms", () => {

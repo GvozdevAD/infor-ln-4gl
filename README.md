@@ -23,6 +23,7 @@ A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an L
 | Keyword pairs | Highlight matching `if`/`endif`, `select`/`endselect`, `for`/`endfor`, … |
 | Document highlights | Pair keywords or all occurrences of the identifier under the cursor |
 | Folding | `if`/`select`/`function` blocks, braces, and 4GL sections |
+| Format Document | Indent only (`if`/`selectdo`/braces/4GL sections); never trims trailing spaces; format on save off by default |
 | Diagnostics | Unmatched `endif` / `endselect` / …; Quick Fix for `for … by` → `step` and stray `while … do` |
 | Word pattern | Dots count: `tdsls401.orno` and `before.input` are one word |
 
@@ -43,6 +44,7 @@ Leave `files.trimTrailingWhitespace` **off** for these files; LN is picky about 
 | `ln-4gl.includePath` | `[]` | Extra directories to search for `#include` files (absolute or relative to the current file) |
 | `ln-4gl.diagnostics.enabled` | `true` | Block-matching diagnostics and idiom warnings |
 | `ln-4gl.diagnostics.strictComments` | `true` | Ignore `|` and `/* */` comments when analyzing blocks |
+| `ln-4gl.format.enabled` | `true` | Format Document (indent-only; does not trim trailing spaces) |
 
 ## Conflicts
 

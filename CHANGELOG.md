@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Block-matching diagnostics for unmatched `if`/`endif`, `select`/`endselect`, and related pairs; idiom warnings with Quick Fix for `for … by` → `step` and stray `while … do`.
 - Settings `ln-4gl.diagnostics.enabled` and `ln-4gl.diagnostics.strictComments`.
 - Expanded frequency catalog: everyday `db.*` navigation, string/date helpers, and error constants (`ELOCKED`, `EDUPL`, …) in completion; hover docs and more signatures for those APIs.
+- Format Document: indent-only (`if`/`endif`, `selectdo`/`selectempty`, braces, 4GL sections); does not trim trailing whitespace; `editor.formatOnSave` off by default for `ln-4gl`; setting `ln-4gl.format.enabled`.
 
 ### Fixed
 

@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const docs = require("../data/docs.json");
+const { lookupCatalog, hoverFor } = require("./catalog");
 const { inCommentOrString } = require("./text");
 
 /** @type {Map<string, string>} */
@@ -23,7 +24,13 @@ const hoverProvider = {
     }
 
     const word = document.getText(range);
-    const text = DOC_MAP.get(word.toLowerCase());
+    const key = word.toLowerCase();
+
+    let text = DOC_MAP.get(key);
+    const catalogEntry = lookupCatalog(word);
+    if (catalogEntry) {
+      text = hoverFor(word, catalogEntry);
+    }
     if (!text) {
       return undefined;
     }

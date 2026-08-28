@@ -57,6 +57,7 @@ def main() -> None:
         "if",
         "then",
         "else",
+        "elif",
         "endif",
         "while",
         "endwhile",
@@ -103,7 +104,31 @@ def main() -> None:
     # Keep vim's typo out of the grammar; LN spelling is "exists".
     sql = [w for w in sql if w.lower() != "exsists"]
 
-    dal_named = DATA["dalHooks"]
+    api_catalog_path = ROOT / "data" / "api-catalog.json"
+    catalog_names: list[str] = []
+    catalog_functions: list[str] = []
+    catalog_dal_hooks: list[str] = []
+    if api_catalog_path.is_file():
+        api_catalog = json.loads(api_catalog_path.read_text(encoding="utf-8"))
+        catalog_names = [
+            e["name"] for e in api_catalog if e.get("kind") != "dalHook"
+        ]
+        catalog_functions = sorted(
+            {
+                e["name"]
+                for e in api_catalog
+                if e.get("kind") in {"function", "dalFieldHook"}
+            },
+            key=str.lower,
+        )
+        catalog_dal_hooks = sorted(
+            {e["name"] for e in api_catalog if e.get("kind") == "dalHook"},
+            key=str.lower,
+        )
+        dal_named = catalog_dal_hooks
+    else:
+        dal_named = DATA["dalHooks"]
+
     extra_4gl_runtime = [
         "abort.transaction",
         "choice.again",
@@ -150,7 +175,9 @@ def main() -> None:
         "switch.to.company",
         "zoom.to$",
     ]
-    bshell = DATA["bshell"] + DATA["bshellDollar"] + extra_4gl_runtime
+    bshell = sorted(
+        set(DATA["bshell"] + DATA["bshellDollar"] + extra_4gl_runtime + catalog_names)
+    )
 
     highlight_constants = [
         "true",
@@ -452,105 +479,27 @@ def main() -> None:
     out.write_text(json.dumps(grammar, indent=2) + "\n")
     print(f"wrote {out} ({out.stat().st_size} bytes)")
 
-    common_functions = [
-        "message",
-        "mess",
-        "expr.compile",
-        "expr.free",
-        "dal.new",
-        "dal.update",
-        "dal.destroy",
-        "dal.set.error.message",
-        "dal.get.error.message",
-        "dal.new.object",
-        "dal.change.object",
-        "dal.save.object",
-        "dal.destroy.object",
-        "dal.set.field",
-        "get.var",
-        "put.var",
-        "rprt_open",
-        "rprt_close",
-        "rprt_send",
-        "zoom.to$",
-        "execute",
-        "choice.again",
-        "get.screen.defaults",
-        "display",
-        "display.fld",
-        "display.all",
-        "enable.fields",
-        "disable.fields",
-        "enable.commands",
-        "disable.commands",
-        "set.input.error",
-        "abort.transaction",
-        "commit.transaction",
-        "db.insert",
-        "db.update",
-        "db.delete",
-        "db.retry.point",
-        "db.eq",
-        "db.first",
-        "db.next",
-        "db.prev",
-        "db.last",
-        "db.error",
-        "db.error.message",
-        "db.set.to.default",
-        "do.occ",
-        "do.all.occ",
-        "sprintf$",
-        "strip$",
-        "tolower$",
-        "toupper$",
-        "len",
-        "lval",
-        "val",
-        "str$",
-        "pos",
-        "shiftl$",
-        "shiftr$",
-        "enum.descr$",
-        "date.num",
-        "date.to.num",
-        "num.to.date$",
-        "get.compnr",
-        "switch.to.company",
-        "start.session",
-        "query.extend.select",
-        "query.extend.from",
-        "query.extend.where",
-        "query.extend.select.in.zoom",
-        "query.extend.from.in.zoom",
-        "query.extend.where.in.zoom",
-        "stpapi.put.field",
-        "stpapi.get.field",
-        "stpapi.insert",
-        "stpapi.update",
-        "stpapi.delete",
-        "stpapi.save",
-        "stpapi.find",
-        "stpapi.browse.set",
-        "stpapi.print.report",
-        "stpapi.end.session",
-    ]
+    error_codes = []
+    errors_catalog = ROOT / "data" / "errors-catalog.json"
+    if errors_catalog.is_file():
+        for entry in json.loads(errors_catalog.read_text(encoding="utf-8")):
+            error_codes.append(entry["code"])
+    else:
+        existing = ROOT / "data" / "completions.json"
+        if existing.is_file():
+            error_codes = json.loads(existing.read_text(encoding="utf-8")).get("errors", [])
 
-    error_codes = [
-        "ELOCKED",
-        "EDUPL",
-        "ENOREC",
-        "EREFERENCE",
-        "EENDFILE",
-        "ENOCURR",
-        "EPERMISSION",
-        "EBUSY",
-    ]
-
-    completions = {
-        "keywords": sorted(set(keywords_3gl + types + storage)),
-        "sql": sorted(set(sql)),
-        "sections": [
+    sections_catalog_path = ROOT / "data" / "sections-catalog.json"
+    sections = []
+    section_docs: dict[str, str] = {}
+    if sections_catalog_path.is_file():
+        for entry in json.loads(sections_catalog_path.read_text(encoding="utf-8")):
+            sections.append(entry["name"])
+            key = entry["name"].rstrip(":")
+            section_docs[key] = entry["doc"]
+        sections = sorted(set(sections), key=str.lower)
+    else:
+        sections = [
             "declaration:",
             "functions:",
             "before.program:",
@@ -566,15 +515,60 @@ def main() -> None:
             "init.form:",
             "init.group:",
             "selection.filter:",
-        ],
-        "dalHooks": sorted(set(dal_named)),
+        ]
+
+    preprocessor = [
+        "#include",
+        "#define",
+        "#undef",
+        "#ifdef",
+        "#ifndef",
+        "#elif",
+        "#else",
+        "#endif",
+        "#pragma",
+        "#ident",
+    ]
+
+    functions = catalog_functions
+    dal_hooks = catalog_dal_hooks
+    if not functions:
+        cpath_existing = ROOT / "data" / "completions.json"
+        if cpath_existing.is_file():
+            existing = json.loads(cpath_existing.read_text(encoding="utf-8"))
+            functions = existing.get("functions", [])
+            dal_hooks = existing.get("dalHooks", dal_named)
+        else:
+            functions = []
+            dal_hooks = dal_named
+
+    completions = {
+        "keywords": sorted(set(keywords_3gl + types + storage)),
+        "sql": sorted(set(sql)),
+        "sections": sections,
+        "preprocessor": preprocessor,
+        "dalHooks": sorted(set(dal_hooks)),
         "constants": sorted(set(highlight_constants + session_named)),
-        "functions": sorted(set(common_functions)),
-        "errors": sorted(set(error_codes)),
+        "functions": sorted(set(functions)),
+        "errors": sorted(set(error_codes), key=str.lower),
     }
     cpath = ROOT / "data" / "completions.json"
     cpath.write_text(json.dumps(completions, indent=2) + "\n")
     print(f"wrote {cpath}")
+
+    if section_docs:
+        docs_path = ROOT / "data" / "docs.json"
+        docs = json.loads(docs_path.read_text(encoding="utf-8"))
+        for key, doc in section_docs.items():
+            if key not in docs:
+                docs[key] = doc
+            elif key in {"before.new.object", "before.display.object"}:
+                docs[key] = doc
+        docs_path.write_text(
+            json.dumps(docs, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        print(f"merged {len(section_docs)} section docs into {docs_path}")
 
 
 if __name__ == "__main__":

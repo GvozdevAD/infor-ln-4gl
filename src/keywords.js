@@ -8,12 +8,13 @@ const { scanLine, codePart } = require("./text");
 
 /** @type {PairSpec[]} */
 const PAIRS = [
-  { open: ["if"], close: ["endif"], middle: ["else"] },
+  { open: ["if"], close: ["endif"], middle: ["else", "elif"] },
   { open: ["for"], close: ["endfor"] },
   { open: ["while"], close: ["endwhile"] },
   { open: ["repeat"], close: ["until"] },
   { open: ["select"], close: ["endselect"] },
-  { open: ["case", "on case"], close: ["endcase"] },
+  // Only `on case` opens the block; inner `case expr:` labels are not openers (Progguide).
+  { open: ["on case"], close: ["endcase"] },
 ];
 
 /**

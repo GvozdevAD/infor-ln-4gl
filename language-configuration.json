@@ -23,8 +23,8 @@
   ],
   "wordPattern": "[A-Za-z_][A-Za-z0-9_.$]*",
   "indentationRules": {
-    "increaseIndentPattern": "^\\s*(if\\b.*\\bthen\\s*$|else\\b|for\\b|while\\b|repeat\\b|case\\b|selectdo\\b|selectempty\\b|selecteos\\b|selecterror\\b|function\\b|{)\\s*$",
-    "decreaseIndentPattern": "^\\s*(endif|else|endfor|endwhile|endcase|until|endselect|selectempty|selecteos|selecterror|})\\b"
+    "increaseIndentPattern": "^\\s*(if\\b.*\\bthen\\s*$|else\\b|elif\\b.*\\bthen\\s*$|for\\b|while\\b|repeat\\b|on\\s+case\\b|selectdo\\b|selectempty\\b|selecteos\\b|selecterror\\b|function\\b|{)\\s*$",
+    "decreaseIndentPattern": "^\\s*(endif|else|elif\\b|endfor|endwhile|endcase|until|endselect|selectempty|selecteos|selecterror|})\\b"
   },
   "folding": {
     "markers": {
