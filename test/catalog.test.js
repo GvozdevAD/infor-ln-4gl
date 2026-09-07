@@ -119,8 +119,88 @@ describe("API catalog", () => {
     assert.ok(Array.isArray(links["dal.save.object"].hooksCalled));
   });
 
-  it("includes at least 25 DAL hooks in completions", () => {
-    assert.ok(completions.dalHooks.length >= 25);
-    assert.ok(completions.dalHooks.includes("before.save.object"));
+  it("marks DsC* as uiObject stubs, not functions", () => {
+    const entry = apiCatalog.find((e) => e.name === "DsCbarMenu");
+    assert.ok(entry, "DsCbarMenu missing from catalog");
+    assert.equal(entry.kind, "uiObject");
+    assert.ok(entry.syntax);
+    assert.ok(entry.returns);
+    assert.ok(!completions.functions.includes("DsCbarMenu"));
+  });
+
+  it("excludes doc-topic non-callables", () => {
+    const names = new Set(apiCatalog.map((e) => e.name.toLowerCase()));
+    for (const bad of ["constraints", "debugging", "subqueries", "chm.hooks"]) {
+      assert.ok(!names.has(bad), `${bad} should not be in catalog`);
+    }
+  });
+});
+
+describe("hoverFor (D4)", () => {
+  const { hoverFor, lookupCatalog, returnsForHover } = require("../src/catalog");
+
+  it("always includes Returns for void APIs (mess)", () => {
+    const entry = lookupCatalog("mess");
+    assert.ok(entry);
+    assert.equal(returnsForHover(entry), "void");
+    const md = hoverFor("mess", entry);
+    assert.match(md, /\*\*Returns:\*\* void/);
+    assert.match(md, /`function void mess/);
+    assert.match(md, /\*\*See also:\*\*.*`clean\.mess`/);
+  });
+
+  it("db.eq: description, syntax, returns, see also", () => {
+    const entry = lookupCatalog("db.eq");
+    assert.ok(entry);
+    const md = hoverFor("db.eq", entry);
+    assert.match(md, /key value|equals|record/i);
+    assert.match(md, /`function long db\.eq/);
+    assert.match(md, /\*\*Returns:\*\*.*Success/i);
+    assert.match(md, /\*\*See also:\*\*.*`db\.bind`/);
+    // Order: doc before syntax before Returns
+    const iDoc = md.search(/key value|equals|record/i);
+    const iSyn = md.indexOf("`function long db.eq");
+    const iRet = md.indexOf("**Returns:**");
+    assert.ok(iDoc >= 0 && iSyn > iDoc && iRet > iSyn);
+  });
+
+  it("before.save.object: returns + replaces UI", () => {
+    const entry = lookupCatalog("before.save.object");
+    assert.ok(entry);
+    const md = hoverFor("before.save.object", entry);
+    assert.match(md, /\*\*Returns:\*\*.*DALHOOKERROR|permitted/i);
+    assert.match(md, /\*\*Replaces UI:\*\*.*`before\.write:`/);
+    assert.match(md, /`before\.rewrite:`/);
+    assert.match(md, /`function extern long before\.save\.object/);
+  });
+
+  it("alloc.mem: returns success codes", () => {
+    const entry = lookupCatalog("alloc.mem");
+    assert.ok(entry);
+    const md = hoverFor("alloc.mem", entry);
+    assert.match(md, /BASED|memory|allocat/i);
+    assert.match(md, /`function long alloc\.mem/);
+    assert.match(md, /\*\*Returns:\*\*.*0 success/i);
+    assert.match(md, /\*\*See also:\*\*.*`free\.mem`/);
+  });
+
+  it("infers void Returns when returns field empty but syntax is void", () => {
+    const md = hoverFor("x", {
+      name: "x",
+      doc: "Demo.",
+      syntax: "function void x ()",
+      returns: "",
+    });
+    assert.match(md, /\*\*Returns:\*\* void/);
+  });
+
+  it("uses n/a when no returns and not void", () => {
+    const md = hoverFor("y", {
+      name: "y",
+      doc: "Demo.",
+      syntax: "function long y ()",
+      returns: "",
+    });
+    assert.match(md, /\*\*Returns:\*\* n\/a/);
   });
 });

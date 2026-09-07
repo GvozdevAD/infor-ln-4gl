@@ -1,0 +1,743 @@
+{
+  "argc": {
+    "returns": "This returns the number of arguments of the current program.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_processes/argc"
+    ]
+  },
+  "bg$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "bs$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "bse.appdata.dir$": {
+    "returns": "This returns a string containing the name of the directory where application specific files are stored.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/bse.appdata.dir"
+    ]
+  },
+  "bse.dir$": {
+    "returns": "This returns a string containing the name of the directory where the Baan Software Environment is installed.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/bse.dir"
+    ]
+  },
+  "bse.release$": {
+    "returns": "This returns a string of 3 characters that contains the release number of BAAN Tools.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/bse.release"
+    ]
+  },
+  "bse.tmp.dir$": {
+    "returns": "This returns a string containing the name of the directory where temporary files can be created by the application.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/bse.tmp.dir"
+    ]
+  },
+  "bshell.pid": {
+    "returns": "This returns the process ID of the current bshell (at operating system level).",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_processes/bshell.pid"
+    ]
+  },
+  "btol": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "cf$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "cp$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "cr$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "cs$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "curl.get.errorbuffer$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "curl.http.status$": {
+    "returns": "Returns a english descriptive text for a given HTTP Status Code.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_cURL/curl.http.status$"
+    ]
+  },
+  "current.display": {
+    "returns": "This returns the identification number of the current display.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/current.display"
+    ]
+  },
+  "current.window": {
+    "returns": "This returns the identification number of the current window.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_char_b_win/current.window"
+    ]
+  },
+  "dal.set.error.message": {
+    "kind": "function",
+    "context": [
+      "4gl",
+      "dal"
+    ],
+    "doc": "Adds a message to the DAL message buffer of type MSG.ERROR. Short version of dal.set.message(). mess.or.code is a data dictionary message code or a literal string starting with @. Extra arguments fill sprintf$-style placeholders. Empty messages are not added. For dal.set.error.message(), messages are ignored while dal.set.messages.off() is in effect.",
+    "syntax": "function void dal.set.error.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
+    ],
+    "returns": "void",
+    "related": [
+      "dal.set.warning.message",
+      "dal.set.info.message",
+      "dal.set.message",
+      "dal.set.messages.off"
+    ],
+    "source": "functions_message_handling/dal.set.error.message",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_message_handling/dal.set.error.message"
+    ]
+  },
+  "dal.set.info.message": {
+    "kind": "function",
+    "context": [
+      "4gl",
+      "dal"
+    ],
+    "doc": "Adds a message to the DAL message buffer of type MSG.INFO. Short version of dal.set.message(). mess.or.code is a data dictionary message code or a literal string starting with @. Extra arguments fill sprintf$-style placeholders. Empty messages are not added.",
+    "syntax": "function void dal.set.info.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
+    ],
+    "returns": "void",
+    "related": [
+      "dal.set.error.message",
+      "dal.set.warning.message",
+      "dal.set.message",
+      "dal.set.messages.off"
+    ],
+    "source": "functions_message_handling/dal.set.error.message",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_message_handling/dal.set.error.message"
+    ]
+  },
+  "dal.set.warning.message": {
+    "kind": "function",
+    "context": [
+      "4gl",
+      "dal"
+    ],
+    "doc": "Adds a message to the DAL message buffer of type MSG.WARNING. Short version of dal.set.message(). mess.or.code is a data dictionary message code or a literal string starting with @. Extra arguments fill sprintf$-style placeholders. Empty messages are not added.",
+    "syntax": "function void dal.set.warning.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
+    ],
+    "returns": "void",
+    "related": [
+      "dal.set.error.message",
+      "dal.set.info.message",
+      "dal.set.message",
+      "dal.set.messages.off"
+    ],
+    "source": "functions_message_handling/dal.set.error.message",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_message_handling/dal.set.error.message"
+    ]
+  },
+  "db.error": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "delch$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "deleteln$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "do.occ.without.update": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "el$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "es$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "etol": {
+    "returns": "This returns the numeric code corresponding to a specified value in an enumerated domain.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_enumerates/etol"
+    ]
+  },
+  "ff$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "fg$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "field.update": {
+    "doc": "Use this hook to (re) determine the value of the field based on the current record values. Think of determining defaults and calculating derived values. When using this hook you don't have to use the when.field.changes section in the UI script to update fields. ## Note Normally this hook should have a void return type. Only if it is possible that this hook finds a data setup error, then return type long is allowed. In that case an error is indicated by return(DALHOOKERROR).",
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns",
+      "hits:functions_dal/field.update"
+    ]
+  },
+  "fs$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.argc": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.col": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.company": {
+    "returns": "This returns the name of the current company.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_company_operations/get.company"
+    ]
+  },
+  "get.compnr": {
+    "returns": "This returns the ID number of the current company.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_company_operations/get.compnr"
+    ]
+  },
+  "get.display.data": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.financial.compnr": {
+    "returns": "This returns the ID number of the current financial company.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_company_operations/get.financial.compnr"
+    ]
+  },
+  "get.keyfields.table": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.logistic.compnr": {
+    "returns": "This returns the ID number of the current logistic company.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_company_operations/get.logistic.compnr"
+    ]
+  },
+  "get.long.byte.count": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.pgrp": {
+    "returns": "This returns the identification number of the process group to which the specified process belongs.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_process_groups/get.pgrp"
+    ]
+  },
+  "get.resource$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.row": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "get.ui.mode": {
+    "returns": "This returns a long value that indicates the UI mode in which this session is running.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/get.ui.mode"
+    ]
+  },
+  "get.utc.byte.count": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "getenv$": {
+    "returns": "This returns the value of a specified environment variable of the operating system.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/getenv"
+    ]
+  },
+  "green.component": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "hostname$": {
+    "returns": "This returns the hostname of the local machine.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_system_and_user_information/hostname"
+    ]
+  },
+  "insch$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "insertln$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "is.mmt.controller": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "is.mmt.satellite": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "is.webpart.session": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.destroy.queue": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.execute.static.application.method": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.execute.static.method.sync": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.get.bucket": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.install.listener": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.load.application": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.lookup.queue": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.new.queue": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.put.bucket": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.uninstall.listener": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "java.unload.application": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "kill.timer": {
+    "doc": "This ends a specified timer.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_timers/kill.timer"
+    ]
+  },
+  "lf$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "load.double": {
+    "doc": "The function load.double() treats the supplied string merely as a sequence of bytes, without trying to interpret that sequence of bytes as the encoding of a sequence of characters. Instead, the bytes are interpreted as the encoding of numerical values. The function load.double returns the numerical value of the first eight bytes of the supplied string, interpreted as the eight-byte encoding of a floating point value. The load.double() function is not machine independent and must be used with care in (for example) network communications.",
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns",
+      "progguide:functions_string_operations/load.double"
+    ]
+  },
+  "load.float": {
+    "doc": "The function load.float() treats the supplied string merely as a sequence of bytes, without trying to interpret that sequence of bytes as the encoding of a sequence of characters. Instead, the bytes are interpreted as the encoding of numerical values. The function load.float returns the numerical value of the first four bytes of the supplied string, interpreted as the four-byte encoding of a floating point value. The load.float() function is not machine independent and must be used with care in (for example) network communications.",
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns",
+      "progguide:functions_string_operations/load.float"
+    ]
+  },
+  "ltob": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "ltoe": {
+    "returns": "This returns the named constant corresponding to a specified numeric code.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_enumerates/ltoe"
+    ]
+  },
+  "main": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "mb.localename$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "mb.nsets": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "ostype": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "pc$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "pf$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "quoted.string": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "receive.bucket$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "remove.mark": {
+    "doc": "This function clears the selection.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_form_and_form_field_operations/remove.mark"
+    ]
+  },
+  "sel.num.selected": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "sel.parent.num.selected": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "seq.getc$": {
+    "returns": "This returns the next character from a specified file.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_directory_file_operations/seq.getc"
+    ]
+  },
+  "set.transaction.readonly": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "shiftc$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "shiftl$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "shiftr$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "stop.synchronized.child": {
+    "doc": "This ends a child session.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_synchronized_sessions/stop.synchronized.child"
+    ]
+  },
+  "str.replace$": {
+    "doc": "Returns a (null terminated) copy of `string$` that will have all instances of `oldstr$` replaced with `newstr$`.",
+    "returns": "Returns a (null terminated) copy of `string$` that will have all instances of `oldstr$` replaced with `newstr$`.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns",
+      "hits:functions_string_operations/str.replace$"
+    ]
+  },
+  "str.substring$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "string.set$": {
+    "returns": "This returns a string that contains string_expr repeated num_expr times.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_string_operations/string.set"
+    ]
+  },
+  "strip$": {
+    "returns": "This returns the specified string without trailing spaces.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_string_operations/strip"
+    ]
+  },
+  "tab$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "text.delete": {
+    "doc": "This deletes a specified text.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_text_fields/text.delete"
+    ]
+  },
+  "tolower$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "toupper$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  },
+  "trim$": {
+    "returns": "This returns a specified string without the leading and trailing spaces.",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "progguide:functions_string_operations/trim"
+    ]
+  },
+  "vsprintf$": {
+    "returns": "n/a (no Return section in guide)",
+    "docQuality": "partial",
+    "_enrichedFrom": [
+      "heuristic:returns"
+    ]
+  }
+}

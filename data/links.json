@@ -566,8 +566,7 @@
   },
   "at.base": {
     "hooksCalled": [
-      "at.base1",
-      "compiler",
+      "at.base2",
       "managed_execution",
       "overview_and_synopsis"
     ],
@@ -1226,6 +1225,22 @@
       "../../progguide/functions_images/overview.htm",
       "../../progguide/functions_images/synopsis.htm",
       "../../progguide/functions_images/examples.htm"
+    ]
+  },
+  "bit.exor": {
+    "hooksCalled": [
+      "bit_operations_overview_and_synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_bit/bit_operations_overview_and_synopsis.htm"
+    ]
+  },
+  "bit.shiftl": {
+    "hooksCalled": [
+      "bit_operations_overview_and_synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_bit/bit_operations_overview_and_synopsis.htm"
     ]
   },
   "blank.all": {
@@ -2676,6 +2691,1465 @@
       "../../progguide/functions_interprocess_communication_os_level/synopsis.htm"
     ]
   },
+  "cmf.addAddressEntry": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.addObjectToMessage": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.copyAttachment": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.create": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.createAddressList": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.createAppointment": {
+    "hooksCalled": [
+      "cmf.addobjecttomessage",
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.createAttachment": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.createRecipient": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.createTask": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.destroy": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.enableService": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAddressBookKey": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAddressDetails": {
+    "hooksCalled": [
+      "cmf.addaddressentry",
+      "cmf.getnextaddress",
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentAlarm": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentAlldayevent": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentBusystatus": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentDescription": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentEndtime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentLocation": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentMeeting": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentMethod": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentStarttime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAppointmentUUID": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAttachmentBody": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAttachmentFilename": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAttachmentMime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getAttachmentPosition": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getCategories": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getChargeCode": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getClass": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getCreateTime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getDisplay": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getDueDate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getExpiry": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getFollowupFlag": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getId": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getMessageId": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getNextAddress": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getNextAttachment": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getNextRecipient": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getNotification": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getPriority": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientAddress": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientName": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientReasoncode": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientReasonstring": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientResponsibility": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getRecipientType": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getSensitivity": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getService": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getStartTime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskDuedate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskPriority": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskReminderTime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskStartdate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTaskTotalwork": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.getTemplate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.isServiceEnabled": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.messageDialog": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.receive": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.resolveAddress": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.send": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.sendMail": {
+    "hooksCalled": [
+      "dal.set.error.message",
+      "overview",
+      "synopsis",
+      "tiv_overview"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm"
+    ]
+  },
+  "cmf.sendToPerson": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentAlarm": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentAlldayevent": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentBusystatus": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentDescription": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentEndtime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentLocation": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentMeeting": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentMethod": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentStarttime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAppointmentUUID": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAttachmentBody": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAttachmentFilename": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAttachmentMIME": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setAttachmentPosition": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setCategories": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setChargeCode": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setClass": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setDisplay": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setDueDate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setExpiry": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setFollowupFlag": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setMessageId": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setNotification": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setPriority": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientAddress": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientName": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientReasoncode": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientReasonstring": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientResponsibility": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setRecipientType": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setSensitivity": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setStartTime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskDuedate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskPriority": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskReminderTime": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskStartdate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskSubject": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTaskTotalwork": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.setTemplate": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.startService": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.stopAllServices": {
+    "hooksCalled": [
+      "cmf.sendtoperson",
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.stopService": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
+  "cmf.updateAddressStatus": {
+    "hooksCalled": [
+      "examples",
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/emessage_connector/overview.htm",
+      "../../progguide/emessage_connector/synopsis.htm",
+      "../../progguide/emessage_connector/examples.htm"
+    ]
+  },
   "cmp.mem": {
     "hooksCalled": [
       "overview_and_synopsis"
@@ -3425,26 +4899,6 @@
       "../../progguide/functions_char_b_win/overview_and_synopsis.htm"
     ]
   },
-  "CURRENT_DATE": {
-    "hooksCalled": [
-      "baan_sql",
-      "current_timestamp"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/current_timestamp.htm",
-      "../../progguide/functions_database_handling/baan_sql.htm"
-    ]
-  },
-  "CURRENT_TIMESTAMP": {
-    "hooksCalled": [
-      "baan_sql",
-      "current_date"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/current_date.htm",
-      "../../progguide/functions_database_handling/baan_sql.htm"
-    ]
-  },
   "d.expr": {
     "hooksCalled": [
       "expr.compile",
@@ -3932,6 +5386,17 @@
     "relatedTopics": [
       "../../progguide/functions_db_operations/overview.htm",
       "../../progguide/functions_db_operations/synopsis.htm"
+    ]
+  },
+  "dal.set.warning.message": {
+    "hooksCalled": [
+      "dal.set.message",
+      "dal.set.messages.off",
+      "overview_and_synopsis",
+      "sprintf"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_message_handling/overview_and_synopsis.htm"
     ]
   },
   "dal.skip.never.applicable.checks": {
@@ -5519,6 +6984,19 @@
       "../../progguide/functions_programmable_dialogs/example.htm"
     ]
   },
+  "digest.finalize": {
+    "hooksCalled": [
+      "digest.initialize",
+      "digest.update",
+      "digest_overview",
+      "digest_synopsis",
+      "tiv_overview"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_digest/digest_overview.htm",
+      "../../progguide/functions_digest/digest_synopsis.htm"
+    ]
+  },
   "digest.initialize": {
     "hooksCalled": [
       "digest.finalize",
@@ -5993,6 +7471,22 @@
       "dsctemplate",
       "example",
       "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_user_interface_objects/overview.htm",
+      "../../progguide/functions_user_interface_objects/synopsis.htm",
+      "../../progguide/functions_user_interface_objects/example.htm"
+    ]
+  },
+  "dscddlistbox": {
+    "hooksCalled": [
+      "dscfontset",
+      "dscmwindow",
+      "dsctemplate",
+      "example",
+      "overview",
+      "select.event.input",
       "synopsis"
     ],
     "relatedTopics": [
@@ -6783,26 +8277,6 @@
       "../../progguide/3gl_features/enumerate_and_set_constants.htm"
     ]
   },
-  "Example": {
-    "hooksCalled": [
-      "error_codes_and_return_values",
-      "getting_started",
-      "messages_and_questions",
-      "overview",
-      "standard_menu_items_and_function_keys",
-      "synopsis",
-      "typical_usage"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
-      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
-      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
-      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
-      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
-      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
-      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
-    ]
-  },
   "exec_dll_function": {
     "hooksCalled": [
       "exec_function",
@@ -6995,12 +8469,19 @@
   },
   "field.is.readonly": {
     "hooksCalled": [
+      "dal.set.error.message",
+      "dal2_4gle",
       "dal2_field_dependencies",
-      "overview"
+      "dal2_flow",
+      "dal2_overview",
+      "field.update"
     ],
     "relatedTopics": [
-      "../../progguide/functions_ui_template/overview.htm",
-      "../../progguide/functions_dal/dal2_field_dependencies.htm"
+      "../../progguide/functions_dal/dal2_overview.htm",
+      "../../progguide/functions_dal/field.update.htm",
+      "../../progguide/functions_dal/dal2_field_dependencies.htm",
+      "../../progguide/functions_dal/dal2_4gle.htm",
+      "../../progguide/functions_dal/dal2_flow.htm"
     ]
   },
   "field.is.valid": {
@@ -8711,6 +10192,29 @@
       "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
     ]
   },
+  "gbf.set.label": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
   "gbf.set.leaf.icon": {
     "hooksCalled": [
       "error_codes_and_return_values",
@@ -9005,7 +10509,99 @@
       "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
     ]
   },
+  "gbf.set.open.child": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
   "gbf.set.open.depth": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.open.read": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.open.strategy": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.set.open",
+      "gbf.set.open.child",
+      "gbf.set.open.read",
+      "gbf.set.open.what",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.open.what": {
     "hooksCalled": [
       "error_codes_and_return_values",
       "example",
@@ -9110,6 +10706,121 @@
     ],
     "relatedTopics": []
   },
+  "gbf.set.search.headers": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.add.header",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.search.sensitive": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.search.set": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.search.strategy": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "gbf.set.search.headers",
+      "gbf.set.search.sensitive",
+      "gbf.set.search.what",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.search.what": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
   "gbf.set.selected": {
     "hooksCalled": [
       "error_codes_and_return_values",
@@ -9136,6 +10847,125 @@
     "hooksCalled": [
       "error_codes_and_return_values",
       "example",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.std.menu": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.std.menu.checked": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "gbf.set.std.menu",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.std.menu.disabled": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "gbf.set.std.menu",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.std.menu.enabled": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "gbf.set.std.menu",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
+    ]
+  },
+  "gbf.set.std.menu.not.checked": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.init",
+      "gbf.set.std.menu",
       "getting_started",
       "messages_and_questions",
       "overview",
@@ -9263,6 +11093,32 @@
       "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
       "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
       "../../progguide/functions_generic_browser_frameworkf/example.htm"
+    ]
+  },
+  "gbf.update": {
+    "hooksCalled": [
+      "error_codes_and_return_values",
+      "example",
+      "gbf.add.object",
+      "gbf.drag.drop",
+      "gbf.help.selected",
+      "gbf.menu.selected",
+      "getting_started",
+      "messages_and_questions",
+      "overview",
+      "standard_menu_items_and_function_keys",
+      "synopsis",
+      "typical_usage"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_generic_browser_frameworkf/overview.htm",
+      "../../progguide/functions_generic_browser_frameworkf/synopsis.htm",
+      "../../progguide/functions_generic_browser_frameworkf/typical_usage.htm",
+      "../../progguide/functions_generic_browser_frameworkf/getting_started.htm",
+      "../../progguide/functions_generic_browser_frameworkf/example.htm",
+      "../../progguide/functions_generic_browser_frameworkf/error_codes_and_return_values.htm",
+      "../../progguide/functions_generic_browser_frameworkf/standard_menu_items_and_function_keys.htm",
+      "../../progguide/functions_generic_browser_frameworkf/messages_and_questions.htm"
     ]
   },
   "gbf.update.deffunc": {
@@ -10059,6 +11915,17 @@
     "relatedTopics": [
       "../../progguide/functions_process_groups/overview.htm",
       "../../progguide/functions_process_groups/synopsis.htm"
+    ]
+  },
+  "green.component": {
+    "hooksCalled": [
+      "managed_execution",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_color/overview.htm",
+      "../../progguide/functions_color/synopsis.htm"
     ]
   },
   "group.exists": {
@@ -10862,14 +12729,6 @@
     "relatedTopics": [
       "../../progguide/functions_http_client/overview.htm",
       "../../progguide/functions_http_client/synopsis.htm"
-    ]
-  },
-  "Identifier": {
-    "hooksCalled": [
-      "baan_sql"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/baan_sql.htm"
     ]
   },
   "import": {
@@ -12815,28 +14674,6 @@
       "../../progguide/functions_date_time_zones/overview.htm"
     ]
   },
-  "Locking": {
-    "hooksCalled": [
-      "appl.delete",
-      "application_locks_overview",
-      "baan_sql",
-      "error_handling",
-      "hints_for_using_db.retry.point",
-      "hints_for_using_sql",
-      "overview",
-      "retry_points",
-      "transaction_handling"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/overview.htm",
-      "../../progguide/functions_database_handling/transaction_handling.htm",
-      "../../progguide/functions_database_handling/retry_points.htm",
-      "../../progguide/functions_database_handling/error_handling.htm",
-      "../../progguide/functions_database_handling/hints_for_using_sql.htm",
-      "../../progguide/functions_database_handling/hints_for_using_db.retry.point.htm",
-      "../../progguide/functions_database_handling/baan_sql.htm"
-    ]
-  },
   "log": {
     "hooksCalled": [
       "overview",
@@ -12855,16 +14692,6 @@
     "relatedTopics": [
       "../../progguide/functions_mathematical_operations/overview.htm",
       "../../progguide/functions_mathematical_operations/synopsis.htm"
-    ]
-  },
-  "Logging": {
-    "hooksCalled": [
-      "hint_types",
-      "overview"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_query_hints/hint_types.htm",
-      "../../progguide/functions_query_hints/overview.htm"
     ]
   },
   "lower.object": {
@@ -12914,6 +14741,23 @@
       "../../progguide/functions_string_operations/val.htm",
       "../../progguide/functions_string_operations/overview.htm",
       "../../progguide/functions_string_operations/synopsis.htm"
+    ]
+  },
+  "main": {
+    "hooksCalled": [
+      "baan_sql",
+      "db.retry.point",
+      "hints_for_using_db.retry.point",
+      "order_by",
+      "retry_points",
+      "where"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_database_handling/where.htm",
+      "../../progguide/functions_database_handling/order_by.htm",
+      "../../progguide/functions_database_handling/retry_points.htm",
+      "../../progguide/functions_database_handling/hints_for_using_db.retry.point.htm",
+      "../../progguide/functions_database_handling/baan_sql.htm"
     ]
   },
   "make.current": {
@@ -14179,16 +16023,6 @@
       "../../progguide/functions_parallel_processing/overview.htm",
       "../../progguide/functions_parallel_processing/synopsis.htm",
       "../../progguide/functions_parallel_processing/examples.htm"
-    ]
-  },
-  "Parameter": {
-    "hooksCalled": [
-      "baan_sql",
-      "comparable_datatypes",
-      "ve_concat"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/baan_sql.htm"
     ]
   },
   "parse_and_exec_function": {
@@ -15977,14 +17811,6 @@
       "../../progguide/functions_interprocess_communication_os_level/synopsis.htm"
     ]
   },
-  "References": {
-    "hooksCalled": [
-      "baan_sql"
-    ],
-    "relatedTopics": [
-      "../../progguide/functions_database_handling/baan_sql.htm"
-    ]
-  },
   "refresh": {
     "hooksCalled": [
       "managed_execution",
@@ -16298,6 +18124,18 @@
       "../../progguide/functions_spooling/overview_and_synopsis.htm"
     ]
   },
+  "rsc.boolean": {
+    "hooksCalled": [
+      "managed_execution",
+      "overview",
+      "rsc.put",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_resource_sets/overview.htm",
+      "../../progguide/functions_resource_sets/synopsis.htm"
+    ]
+  },
   "rsc.font.spec": {
     "hooksCalled": [
       "managed_execution",
@@ -16326,6 +18164,18 @@
       "managed_execution",
       "overview",
       "rsc.many",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_resource_sets/overview.htm",
+      "../../progguide/functions_resource_sets/synopsis.htm"
+    ]
+  },
+  "rsc.setboolean": {
+    "hooksCalled": [
+      "managed_execution",
+      "overview",
+      "rsc.get",
       "synopsis"
     ],
     "relatedTopics": [
@@ -18646,6 +20496,18 @@
       "../../progguide/functions_string_operations/synopsis.htm"
     ]
   },
+  "store.occ.max": {
+    "hooksCalled": [
+      "overview",
+      "query.extend.where",
+      "set.limits.off",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_db_operations/overview.htm",
+      "../../progguide/functions_db_operations/synopsis.htm"
+    ]
+  },
   "store.short": {
     "hooksCalled": [
       "load.byte",
@@ -20363,6 +22225,38 @@
       "../../progguide/functions_char_b_win/overview_and_synopsis.htm"
     ]
   },
+  "xmlAdd": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAllocAttribute": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAllocAttributeName": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlAllocAttributeNs": {
     "hooksCalled": [
       "overview",
@@ -20415,6 +22309,28 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlAllocData": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAllocDataElement": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlAllocDataElementNs": {
     "hooksCalled": [
       "overview",
@@ -20426,6 +22342,17 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlAllocName": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlAllocPrefix": {
@@ -20441,6 +22368,18 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlAllocPrettyString": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "serialize_xml_object_alloc",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlAllocQualifiedName": {
     "hooksCalled": [
       "overview",
@@ -20454,6 +22393,18 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlAllocString": {
+    "hooksCalled": [
+      "alloc.mem",
+      "overview",
+      "serialize_xml_object_alloc_pretty",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlAllocURI": {
     "hooksCalled": [
       "overview",
@@ -20465,6 +22416,46 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlAppend": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAppendToChilds": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAttribute$": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlAttributeName$": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlAttributeNs$": {
@@ -20534,6 +22525,38 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlContainsValidCharactersOnly": {
+    "hooksCalled": [
+      "overview",
+      "replace_invalid_characters",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/replace_invalid_characters.htm",
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlData$": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDataElement$": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlDataElementNs$": {
     "hooksCalled": [
       "overview",
@@ -20547,6 +22570,26 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlDelete": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDeleteAttribute": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlDeleteAttributeNs": {
     "hooksCalled": [
       "overview",
@@ -20558,6 +22601,100 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlDuplicate": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateAndAdd": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateAndAppend": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateAndAppendToChilds": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateAndInsert": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateAndInsertInChilds": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlDuplicateToProcess": {
+    "hooksCalled": [
+      "overview",
+      "synopsis",
+      "synopsis_namespace"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm",
+      "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlFindFirst": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlFindFirstMatch": {
+    "hooksCalled": [
+      "api",
+      "example_xml_parsing",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlFindFirstMatchNs": {
@@ -20584,6 +22721,17 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlFindMatch": {
+    "hooksCalled": [
+      "find_first_node_using_a_match_pattern",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlFindMatchNs": {
@@ -20614,6 +22762,16 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlFindNodes": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlFindNodesNs": {
     "hooksCalled": [
       "overview",
@@ -20625,6 +22783,16 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlFindSetOfSiblingNodes": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlFirstNamespaceDecl": {
@@ -20640,6 +22808,28 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlGetAttribute": {
+    "hooksCalled": [
+      "get_attribute_length",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetAttributeLength": {
+    "hooksCalled": [
+      "get_attribute_value",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlGetAttributeLengthNs": {
     "hooksCalled": [
       "overview",
@@ -20651,6 +22841,27 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlGetAttributeName": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetAttributeNameLength": {
+    "hooksCalled": [
+      "get_attribute_name",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlGetAttributeNs": {
@@ -20744,6 +22955,39 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlGetData": {
+    "hooksCalled": [
+      "get_data_length_of_a_node",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetDataElement": {
+    "hooksCalled": [
+      "get_data_length_of_all_elements",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetDataElementLength": {
+    "hooksCalled": [
+      "get_data_of_all_elements",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlGetDataElementLengthNs": {
     "hooksCalled": [
       "overview",
@@ -20770,6 +23014,68 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlGetDataLength": {
+    "hooksCalled": [
+      "get_data_of_a_node",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetFirstChild": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetLastChild": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetLeftSibling": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetName": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetNameLength": {
+    "hooksCalled": [
+      "get_name_of_a_node",
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlGetNamespace": {
     "hooksCalled": [
       "overview",
@@ -20783,6 +23089,66 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlGetNumAttributes": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetNumChilds": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetNumLeftSiblings": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetNumRightSiblings": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetNumSiblings": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetParent": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlGetPrefix": {
@@ -20811,6 +23177,18 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlGetPrettyStringLength": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "serialize_xml_object_pretty",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlGetQualifiedName": {
     "hooksCalled": [
       "overview",
@@ -20835,6 +23213,48 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlGetRightSibling": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetSAMLnode": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetStringLength": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "serialize_xml_object",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlGetType": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlGetURI": {
@@ -20863,6 +23283,47 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlInsert": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlInsertInChilds": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlIsNode": {
+    "hooksCalled": [
+      "overview",
+      "synopsis",
+      "tiv_overview"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlName$": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlNamespacePrefix$": {
     "hooksCalled": [
       "overview",
@@ -20887,6 +23348,16 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlNewDataElement": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlNewDataElementNs": {
@@ -20916,6 +23387,16 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlNewNode": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlNewNodeNs": {
@@ -20959,6 +23440,17 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlPrettyString$": {
+    "hooksCalled": [
+      "overview",
+      "serialize_xml_object_return",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlQualifiedName$": {
     "hooksCalled": [
       "overview",
@@ -20970,6 +23462,18 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlReadFromString": {
+    "hooksCalled": [
+      "overview",
+      "synopsis",
+      "utf16",
+      "utf8"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlReadFromStringNs": {
@@ -21008,6 +23512,29 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlReplaceInvalidCharacters": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "synopsis",
+      "tiv_overview"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/contains_valid_characters_only.htm",
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlRewriteDataElement": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlRewriteDataElementNs": {
     "hooksCalled": [
       "overview",
@@ -21019,6 +23546,16 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlSetAttribute": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "xmlSetAttributeNs": {
@@ -21036,6 +23573,26 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlSetData": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlSetName": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlSetNamespace": {
     "hooksCalled": [
       "overview",
@@ -21051,6 +23608,27 @@
       "../../progguide/functions_xml/synopsis_namespace.htm"
     ]
   },
+  "xmlString$": {
+    "hooksCalled": [
+      "overview",
+      "serialize_xml_object_return_pretty",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlUnlink": {
+    "hooksCalled": [
+      "overview",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
   "xmlURI$": {
     "hooksCalled": [
       "overview",
@@ -21062,6 +23640,42 @@
       "../../progguide/functions_xml/overview.htm",
       "../../progguide/functions_xml/synopsis.htm",
       "../../progguide/functions_xml/synopsis_namespace.htm"
+    ]
+  },
+  "xmlWritePretty": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "serialize_xml_object",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlWritePrettyToString": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "serialize_xml_object_string",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
+    ]
+  },
+  "xmlWriteToString": {
+    "hooksCalled": [
+      "contains_valid_characters_only",
+      "overview",
+      "serialize_xml_object_string_pretty",
+      "synopsis"
+    ],
+    "relatedTopics": [
+      "../../progguide/functions_xml/overview.htm",
+      "../../progguide/functions_xml/synopsis.htm"
     ]
   },
   "zipfile.build": {

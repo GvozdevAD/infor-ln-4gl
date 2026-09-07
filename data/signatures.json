@@ -326,11 +326,9 @@
     ]
   },
   "at.base": {
-    "label": "function long at.base (long process_id, string basic_variable_name, void unused [, long position, ...], <ref|const> <type> based_variable [, long length, ...])",
+    "label": "function long at.base (<ref|const> <type> basic_value [, long position, ...], <ref|const> <type> based_variable [, long length, ...])",
     "parameters": [
-      "process_id",
-      "basic_variable_name",
-      "unused",
+      "<ref|const> <type> basic_value",
       "position",
       "<ref|const> <type> based_variable",
       "length"
@@ -644,15 +642,15 @@
     ]
   },
   "before.destroy.object": {
-    "label": "function function extern long before.destroy.object ()",
+    "label": "function extern long before.destroy.object()",
     "parameters": [
       "..."
     ]
   },
   "before.get.object": {
-    "label": "function function extern long before.get.object (long direction)",
+    "label": "function extern long before.get.object(long dir)",
     "parameters": [
-      "direction"
+      "dir"
     ]
   },
   "before.new.object": {
@@ -668,7 +666,7 @@
     ]
   },
   "before.save.object": {
-    "label": "function function extern long before.save.object (long mode)",
+    "label": "function extern long before.save.object(long mode)",
     "parameters": [
       "mode"
     ]
@@ -685,6 +683,20 @@
       "fieldname",
       "guidField",
       "tablename"
+    ]
+  },
+  "bit.exor": {
+    "label": "function long bit.and (long pattern1, long pattern2)",
+    "parameters": [
+      "pattern1",
+      "pattern2"
+    ]
+  },
+  "bit.shiftl": {
+    "label": "function long bit.shiftl (long bitpattern, long no_of_bits)",
+    "parameters": [
+      "bitpattern",
+      "no_of_bits"
     ]
   },
   "blank.all": {
@@ -1533,6 +1545,828 @@
       "fast"
     ]
   },
+  "cmf.addAddressEntry": {
+    "label": "function long cmf.addaddressentry (long aid, string role, string name, string address, string addresstype [, domain ttcmf.catg key] [, domain ttcmf.catg category])",
+    "parameters": [
+      "aid",
+      "role",
+      "name",
+      "address",
+      "addresstype",
+      "key",
+      "category"
+    ]
+  },
+  "cmf.addObjectToMessage": {
+    "label": "function long cmf.addobjecttomessage (long oid, long mid, string class(100))",
+    "parameters": [
+      "oid",
+      "mid",
+      "class(100)"
+    ]
+  },
+  "cmf.copyAttachment": {
+    "label": "function long cmf.copyattachment (long attachment.id, long oid)",
+    "parameters": [
+      "attachment.id",
+      "oid"
+    ]
+  },
+  "cmf.create": {
+    "label": "function long cmf.create ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "cmf.createAddressList": {
+    "label": "function long cmf.createaddresslist ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "cmf.createAppointment": {
+    "label": "function long cmf.createappointment ( [long mid])",
+    "parameters": [
+      "mid"
+    ]
+  },
+  "cmf.createAttachment": {
+    "label": "function long cmf.createattachment (long mid)",
+    "parameters": [
+      "mid"
+    ]
+  },
+  "cmf.createRecipient": {
+    "label": "function long cmf.createrecipient (long mid, enum role)",
+    "parameters": [
+      "mid",
+      "enum role"
+    ]
+  },
+  "cmf.createTask": {
+    "label": "function long cmf.createtask ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "cmf.destroy": {
+    "label": "function long cmf.destroy (long mid)",
+    "parameters": [
+      "mid"
+    ]
+  },
+  "cmf.enableService": {
+    "label": "function long cmf.enableservice (domain ttcmf.prov service, long enable)",
+    "parameters": [
+      "service",
+      "enable"
+    ]
+  },
+  "cmf.getAddressBookKey": {
+    "label": "function long cmf.getaddressbookkey (long entry.id, ref string key, ref string category)",
+    "parameters": [
+      "entry.id",
+      "ref string key",
+      "ref string category"
+    ]
+  },
+  "cmf.getAddressDetails": {
+    "label": "function long cmf.getaddressdetails (long entry_id, ref string category, ref string key, ref string role, ref string name, ref string address, ref string addresstype, ref long errorcode)",
+    "parameters": [
+      "entry_id",
+      "ref string category",
+      "ref string key",
+      "ref string role",
+      "ref string name",
+      "ref string address",
+      "ref string addresstype",
+      "ref long errorcode"
+    ]
+  },
+  "cmf.getAppointmentAlarm": {
+    "label": "function long cmf.getappointmentalarm (long apid, ref domain ttutc alarm)",
+    "parameters": [
+      "apid",
+      "ref domain ttutc alarm"
+    ]
+  },
+  "cmf.getAppointmentAlldayevent": {
+    "label": "function long cmf.getappointmentalldayevent (long apid, ref enum alldayevent)",
+    "parameters": [
+      "apid",
+      "ref enum alldayevent"
+    ]
+  },
+  "cmf.getAppointmentBusystatus": {
+    "label": "function long cmf.getappointmentbusystatus (long apid, ref string busystatus)",
+    "parameters": [
+      "apid",
+      "ref string busystatus"
+    ]
+  },
+  "cmf.getAppointmentDescription": {
+    "label": "function long cmf.getAppointmentDescription (long apid, ref string description)",
+    "parameters": [
+      "apid",
+      "ref string description"
+    ]
+  },
+  "cmf.getAppointmentEndtime": {
+    "label": "function long cmf.getappointmentendtime (long apid, ref domain ttutc endtime)",
+    "parameters": [
+      "apid",
+      "ref domain ttutc endtime"
+    ]
+  },
+  "cmf.getAppointmentLocation": {
+    "label": "function long cmf.getappointmentlocation (long apid, ref string location)",
+    "parameters": [
+      "apid",
+      "ref string location"
+    ]
+  },
+  "cmf.getAppointmentMeeting": {
+    "label": "function long cmf.getAppointmentMeeting (long apid, ref enum meeting)",
+    "parameters": [
+      "apid",
+      "ref enum meeting"
+    ]
+  },
+  "cmf.getAppointmentMethod": {
+    "label": "function long cmf.getAppointmentMethod (long apid, ref domain ttcmf.mth method)",
+    "parameters": [
+      "apid",
+      "ref domain ttcmf.mth method"
+    ]
+  },
+  "cmf.getAppointmentStarttime": {
+    "label": "function long cmf.getappointmentstarttime (long apid, ref domain ttutc starttime)",
+    "parameters": [
+      "apid",
+      "ref domain ttutc starttime"
+    ]
+  },
+  "cmf.getAppointmentSubject": {
+    "label": "function long cmf.getappointmentsubject (long apid, ref string subject)",
+    "parameters": [
+      "apid",
+      "ref string subject"
+    ]
+  },
+  "cmf.getAppointmentUUID": {
+    "label": "function long cmf.getAppointmentUUID (long apid, ref string uuid)",
+    "parameters": [
+      "apid",
+      "ref string uuid"
+    ]
+  },
+  "cmf.getAttachmentBody": {
+    "label": "function long cmf.getattachmentbody (long attachment, enum ttyeno body)",
+    "parameters": [
+      "attachment",
+      "enum ttyeno body"
+    ]
+  },
+  "cmf.getAttachmentFilename": {
+    "label": "function long cmf.getattachmentfilename (long attachment, string filename, ref string displayname)",
+    "parameters": [
+      "attachment",
+      "filename",
+      "ref string displayname"
+    ]
+  },
+  "cmf.getAttachmentMime": {
+    "label": "function long cmf.getattachmentmime (long attachment, ref string mime)",
+    "parameters": [
+      "attachment",
+      "ref string mime"
+    ]
+  },
+  "cmf.getAttachmentPosition": {
+    "label": "function long cmf.getattachmentposition (long attachment, string position(10))",
+    "parameters": [
+      "attachment",
+      "position(10)"
+    ]
+  },
+  "cmf.getCategories": {
+    "label": "function long cmf.getcategories (long mid, ref string categories)",
+    "parameters": [
+      "mid",
+      "ref string categories"
+    ]
+  },
+  "cmf.getChargeCode": {
+    "label": "function long cmf.getchargecode (long mid, ref string chargecode)",
+    "parameters": [
+      "mid",
+      "ref string chargecode"
+    ]
+  },
+  "cmf.getClass": {
+    "label": "function long cmf.getclass (long mid, ref string class)",
+    "parameters": [
+      "mid",
+      "ref string class"
+    ]
+  },
+  "cmf.getCreateTime": {
+    "label": "function long cmf.getcreatetime (long mid, ref domain ttutc createtime)",
+    "parameters": [
+      "mid",
+      "ref domain ttutc createtime"
+    ]
+  },
+  "cmf.getDisplay": {
+    "label": "function long cmf.getdisplay (long mid, ref enum display)",
+    "parameters": [
+      "mid",
+      "ref enum display"
+    ]
+  },
+  "cmf.getDueDate": {
+    "label": "function long cmf.getduedate (long mid, ref domain ttutc duedate)",
+    "parameters": [
+      "mid",
+      "ref domain ttutc duedate"
+    ]
+  },
+  "cmf.getExpiry": {
+    "label": "function long cmf.getexpiry (long mid, ref domain ttutc expiry)",
+    "parameters": [
+      "mid",
+      "ref domain ttutc expiry"
+    ]
+  },
+  "cmf.getFollowupFlag": {
+    "label": "function long cmf.getfollowupflag (long mid)",
+    "parameters": [
+      "mid"
+    ]
+  },
+  "cmf.getId": {
+    "label": "function long cmf.getid (string messageld, string service, domain ttcmf.mdir message.direction, ref string error_string())",
+    "parameters": [
+      "messageld",
+      "service",
+      "message.direction",
+      "ref string error_string()"
+    ]
+  },
+  "cmf.getMessageId": {
+    "label": "function long cmf.getmessageid (long mid, ref string messageId)",
+    "parameters": [
+      "mid",
+      "ref string messageId"
+    ]
+  },
+  "cmf.getNextAddress": {
+    "label": "function long cmf.getnextaddress (long aid, long previous)",
+    "parameters": [
+      "aid",
+      "previous"
+    ]
+  },
+  "cmf.getNextAttachment": {
+    "label": "function long cmf.getnextattachment (long mid, long previous)",
+    "parameters": [
+      "mid",
+      "previous"
+    ]
+  },
+  "cmf.getNextRecipient": {
+    "label": "function long cmf.getnextrecipient (long mid, ref enum role)",
+    "parameters": [
+      "mid",
+      "ref enum role"
+    ]
+  },
+  "cmf.getNotification": {
+    "label": "function long cmf.getnotification (long mid, ref enum notification)",
+    "parameters": [
+      "mid",
+      "ref enum notification"
+    ]
+  },
+  "cmf.getPriority": {
+    "label": "function long cmf.getpriority (long mid, ref enum priority)",
+    "parameters": [
+      "mid",
+      "ref enum priority"
+    ]
+  },
+  "cmf.getRecipientAddress": {
+    "label": "function long cmf.getrecipientaddress (long recipient, ref string address)",
+    "parameters": [
+      "recipient",
+      "ref string address"
+    ]
+  },
+  "cmf.getRecipientName": {
+    "label": "function long cmf.getrecipientname (long recipient, ref string name)",
+    "parameters": [
+      "recipient",
+      "ref string name"
+    ]
+  },
+  "cmf.getRecipientReasoncode": {
+    "label": "function long cmf.getrecipientreasoncode (long recipient, ref long reasoncode)",
+    "parameters": [
+      "recipient",
+      "ref long reasoncode"
+    ]
+  },
+  "cmf.getRecipientReasonstring": {
+    "label": "function long cmf.getrecipientreasonstring (long recipient, ref string reasonstring)",
+    "parameters": [
+      "recipient",
+      "ref string reasonstring"
+    ]
+  },
+  "cmf.getRecipientResponsibility": {
+    "label": "function long cmf.getrecipientresponsibility (long recipient, ref string responsibility)",
+    "parameters": [
+      "recipient",
+      "ref string responsibility"
+    ]
+  },
+  "cmf.getRecipientType": {
+    "label": "function long cmf.getrecipienttype (long recipient, ref string type)",
+    "parameters": [
+      "recipient",
+      "ref string type"
+    ]
+  },
+  "cmf.getSensitivity": {
+    "label": "function long cmf.getsensitivity (long mid, ref enum sensitivity)",
+    "parameters": [
+      "mid",
+      "ref enum sensitivity"
+    ]
+  },
+  "cmf.getService": {
+    "label": "function long cmf.getService (string addresstype, enum user_interaction, enum resolve, ref string service)",
+    "parameters": [
+      "addresstype",
+      "enum user_interaction",
+      "enum resolve",
+      "ref string service"
+    ]
+  },
+  "cmf.getStartTime": {
+    "label": "function long cmf.getstarttime (long mid, ref domain ttutc starttime)",
+    "parameters": [
+      "mid",
+      "ref domain ttutc starttime"
+    ]
+  },
+  "cmf.getSubject": {
+    "label": "function long cmf.getsubject (long mid, ref string subject)",
+    "parameters": [
+      "mid",
+      "ref string subject"
+    ]
+  },
+  "cmf.getTaskDuedate": {
+    "label": "function long cmf.gettaskduedate (long tid, ref domain ttutc duedate)",
+    "parameters": [
+      "tid",
+      "ref domain ttutc duedate"
+    ]
+  },
+  "cmf.getTaskPriority": {
+    "label": "function long cmf.gettaskpriority (long tid, ref enum priority)",
+    "parameters": [
+      "tid",
+      "ref enum priority"
+    ]
+  },
+  "cmf.getTaskReminderTime": {
+    "label": "function long cmf.gettaskremindertime (long tid, ref domain ttutc remindertime)",
+    "parameters": [
+      "tid",
+      "ref domain ttutc remindertime"
+    ]
+  },
+  "cmf.getTaskStartdate": {
+    "label": "function long cmf.gettaskstartdate (long tid, ref domain ttutc startdate)",
+    "parameters": [
+      "tid",
+      "ref domain ttutc startdate"
+    ]
+  },
+  "cmf.getTaskSubject": {
+    "label": "function long cmf.gettasksubject (long tid, ref string subject)",
+    "parameters": [
+      "tid",
+      "ref string subject"
+    ]
+  },
+  "cmf.getTaskTotalwork": {
+    "label": "function long cmf.gettasktotalwork (long tid, ref string totalwork)",
+    "parameters": [
+      "tid",
+      "ref string totalwork"
+    ]
+  },
+  "cmf.getTemplate": {
+    "label": "function long cmf.gettemplate (long mid, ref string template)",
+    "parameters": [
+      "mid",
+      "ref string template"
+    ]
+  },
+  "cmf.isServiceEnabled": {
+    "label": "function long cmf.isserviceenabled (domain ttcmf.prov service)",
+    "parameters": [
+      "service"
+    ]
+  },
+  "cmf.messageDialog": {
+    "label": "function long cmf.messagedialog (long mode, long show [, long show.message])",
+    "parameters": [
+      "mode",
+      "show",
+      "show.message"
+    ]
+  },
+  "cmf.receive": {
+    "label": "function long cmf.receive (long mid, domain ttcmf.prov service, long block)",
+    "parameters": [
+      "mid",
+      "service",
+      "block"
+    ]
+  },
+  "cmf.resolveAddress": {
+    "label": "function long cmf.resolveaddress (ref domain ttcmf.catg category, ref domain ttcmf.catg key, ref domain ttcmf.defa addresstype, ref string address(), ref string message.str [, string name(100) mb] [, long use.default])",
+    "parameters": [
+      "ref domain ttcmf.catg category",
+      "ref domain ttcmf.catg key",
+      "ref domain ttcmf.defa addresstype",
+      "ref string address()",
+      "ref string message.str",
+      "name(100) mb",
+      "use.default"
+    ]
+  },
+  "cmf.send": {
+    "label": "function long cmf.send (long mid, string service(15))",
+    "parameters": [
+      "mid",
+      "service(15)"
+    ]
+  },
+  "cmf.sendMail": {
+    "label": "function long cmf.sendMail (string sender, string subject, string recipients.to(,), long num.recipients.to, string recipients.cc(,), long num.recipients.cc, string recipients.bcc(,), long num.recipients.bcc, string body, string body.mime, string attachments(,), string attachment.mimes(,), long num.attachments)",
+    "parameters": [
+      "sender",
+      "subject",
+      "recipients.to(",
+      ")",
+      "num.recipients.to",
+      "recipients.cc(",
+      ")",
+      "num.recipients.cc",
+      "recipients.bcc(",
+      ")",
+      "num.recipients.bcc",
+      "body",
+      "body.mime",
+      "attachments(",
+      ")",
+      "attachment.mimes(",
+      ")",
+      "num.attachments"
+    ]
+  },
+  "cmf.sendToPerson": {
+    "label": "function long cmf.sendtoperson (long mid, long aid, long display, long show.progress, ref string message_string(), long convert, string filename1 ...)",
+    "parameters": [
+      "mid",
+      "aid",
+      "display",
+      "show.progress",
+      "ref string message_string()",
+      "convert",
+      "filename1 ..."
+    ]
+  },
+  "cmf.setAppointmentAlarm": {
+    "label": "function long cmf.setappointmentalarm (long apid, domain ttutc alarm)",
+    "parameters": [
+      "apid",
+      "alarm"
+    ]
+  },
+  "cmf.setAppointmentAlldayevent": {
+    "label": "function long cmf.setappointmentalldayevent (long apid, enum alldayevent)",
+    "parameters": [
+      "apid",
+      "enum alldayevent"
+    ]
+  },
+  "cmf.setAppointmentBusystatus": {
+    "label": "function long cmf.setappointmentbusystatus (long apid, enum busystatus)",
+    "parameters": [
+      "apid",
+      "enum busystatus"
+    ]
+  },
+  "cmf.setAppointmentDescription": {
+    "label": "function long cmf.setAppointmentDescription (long apid, string description)",
+    "parameters": [
+      "apid",
+      "description"
+    ]
+  },
+  "cmf.setAppointmentEndtime": {
+    "label": "function long cmf.setappointmentendtime (long apid, domain ttutc endtime)",
+    "parameters": [
+      "apid",
+      "endtime"
+    ]
+  },
+  "cmf.setAppointmentLocation": {
+    "label": "function long cmf.setappointmentlocation (long apid, string location)",
+    "parameters": [
+      "apid",
+      "location"
+    ]
+  },
+  "cmf.setAppointmentMeeting": {
+    "label": "function long cmf.setappointmentmeeting (long apid, enum meeting)",
+    "parameters": [
+      "apid",
+      "enum meeting"
+    ]
+  },
+  "cmf.setAppointmentMethod": {
+    "label": "function long cmf.setAppointmentMethod (long apid, domain ttcmf.mth method)",
+    "parameters": [
+      "apid",
+      "method"
+    ]
+  },
+  "cmf.setAppointmentStarttime": {
+    "label": "function long cmf.setappointmentstarttime (long apid, domain ttutc starttime)",
+    "parameters": [
+      "apid",
+      "starttime"
+    ]
+  },
+  "cmf.setAppointmentSubject": {
+    "label": "function long cmf.setappointmentsubject (long apid, string subject)",
+    "parameters": [
+      "apid",
+      "subject"
+    ]
+  },
+  "cmf.setAppointmentUUID": {
+    "label": "function long cmf.setAppointmentUUID (long apid, string uuid)",
+    "parameters": [
+      "apid",
+      "uuid"
+    ]
+  },
+  "cmf.setAttachmentBody": {
+    "label": "function long cmf.setattachmentbody (long attachment, enum body)",
+    "parameters": [
+      "attachment",
+      "enum body"
+    ]
+  },
+  "cmf.setAttachmentFilename": {
+    "label": "function long cmf.setattachmentfilename (long attachment, string filename [, string displayname])",
+    "parameters": [
+      "attachment",
+      "filename",
+      "displayname"
+    ]
+  },
+  "cmf.setAttachmentMIME": {
+    "label": "function long cmf.setattachmentmime (long attachment, string mimetype)",
+    "parameters": [
+      "attachment",
+      "mimetype"
+    ]
+  },
+  "cmf.setAttachmentPosition": {
+    "label": "function long cmf.setattachmentposition (long attachment, string position(10))",
+    "parameters": [
+      "attachment",
+      "position(10)"
+    ]
+  },
+  "cmf.setCategories": {
+    "label": "function long cmf.setcategories (long mid, string categories)",
+    "parameters": [
+      "mid",
+      "categories"
+    ]
+  },
+  "cmf.setChargeCode": {
+    "label": "function long cmf.setchargecode (long mid, string chargecode)",
+    "parameters": [
+      "mid",
+      "chargecode"
+    ]
+  },
+  "cmf.setClass": {
+    "label": "function long cmf.setclass (long mid, string class)",
+    "parameters": [
+      "mid",
+      "class"
+    ]
+  },
+  "cmf.setDisplay": {
+    "label": "function long cmf.setdisplay (long mid, enum display)",
+    "parameters": [
+      "mid",
+      "enum display"
+    ]
+  },
+  "cmf.setDueDate": {
+    "label": "function long cmf.setduedate (long mid, domain ttutc duedate)",
+    "parameters": [
+      "mid",
+      "duedate"
+    ]
+  },
+  "cmf.setExpiry": {
+    "label": "function long cmf.setexpiry (long mid, domain ttutc expiry)",
+    "parameters": [
+      "mid",
+      "expiry"
+    ]
+  },
+  "cmf.setFollowupFlag": {
+    "label": "function long cmf.setfollowupflag (long mid)",
+    "parameters": [
+      "mid"
+    ]
+  },
+  "cmf.setMessageId": {
+    "label": "function long cmf.setmessageid (long mid, string messageId)",
+    "parameters": [
+      "mid",
+      "messageId"
+    ]
+  },
+  "cmf.setNotification": {
+    "label": "function long cmf.setnotification (long mid, enum notification)",
+    "parameters": [
+      "mid",
+      "enum notification"
+    ]
+  },
+  "cmf.setPriority": {
+    "label": "function long cmf.setpriority (long mid, enum priority)",
+    "parameters": [
+      "mid",
+      "enum priority"
+    ]
+  },
+  "cmf.setRecipientAddress": {
+    "label": "function long cmf.setrecipientaddress (long recipient, string address)",
+    "parameters": [
+      "recipient",
+      "address"
+    ]
+  },
+  "cmf.setRecipientName": {
+    "label": "function long cmf.setrecipientname (long recipient, string name)",
+    "parameters": [
+      "recipient",
+      "name"
+    ]
+  },
+  "cmf.setRecipientReasoncode": {
+    "label": "function long cmf.setrecipientreasoncode (long recipient, long reasoncode)",
+    "parameters": [
+      "recipient",
+      "reasoncode"
+    ]
+  },
+  "cmf.setRecipientReasonstring": {
+    "label": "function long cmf.setrecipientreasonstring (long recipient, string reasonstring(100))",
+    "parameters": [
+      "recipient",
+      "reasonstring(100)"
+    ]
+  },
+  "cmf.setRecipientResponsibility": {
+    "label": "function long cmf.setrecipientresponsibility (long recipient, string responsibility)",
+    "parameters": [
+      "recipient",
+      "responsibility"
+    ]
+  },
+  "cmf.setRecipientType": {
+    "label": "function long cmf.setrecipienttype (long recipient, string type)",
+    "parameters": [
+      "recipient",
+      "type"
+    ]
+  },
+  "cmf.setSensitivity": {
+    "label": "function long cmf.setsensitivity (long mid, enum sensitivity)",
+    "parameters": [
+      "mid",
+      "enum sensitivity"
+    ]
+  },
+  "cmf.setStartTime": {
+    "label": "function long cmf.setstarttime (long mid, domain ttutc starttime)",
+    "parameters": [
+      "mid",
+      "starttime"
+    ]
+  },
+  "cmf.setSubject": {
+    "label": "function long cmf.setsubject (long mid, string subject)",
+    "parameters": [
+      "mid",
+      "subject"
+    ]
+  },
+  "cmf.setTaskDuedate": {
+    "label": "function long cmf.settaskduedate (long tid, domain ttutc duedate)",
+    "parameters": [
+      "tid",
+      "duedate"
+    ]
+  },
+  "cmf.setTaskPriority": {
+    "label": "function long cmf.settaskpriority (long tid, enum priority)",
+    "parameters": [
+      "tid",
+      "enum priority"
+    ]
+  },
+  "cmf.setTaskReminderTime": {
+    "label": "function long cmf.settaskremindertime (long tid, domain ttutc remindertime)",
+    "parameters": [
+      "tid",
+      "remindertime"
+    ]
+  },
+  "cmf.setTaskStartdate": {
+    "label": "function long cmf.settaskstartdate (long tid, domain ttutc startdate)",
+    "parameters": [
+      "tid",
+      "startdate"
+    ]
+  },
+  "cmf.setTaskSubject": {
+    "label": "function long cmf.settasksubject (long tid, string subject)",
+    "parameters": [
+      "tid",
+      "subject"
+    ]
+  },
+  "cmf.setTaskTotalwork": {
+    "label": "function long cmf.settasktotalwork (long tid, string totalwork)",
+    "parameters": [
+      "tid",
+      "totalwork"
+    ]
+  },
+  "cmf.setTemplate": {
+    "label": "function long cmf.settemplate (long mid, string template)",
+    "parameters": [
+      "mid",
+      "template"
+    ]
+  },
+  "cmf.startService": {
+    "label": "function long cmf.startservice (long service(15), long mode [, string address(13)])",
+    "parameters": [
+      "service(15)",
+      "mode",
+      "address(13)"
+    ]
+  },
+  "cmf.stopAllServices": {
+    "label": "function void cmf.stopallservices ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "cmf.stopService": {
+    "label": "function long cmf.stopservice (long service(15), long mode)",
+    "parameters": [
+      "service(15)",
+      "mode"
+    ]
+  },
+  "cmf.updateAddressStatus": {
+    "label": "function long cmf.updateaddressstatus (long entry_id, long errorcode)",
+    "parameters": [
+      "entry_id",
+      "errorcode"
+    ]
+  },
   "cmp.mem": {
     "label": "function long cmp.mem (void var1, void var2 [, long count])",
     "parameters": [
@@ -2303,12 +3137,26 @@
       "value"
     ]
   },
+  "dal.set.error.message": {
+    "label": "function void dal.set.error.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
+    ]
+  },
   "dal.set.field": {
     "label": "function void dal.set.field (string fld.name, void value [, long element])",
     "parameters": [
       "fld.name",
       "value",
       "element"
+    ]
+  },
+  "dal.set.info.message": {
+    "label": "function void dal.set.info.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
     ]
   },
   "dal.set.message": {
@@ -2348,6 +3196,13 @@
       "object_set",
       "const string proper_name",
       "value"
+    ]
+  },
+  "dal.set.warning.message": {
+    "label": "function void dal.set.warning.message (string mess.or.code [, void arg ...])",
+    "parameters": [
+      "mess.or.code",
+      "arg ..."
     ]
   },
   "dal.skip.never.applicable.checks": {
@@ -3275,6 +4130,13 @@
       "load_defaults"
     ]
   },
+  "digest.finalize": {
+    "label": "function long digest.finalize (long handle, ref string result)",
+    "parameters": [
+      "handle",
+      "ref string result"
+    ]
+  },
   "digest.initialize": {
     "label": "function long digest.initialize (long digest.type)",
     "parameters": [
@@ -3507,6 +4369,246 @@
       "double1",
       "double2",
       "tolerance"
+    ]
+  },
+  "DsCbarMenu": {
+    "label": "DsCbarMenu()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCcheckBox": {
+    "label": "DsCcheckBox()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCcolorCell": {
+    "label": "DsCcolorCell()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCcolormap": {
+    "label": "DsCcolormap()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "dscddlistbox": {
+    "label": "dscddlistbox()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCdrawnButton": {
+    "label": "DsCdrawnButton()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCfield": {
+    "label": "DsCfield()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCfontSet": {
+    "label": "DsCfontSet()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCframe": {
+    "label": "DsCframe()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgc": {
+    "label": "DsCgc()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpArc": {
+    "label": "DsCgpArc()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpComposite": {
+    "label": "DsCgpComposite()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpGroupBox": {
+    "label": "DsCgpGroupBox()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpHeader": {
+    "label": "DsCgpHeader()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpImage": {
+    "label": "DsCgpImage()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpLine": {
+    "label": "DsCgpLine()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpOleSite": {
+    "label": "DsCgpOleSite()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpPie": {
+    "label": "DsCgpPie()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpPolygon": {
+    "label": "DsCgpPolygon()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpPolyline": {
+    "label": "DsCgpPolyline()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpRectangle": {
+    "label": "DsCgpRectangle()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgpText": {
+    "label": "DsCgpText()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgraph": {
+    "label": "DsCgraph()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgrid": {
+    "label": "DsCgrid()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCgwindow": {
+    "label": "DsCgwindow()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsClabel": {
+    "label": "DsClabel()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCmwindow": {
+    "label": "DsCmwindow()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCpixmap": {
+    "label": "DsCpixmap()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCpushButton": {
+    "label": "DsCpushButton()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCradioBox": {
+    "label": "DsCradioBox()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCradioButton": {
+    "label": "DsCradioButton()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCrowColumn": {
+    "label": "DsCrowColumn()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCscrollbar": {
+    "label": "DsCscrollbar()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCscrollWindow": {
+    "label": "DsCscrollWindow()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCslider": {
+    "label": "DsCslider()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCstatusBar": {
+    "label": "DsCstatusBar()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCtabFrame": {
+    "label": "DsCtabFrame()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCtemplate": {
+    "label": "DsCtemplate()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCtoolBar": {
+    "label": "DsCtoolBar()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "DsCtree": {
+    "label": "DsCtree()",
+    "parameters": [
+      "..."
     ]
   },
   "dsk.add.command": {
@@ -3760,9 +4862,10 @@
     ]
   },
   "field.is.readonly": {
-    "label": "function boolean field.is.readonly (UI template) ()",
+    "label": "function boolean field.is.readonly ( [long mode] [, long element])",
     "parameters": [
-      "UI template) ("
+      "mode",
+      "element"
     ]
   },
   "field.is.valid": {
@@ -4409,6 +5512,16 @@
       "key.length"
     ]
   },
+  "gbf.set.label": {
+    "label": "function long gbf.set.label (const string label1, const string label2, const string label3, const string label4, const string label5)",
+    "parameters": [
+      "const string label1",
+      "const string label2",
+      "const string label3",
+      "const string label4",
+      "const string label5"
+    ]
+  },
   "gbf.set.leaf.icon": {
     "label": "function long gbf.set.leaf.icon (const string icon.group(), string unselected(), const string selected(), long is.default [, const string icon.desc()] [, long context.menu])",
     "parameters": [
@@ -4501,10 +5614,34 @@
       "radio"
     ]
   },
+  "gbf.set.open.child": {
+    "label": "function long gbf.set.open.child (long open.strategy)",
+    "parameters": [
+      "open.strategy"
+    ]
+  },
   "gbf.set.open.depth": {
     "label": "function long gbf.set.open.depth (long open.depth)",
     "parameters": [
       "open.depth"
+    ]
+  },
+  "gbf.set.open.read": {
+    "label": "function long gbf.set.open.read (long open.strategy)",
+    "parameters": [
+      "open.strategy"
+    ]
+  },
+  "gbf.set.open.strategy": {
+    "label": "function long gbf.set.open.strategy (long open.strategy)",
+    "parameters": [
+      "open.strategy"
+    ]
+  },
+  "gbf.set.open.what": {
+    "label": "function long gbf.set.open.what (long open.strategy)",
+    "parameters": [
+      "open.strategy"
     ]
   },
   "gbf.set.print.options": {
@@ -4534,6 +5671,36 @@
       "resource.value"
     ]
   },
+  "gbf.set.search.headers": {
+    "label": "function long gbf.set.search.headers (long search.strategy)",
+    "parameters": [
+      "search.strategy"
+    ]
+  },
+  "gbf.set.search.sensitive": {
+    "label": "function long gbf.set.search.sensitive (long search.strategy)",
+    "parameters": [
+      "search.strategy"
+    ]
+  },
+  "gbf.set.search.set": {
+    "label": "function long gbf.set.search.set (long search.strategy)",
+    "parameters": [
+      "search.strategy"
+    ]
+  },
+  "gbf.set.search.strategy": {
+    "label": "function long gbf.set.search.strategy (long search.strategy)",
+    "parameters": [
+      "search.strategy"
+    ]
+  },
+  "gbf.set.search.what": {
+    "label": "function long gbf.set.search.what (long search.strategy)",
+    "parameters": [
+      "search.strategy"
+    ]
+  },
   "gbf.set.selected": {
     "label": "function void gbf.set.selected (long obj.id)",
     "parameters": [
@@ -4544,6 +5711,38 @@
     "label": "function long gbf.set.sort.strategy (long sort.strategy)",
     "parameters": [
       "sort.strategy"
+    ]
+  },
+  "gbf.set.std.menu": {
+    "label": "function long gbf.set.std.menu (long menu.pattern, long disabled, checked Parameter)",
+    "parameters": [
+      "menu.pattern",
+      "disabled",
+      "checked Parameter"
+    ]
+  },
+  "gbf.set.std.menu.checked": {
+    "label": "function long gbf.set.std.menu.checked ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "gbf.set.std.menu.disabled": {
+    "label": "function long gbf.set.std.menu.disabled ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "gbf.set.std.menu.enabled": {
+    "label": "function long gbf.set.std.menu.enabled ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "gbf.set.std.menu.not.checked": {
+    "label": "function long gbf.set.std.menu.not.checked ()",
+    "parameters": [
+      "..."
     ]
   },
   "gbf.set.tree.report.subtitle": {
@@ -4576,6 +5775,19 @@
     "label": "function void gbf.synchronize.detail (long key.object)",
     "parameters": [
       "key.object"
+    ]
+  },
+  "gbf.update": {
+    "label": "function long gbf.update.object (long obj.id, string object.description() mb [, long icon.set] [, long default.function.id] [, long drop.function.id] [, long menumask] [, long text.color] [, long line.style])",
+    "parameters": [
+      "obj.id",
+      "object.description() mb",
+      "icon.set",
+      "default.function.id",
+      "drop.function.id",
+      "menumask",
+      "text.color",
+      "line.style"
     ]
   },
   "gbf.update.deffunc": {
@@ -5020,6 +6232,12 @@
     "parameters": [
       "mwindow",
       "process_group"
+    ]
+  },
+  "green.component": {
+    "label": "function long blue.component (long color)",
+    "parameters": [
+      "color"
     ]
   },
   "group.exists": {
@@ -6597,6 +7815,12 @@
     "label": "function long lval (string string$)",
     "parameters": [
       "string$"
+    ]
+  },
+  "main": {
+    "label": "function main()",
+    "parameters": [
+      "..."
     ]
   },
   "make.current": {
@@ -8740,6 +9964,12 @@
       "..."
     ]
   },
+  "rsc.boolean": {
+    "label": "function void rsc.boolean (string variable)",
+    "parameters": [
+      "variable"
+    ]
+  },
   "rsc.font.spec": {
     "label": "function string rsc.font.spec (long font_weight, long font_slant, long font_height, long font_points, long font_spacing, long font_width, long font_charwidth)",
     "parameters": [
@@ -8770,6 +10000,13 @@
       "value(40)",
       "resource_id(16)",
       "value(40) . . ."
+    ]
+  },
+  "rsc.setboolean": {
+    "label": "function void rsc.setboolean (string variable, string value(40))",
+    "parameters": [
+      "variable",
+      "value(40)"
     ]
   },
   "run.baan.prog": {
@@ -10093,6 +11330,12 @@
       "ref string rec$"
     ]
   },
+  "store.occ.max": {
+    "label": "function void store.occ.max ()",
+    "parameters": [
+      "..."
+    ]
+  },
   "store.short": {
     "label": "function void store.short (long value, ref string rec$)",
     "parameters": [
@@ -11264,6 +12507,32 @@
       "mode"
     ]
   },
+  "xmlAdd": {
+    "label": "function long xmlAdd (long destinationNode [, long fromNode], long toNode)",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlAllocAttribute": {
+    "label": "function long xmlAllocAttribute (ref string basedString(), long node, string attributeName, string default.value)",
+    "parameters": [
+      "ref string basedString()",
+      "node",
+      "attributeName",
+      "default.value"
+    ]
+  },
+  "xmlAllocAttributeName": {
+    "label": "function long xmlAllocAttributeName (ref string basedString(), long node, long attributeNr [, string default.value])",
+    "parameters": [
+      "ref string basedString()",
+      "node",
+      "attributeNr",
+      "default.value"
+    ]
+  },
   "xmlAllocAttributeNs": {
     "label": "function long xmlAllocAttributeNs (ref string basedString, long node, void namespaceOrURI, const string attributeName [, const string default.value])",
     "parameters": [
@@ -11301,6 +12570,23 @@
       "const string default.value"
     ]
   },
+  "xmlAllocData": {
+    "label": "function long xmlAllocData (ref string basedString, long node [, string default.value])",
+    "parameters": [
+      "ref string basedString",
+      "node",
+      "default.value"
+    ]
+  },
+  "xmlAllocDataElement": {
+    "label": "function long xmlAllocDataElement (ref string basedString(), long node, string name [, string default.value])",
+    "parameters": [
+      "ref string basedString()",
+      "node",
+      "name",
+      "default.value"
+    ]
+  },
   "xmlAllocDataElementNs": {
     "label": "function long xmlAllocDataElementNs (ref string basedString, long node, void namespaceOrURI, const string name [, const string default.value])",
     "parameters": [
@@ -11311,12 +12597,28 @@
       "const string default.value"
     ]
   },
+  "xmlAllocName": {
+    "label": "function long xmlAllocName (ref string basedString, long node [, string default.value])",
+    "parameters": [
+      "ref string basedString",
+      "node",
+      "default.value"
+    ]
+  },
   "xmlAllocPrefix": {
     "label": "function long xmlAllocPrefix (ref string basedString, long node [, const string default.value])",
     "parameters": [
       "ref string basedString",
       "node",
       "const string default.value"
+    ]
+  },
+  "xmlAllocPrettyString": {
+    "label": "function long xmlAllocPrettyString (ref string basedString(), long fromNode [, long toNode])",
+    "parameters": [
+      "ref string basedString()",
+      "fromNode",
+      "toNode"
     ]
   },
   "xmlAllocQualifiedName": {
@@ -11327,12 +12629,52 @@
       "const string default.value"
     ]
   },
+  "xmlAllocString": {
+    "label": "function long xmlAllocString (ref string basedString(), long fromNode [, long toNode])",
+    "parameters": [
+      "ref string basedString()",
+      "fromNode",
+      "toNode"
+    ]
+  },
   "xmlAllocURI": {
     "label": "function long xmlAllocURI (ref string basedString, long node [, const string default.value])",
     "parameters": [
       "ref string basedString",
       "node",
       "const string default.value"
+    ]
+  },
+  "xmlAppend": {
+    "label": "function long xmlAppend (long destinationNode, long fromNode [, long toNode])",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlAppendToChilds": {
+    "label": "function long xmlAppendToChilds (long parentNode, long fromNode [, long toNode])",
+    "parameters": [
+      "parentNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlAttribute$": {
+    "label": "function string xmlAttribute$ (long node, string attributeName [, ref string default.value])",
+    "parameters": [
+      "node",
+      "attributeName",
+      "ref string default.value"
+    ]
+  },
+  "xmlAttributeName$": {
+    "label": "function string xmlAttributeName$ (long node, long attributeNr [, string default.value])",
+    "parameters": [
+      "node",
+      "attributeNr",
+      "default.value"
     ]
   },
   "xmlAttributeNs$": {
@@ -11375,6 +12717,27 @@
       "const string URI"
     ]
   },
+  "xmlContainsValidCharactersOnly": {
+    "label": "function long xmlContainsValidCharactersOnly (string inputstring)",
+    "parameters": [
+      "inputstring"
+    ]
+  },
+  "xmlData$": {
+    "label": "function string xmlData$ (long node [, ref string default.value])",
+    "parameters": [
+      "node",
+      "ref string default.value"
+    ]
+  },
+  "xmlDataElement$": {
+    "label": "function string xmlDataElement$ (long node, string name [, string default.value])",
+    "parameters": [
+      "node",
+      "name",
+      "default.value"
+    ]
+  },
   "xmlDataElementNs$": {
     "label": "function string xmlDataElementNs$ (long node, void namespaceOrURI, const string name [, const string default.value])",
     "parameters": [
@@ -11384,12 +12747,97 @@
       "const string default.value"
     ]
   },
+  "xmlDelete": {
+    "label": "function long xmlDelete (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDeleteAttribute": {
+    "label": "function long xmlDeleteAttribute (long node, string attribute)",
+    "parameters": [
+      "node",
+      "attribute"
+    ]
+  },
   "xmlDeleteAttributeNs": {
     "label": "function long xmlDeleteAttributeNs (long node, void namespaceOrURI, const string name)",
     "parameters": [
       "node",
       "namespaceOrURI",
       "const string name"
+    ]
+  },
+  "xmlDuplicate": {
+    "label": "function long xmlDuplicate (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateAndAdd": {
+    "label": "function long xmlDuplicateAndAdd (long destinationNode, long fromNode [, long toNode])",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateAndAppend": {
+    "label": "function long xmlDuplicateAndAppend (long destinationNode, long fromNode [, long toNode])",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateAndAppendToChilds": {
+    "label": "function long xmlDuplicateAndAppendToChilds (long parentNode, long fromNode [, long toNode])",
+    "parameters": [
+      "parentNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateAndInsert": {
+    "label": "function long xmlDuplicateAndInsert (long destinationNode, long fromNode [, long toNode])",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateAndInsertInChilds": {
+    "label": "function long xmlDuplicateAndInsertInChilds (long parentNode, long fromNode [, long toNode])",
+    "parameters": [
+      "parentNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlDuplicateToProcess": {
+    "label": "function long xmlDuplicateToProcess (long processId, long fromNode [, long toNode])",
+    "parameters": [
+      "processId",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlFindFirst": {
+    "label": "function long xmlFindFirst (string tagName, long fromNode [, long toNode])",
+    "parameters": [
+      "tagName",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlFindFirstMatch": {
+    "label": "function long xmlFindFirstMatch (string pattern, long fromNode [, long toNode])",
+    "parameters": [
+      "pattern",
+      "fromNode",
+      "toNode"
     ]
   },
   "xmlFindFirstMatchNs": {
@@ -11410,6 +12858,14 @@
       "toNode"
     ]
   },
+  "xmlFindMatch": {
+    "label": "function long xmlFindMatch (string pattern, long fromNode [, long toNode])",
+    "parameters": [
+      "pattern",
+      "fromNode",
+      "toNode"
+    ]
+  },
   "xmlFindMatchNs": {
     "label": "function long xmlFindMatchNs (string pattern, const string namespaceList, long fromNode [, long toNode])",
     "parameters": [
@@ -11426,6 +12882,15 @@
       "const string URI"
     ]
   },
+  "xmlFindNodes": {
+    "label": "function long xmlFindNodes (long node, string criteria, long maxFound [, ref long numFound])",
+    "parameters": [
+      "node",
+      "criteria",
+      "maxFound",
+      "ref long numFound"
+    ]
+  },
   "xmlFindNodesNs": {
     "label": "function long xmlFindNodesNs (long node, void namespaceOrURI, const string name, long maxFound [, ref long numFound])",
     "parameters": [
@@ -11436,10 +12901,34 @@
       "ref long numFound"
     ]
   },
+  "xmlFindSetOfSiblingNodes": {
+    "label": "function long xmlFindSetOfSiblingNodes (long node, string criteria, long maxFound [, ref long numFound])",
+    "parameters": [
+      "node",
+      "criteria",
+      "maxFound",
+      "ref long numFound"
+    ]
+  },
   "xmlFirstNamespaceDecl": {
     "label": "function long xmlFirstNamespaceDecl (long node)",
     "parameters": [
       "node"
+    ]
+  },
+  "xmlGetAttribute": {
+    "label": "function long xmlGetAttribute (long node, string attributeName, ref void data)",
+    "parameters": [
+      "node",
+      "attributeName",
+      "ref void data"
+    ]
+  },
+  "xmlGetAttributeLength": {
+    "label": "function long xmlGetAttributeLength (long node, string attributeName)",
+    "parameters": [
+      "node",
+      "attributeName"
     ]
   },
   "xmlGetAttributeLengthNs": {
@@ -11448,6 +12937,21 @@
       "node",
       "namespaceOrURI",
       "const string attributeName"
+    ]
+  },
+  "xmlGetAttributeName": {
+    "label": "function long xmlGetAttributeName (long node, long attributeNr, ref string attributeName)",
+    "parameters": [
+      "node",
+      "attributeNr",
+      "ref string attributeName"
+    ]
+  },
+  "xmlGetAttributeNameLength": {
+    "label": "function long xmlGetAttributeNameLength (long node, int attributeNr)",
+    "parameters": [
+      "node",
+      "int attributeNr"
     ]
   },
   "xmlGetAttributeNs": {
@@ -11504,6 +13008,28 @@
       "attributeNr"
     ]
   },
+  "xmlGetData": {
+    "label": "function long xmlGetData (long node, ref string data)",
+    "parameters": [
+      "node",
+      "ref string data"
+    ]
+  },
+  "xmlGetDataElement": {
+    "label": "function long xmlGetDataElement (long node, string name, ref string data)",
+    "parameters": [
+      "node",
+      "name",
+      "ref string data"
+    ]
+  },
+  "xmlGetDataElementLength": {
+    "label": "function long xmlGetDataElementLength (long node, string name)",
+    "parameters": [
+      "node",
+      "name"
+    ]
+  },
   "xmlGetDataElementLengthNs": {
     "label": "function long xmlGetDataElementLengthNs (long node, void namespaceOrURI, const string name)",
     "parameters": [
@@ -11521,8 +13047,81 @@
       "ref string data"
     ]
   },
+  "xmlGetDataLength": {
+    "label": "function long xmlGetDataLength (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetFirstChild": {
+    "label": "function long xmlGetFirstChild (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetLastChild": {
+    "label": "function long xmlGetLastChild (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetLeftSibling": {
+    "label": "function long xmlGetLeftSibling (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetName": {
+    "label": "function long xmlGetName (long node, ref string name)",
+    "parameters": [
+      "node",
+      "ref string name"
+    ]
+  },
+  "xmlGetNameLength": {
+    "label": "function long xmlGetNameLength (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
   "xmlGetNamespace": {
     "label": "function long xmlGetNamespace (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetNumAttributes": {
+    "label": "function long xmlGetNumAttributes (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetNumChilds": {
+    "label": "function long xmlGetNumChilds (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetNumLeftSiblings": {
+    "label": "function long xmlGetNumLeftSiblings (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetNumRightSiblings": {
+    "label": "function long xmlGetNumRightSiblings (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetNumSiblings": {
+    "label": "function long xmlGetNumSiblings (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetParent": {
+    "label": "function long xmlGetParent (long node)",
     "parameters": [
       "node"
     ]
@@ -11540,6 +13139,13 @@
       "node"
     ]
   },
+  "xmlGetPrettyStringLength": {
+    "label": "function long xmlGetPrettyStringLength (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
   "xmlGetQualifiedName": {
     "label": "function long xmlGetQualifiedName (long node, ref string name)",
     "parameters": [
@@ -11549,6 +13155,31 @@
   },
   "xmlGetQualifiedNameLength": {
     "label": "function long xmlGetQualifiedNameLength (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetRightSibling": {
+    "label": "function long xmlGetRightSibling (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlGetSAMLnode": {
+    "label": "function long xmlGetSAMLnode ()",
+    "parameters": [
+      "..."
+    ]
+  },
+  "xmlGetStringLength": {
+    "label": "function long xmlGetStringLength (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlGetType": {
+    "label": "function long xmlGetType (long node)",
     "parameters": [
       "node"
     ]
@@ -11566,6 +13197,35 @@
       "node"
     ]
   },
+  "xmlInsert": {
+    "label": "function long xmlInsert (long destinationNode, long fromNode [, long toNode])",
+    "parameters": [
+      "destinationNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlInsertInChilds": {
+    "label": "function long xmlInsertInChilds (long parentNode, long fromNode [, long toNode])",
+    "parameters": [
+      "parentNode",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlIsNode": {
+    "label": "function boolean xmlIsNode (long node)",
+    "parameters": [
+      "node"
+    ]
+  },
+  "xmlName$": {
+    "label": "function string xmlName$ (long node [, string default.value])",
+    "parameters": [
+      "node",
+      "default.value"
+    ]
+  },
   "xmlNamespacePrefix$": {
     "label": "function string xmlNamespacePrefix$ (long namespace)",
     "parameters": [
@@ -11576,6 +13236,14 @@
     "label": "function string xmlNamespaceURI$ (long namespace)",
     "parameters": [
       "namespace"
+    ]
+  },
+  "xmlNewDataElement": {
+    "label": "function long xmlNewDataElement (string name, string data [, long parentNode])",
+    "parameters": [
+      "name",
+      "data",
+      "parentNode"
     ]
   },
   "xmlNewDataElementNs": {
@@ -11593,6 +13261,14 @@
       "node",
       "const string prefix",
       "const string URI"
+    ]
+  },
+  "xmlNewNode": {
+    "label": "function long xmlNewNode (string name [, long type] [, long parentNode])",
+    "parameters": [
+      "name",
+      "type",
+      "parentNode"
     ]
   },
   "xmlNewNodeNs": {
@@ -11617,11 +13293,26 @@
       "const string default.value"
     ]
   },
+  "xmlPrettyString$": {
+    "label": "function string xmlPrettyString$ (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
   "xmlQualifiedName$": {
     "label": "function string xmlQualifiedName$ (long node [, const string default.value])",
     "parameters": [
       "node",
       "const string default.value"
+    ]
+  },
+  "xmlReadFromString": {
+    "label": "function long xmlReadFromString (string xmlString, ref string error [, long whitespacehandling])",
+    "parameters": [
+      "xmlString",
+      "ref string error",
+      "whitespacehandling"
     ]
   },
   "xmlReadFromStringNs": {
@@ -11640,12 +13331,35 @@
       "whitespacehandling"
     ]
   },
+  "xmlReplaceInvalidCharacters": {
+    "label": "function long xmlReplaceInvalidCharacters (ref string inputstring, string replacementCharacter(1))",
+    "parameters": [
+      "ref string inputstring",
+      "replacementCharacter(1)"
+    ]
+  },
+  "xmlRewriteDataElement": {
+    "label": "function long xmlRewriteDataElement (long node, string name, string data)",
+    "parameters": [
+      "node",
+      "name",
+      "data"
+    ]
+  },
   "xmlRewriteDataElementNs": {
     "label": "function long xmlRewriteDataElementNs (long node, void namespaceOrURI, const string name, void data)",
     "parameters": [
       "node",
       "namespaceOrURI",
       "const string name",
+      "data"
+    ]
+  },
+  "xmlSetAttribute": {
+    "label": "function long xmlSetAttribute (long node, string attributeName, void data)",
+    "parameters": [
+      "node",
+      "attributeName",
       "data"
     ]
   },
@@ -11658,6 +13372,20 @@
       "value"
     ]
   },
+  "xmlSetData": {
+    "label": "function long xmlSetData (long node, string data)",
+    "parameters": [
+      "node",
+      "data"
+    ]
+  },
+  "xmlSetName": {
+    "label": "function long xmlSetName (long node, string name)",
+    "parameters": [
+      "node",
+      "name"
+    ]
+  },
   "xmlSetNamespace": {
     "label": "function long xmlSetNamespace (long node, long namespace)",
     "parameters": [
@@ -11665,11 +13393,49 @@
       "namespace"
     ]
   },
+  "xmlString$": {
+    "label": "function string xmlString$ (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlUnlink": {
+    "label": "function long xmlUnlink (long fromNode [, long toNode])",
+    "parameters": [
+      "fromNode",
+      "toNode"
+    ]
+  },
   "xmlURI$": {
     "label": "function string xmlURI$ (long node [, const string default.value])",
     "parameters": [
       "node",
       "const string default.value"
+    ]
+  },
+  "xmlWritePretty": {
+    "label": "function long xmlWritePretty (long fp, long fromNode [, long toNode])",
+    "parameters": [
+      "fp",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlWritePrettyToString": {
+    "label": "function long xmlWritePrettyToString (ref string buffer, long fromNode [, long toNode])",
+    "parameters": [
+      "ref string buffer",
+      "fromNode",
+      "toNode"
+    ]
+  },
+  "xmlWriteToString": {
+    "label": "function long xmlWriteToString (ref string buffer, long fromNode [, long toNode])",
+    "parameters": [
+      "ref string buffer",
+      "fromNode",
+      "toNode"
     ]
   },
   "zipfile.build": {

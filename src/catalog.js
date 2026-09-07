@@ -47,6 +47,32 @@ function lookupCatalog(name) {
   return BY_NAME.get(name.toLowerCase());
 }
 
+const FIELD_HOOK_SUFFIX = [
+  { re: /\.enum\.is\.applicable$/i, catalog: "field.enum.is.applicable" },
+  { re: /\.is\.never\.applicable$/i, catalog: "field.is.never.applicable" },
+  { re: /\.is\.applicable$/i, catalog: "field.is.applicable" },
+  { re: /\.is\.readonly$/i, catalog: "field.is.readonly" },
+  { re: /\.is\.derived$/i, catalog: "field.is.derived" },
+  { re: /\.is\.mandatory$/i, catalog: "field.is.mandatory" },
+  { re: /\.is\.valid$/i, catalog: "field.is.valid" },
+  // Require table.field.update — avoid matching db.update / dal.update
+  { re: /^[A-Za-z_]\w*\.[A-Za-z_]\w*\.update$/i, catalog: "field.update" },
+];
+
+/**
+ * Map `table.field.is.valid` style names to catalog `field.is.valid` entries.
+ * @param {string} word
+ * @returns {object | undefined}
+ */
+function lookupFieldHookCatalog(word) {
+  for (const { re, catalog } of FIELD_HOOK_SUFFIX) {
+    if (re.test(word)) {
+      return lookupCatalog(catalog);
+    }
+  }
+  return undefined;
+}
+
 /**
  * @param {string} name
  * @returns {string | undefined}
@@ -64,6 +90,23 @@ function detailFor(name) {
 }
 
 /**
+ * Resolve the Returns line for hover (always present for catalog entries).
+ * @param {object} entry
+ * @returns {string}
+ */
+function returnsForHover(entry) {
+  const ret = (entry.returns || "").trim();
+  if (ret) {
+    return ret;
+  }
+  const syntax = entry.syntax || "";
+  if (/\bfunction\s+(?:extern\s+)?void\b/i.test(syntax)) {
+    return "void";
+  }
+  return "n/a";
+}
+
+/**
  * @param {string} name
  * @param {object | undefined} entry
  * @returns {string | undefined}
@@ -72,18 +115,22 @@ function hoverFor(name, entry = lookupCatalog(name)) {
   if (!entry) {
     return undefined;
   }
-  let text = entry.doc || entry.name;
+  const parts = [];
+  parts.push(entry.doc || entry.name);
   if (entry.syntax) {
-    text += `\n\n\`${entry.syntax}\``;
+    parts.push(`\`${entry.syntax}\``);
   }
-  if (entry.returns) {
-    text += `\n\nReturns: ${entry.returns}`;
-  }
+  // D4: always show Returns (including void / n/a).
+  parts.push(`**Returns:** ${returnsForHover(entry)}`);
   if (entry.replaces && entry.replaces.length) {
     const sections = entry.replaces.map((s) => `\`${s}:\``).join(", ");
-    text += `\n\n**Replaces UI:** ${sections}`;
+    parts.push(`**Replaces UI:** ${sections}`);
   }
-  return text;
+  if (entry.related && entry.related.length) {
+    const related = entry.related.map((s) => `\`${s}\``).join(", ");
+    parts.push(`**See also:** ${related}`);
+  }
+  return parts.join("\n\n");
 }
 
 /**
@@ -107,6 +154,16 @@ function sortPrefixFor(label, scriptKind, isDalHook = false) {
     }
     if (UI_DEPRIORITIZE.test(label)) {
       return "9-";
+    }
+    return "2-";
+  }
+
+  if (scriptKind === "report") {
+    if (lower.startsWith("lattr.") || lower.startsWith("layout.")) {
+      return "0-";
+    }
+    if (contexts.includes("4gl") || contexts.includes("all")) {
+      return "1-";
     }
     return "2-";
   }
@@ -169,8 +226,10 @@ module.exports = {
   catalog,
   BY_NAME,
   lookupCatalog,
+  lookupFieldHookCatalog,
   detailFor,
   hoverFor,
+  returnsForHover,
   sortPrefixFor,
   functionsForKind,
 };

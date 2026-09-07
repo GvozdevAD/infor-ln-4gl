@@ -5,6 +5,10 @@ scripts/**
 test/**
 .github/**
 data/baan-vim-keywords.json
+data/links.json
+data/gaps.jsonl
+data/catalog-overrides.json
 **/*.map
+**/__pycache__/
 node_modules/**
 *.vsix
