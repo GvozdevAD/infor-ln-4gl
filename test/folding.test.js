@@ -45,4 +45,10 @@ describe("computeFoldRanges", () => {
     const ranges = computeFoldRanges(text);
     assert.ok(ranges.some((r) => r.start === 1 && r.end === 3));
   });
+
+  it("folds on case/endcase", () => {
+    const text = "on case x\n\tcase 1:\n\t\tbreak\nendcase\n";
+    const ranges = computeFoldRanges(text);
+    assert.ok(ranges.some((r) => r.start === 0 && r.end === 3));
+  });
 });

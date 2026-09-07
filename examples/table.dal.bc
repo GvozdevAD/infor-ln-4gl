@@ -5,16 +5,22 @@
 |* not 4GL sections with a trailing colon.
 |**********************************************************
 
-function extern long before.save.object()
+function extern long before.save.object(long mode)
 {
-    if tdsls401.orno = "" then
-        dal.set.error.message("Order number is required")
-        return(DALHOOKERROR)
-    endif
+    on case mode
+    case DAL_NEW:
+        if tdsls401.orno = "" then
+            dal.set.error.message("Order number is required")
+            return(DALHOOKERROR)
+        endif
+        break
+    case DAL_UPDATE:
+        break
+    endcase
     return(0)
 }
 
-function extern long after.save.object()
+function extern long after.save.object(long mode)
 {
     return(0)
 }
@@ -37,4 +43,3 @@ function extern long tdsls401.sflo.filter(
     o.where = "tdsls401.hold = tcyesno.no"
     return(0)
 }
-

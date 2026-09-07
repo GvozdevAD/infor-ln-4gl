@@ -1,0 +1,29 @@
+| Minimal report script layout sections (Progguide report_scripts).
+declaration:
+	extern domain tcmcs.str30 r.descr
+
+before.program:
+	lattr.print = true
+
+after.receive.data:
+	nop
+
+header.1:
+before.layout:
+	lattr.print = true
+after.layout:
+	nop
+
+detail.1:
+before.layout:
+	lattr.print = true
+
+footer.1:
+before.layout:
+	nop
+
+functions:
+function extern void local.helper()
+{
+	nop
+}

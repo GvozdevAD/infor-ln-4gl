@@ -4,7 +4,11 @@
  */
 
 const PROGRAM_PARENT =
-  /^(declaration|functions|before\.program|on\.error|after\.program|after\.update\.db\.commit|before\.display\.object|before\.new\.object)$/i;
+  /^(declaration|functions|before\.program|on\.error|after\.program|after\.update\.db\.commit|before\.display\.object|on\.display\.total\.line|before\.new\.object|after\.new\.object|after\.form\.read|after\.receive\.data)$/i;
+
+const REPORT_PARENT =
+  /^(?:before\.report|after\.report|header|footer|detail|before\.field|after\.field)\.\d+$/i;
+const REPORT_CHILD = /^(?:before|after)\.layout$/i;
 
 const FORM_PARENT = /^form\.(?:\d+|all|other)$/i;
 const FORM_CHILD = /^(?:init|before|after)\.form$/i;
@@ -51,6 +55,7 @@ const FUNCTION_LINE =
 function classifySection(name) {
   if (
     PROGRAM_PARENT.test(name) ||
+    REPORT_PARENT.test(name) ||
     FORM_PARENT.test(name) ||
     GROUP_PARENT.test(name) ||
     CHOICE_PARENT.test(name) ||
@@ -61,6 +66,7 @@ function classifySection(name) {
     return "parent";
   }
   if (
+    REPORT_CHILD.test(name) ||
     FORM_CHILD.test(name) ||
     GROUP_CHILD.test(name) ||
     CHOICE_CHILD.test(name) ||

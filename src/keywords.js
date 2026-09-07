@@ -15,6 +15,8 @@ const PAIRS = [
   { open: ["select"], close: ["endselect"] },
   // Only `on case` opens the block; inner `case expr:` labels are not openers (Progguide).
   { open: ["on case"], close: ["endcase"] },
+  { open: ["dllusage"], close: ["enddllusage"] },
+  { open: ["functionusage"], close: ["endfunctionusage"] },
 ];
 
 /**
@@ -33,7 +35,7 @@ function tokensOnLine(line, opts = {}) {
     if (span.kind === "string") {
       continue;
     }
-    if (span.kind === "lineComment" || span.kind === "blockComment") {
+    if (span.kind === "lineComment") {
       if (!includeComments) {
         continue;
       }

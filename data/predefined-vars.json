@@ -1,0 +1,584 @@
+[
+  {
+    "name": "actual.occ",
+    "doc": "Occurrence currently selected on form.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "attr.adju",
+    "doc": "Session attribute attr.adju (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.bitset.mask",
+    "doc": "In general: bitsets are deprecated in the UI. The available values for a bitset field (see also Enumerates overview and synopsis). (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.changed",
+    "doc": "Indicates if the current field has changed.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.conv",
+    "doc": "Session attribute attr.conv",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.currency$",
+    "doc": "Current currency (see set.currencies()).",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.currkey",
+    "doc": "true",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.dbase",
+    "doc": "true",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.dbmaxlen",
+    "doc": "Maximum length of database field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.deflt$",
+    "doc": "Default value of current field. When the TIV level is less than 2040, then the length of this string is 100.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.descr$",
+    "doc": "Description of current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.diga",
+    "doc": "Number of digits after decimal sign. For strings, this is the maximum input length.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.digv",
+    "doc": "Number of digits before decimal sign.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.divf",
+    "doc": "Division factor. (For entering numeric values without a decimal point.)",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.domain$",
+    "doc": "Domain of the current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.domm$",
+    "doc": "Domain message code of current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.dorp",
+    "doc": "Fill field with default or previous value: DORP.PREVIOUS (0)",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.echo",
+    "doc": "true (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.element",
+    "doc": "Current array index (if field is an array element).",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.enum.mask$",
+    "doc": "The values available for an enumerate field. Also the enumerate values available for the ask.enum() function. See also set.enum.values.for.field() function. (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.format.addition$",
+    "doc": "Currency to be used for an amount format. Language to be used for a date format.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.helpfile$",
+    "doc": "Help file of current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.ille$",
+    "doc": "Illegal characters.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.imax",
+    "doc": "Maximum input length. (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.inpfld",
+    "doc": "0",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.input",
+    "doc": "false (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.lega$",
+    "doc": "Legal characters.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.mandatory",
+    "doc": "Mandatory input (true or false).",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.maxlen",
+    "doc": "Maximum display length of current field. (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.message$",
+    "doc": "Message to be displayed when a field is filled after a before.input event.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.minlen",
+    "doc": "Minimum length of current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.multioccur",
+    "doc": "true",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.nowait$",
+    "doc": "Characters that start a field command. This variable is supported for backward compatibility only. In Infor Enterprise Server, field command functionality is replaced by form commands. (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.oformat$",
+    "doc": "Output format of field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.permission",
+    "doc": "Permissions for current field: NO.PERMISSION",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.previous$",
+    "doc": "Previous value of field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.rang",
+    "doc": "Compiled expression ID for attr.rang$.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.rang$",
+    "doc": "Defines a range; values are automatically checked against this range.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.reallen",
+    "doc": "Real database length of field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.refpath",
+    "doc": "Reference path.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.rndm",
+    "doc": "Rounding method (see also round() function).",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.rotate",
+    "doc": "Current index in currency table (see set.currencies() function).",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.sttp",
+    "doc": "Start position in current field. (deprecated)",
+    "deprecated": true,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textfield$",
+    "doc": "Name of the text field. Used by the Text Manager.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textkw1$",
+    "doc": "Keywords of text. Used by the Text Manager. The output string is multi-byte.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textlang$",
+    "doc": "Language for text editing. Used by the Text Manager.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textmaxlines",
+    "doc": "Maximum number of lines in the text editor. Used by the Text Manager.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textmode",
+    "doc": "1",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textopt$",
+    "doc": "Name of default option for editor window options. Used by the Text Manager.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textstart",
+    "doc": "true",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.textzoomsession$",
+    "doc": "Session zoomed to by text editor zoom command. The default is \"Display Texts\" session. Used by the Text Manager.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.type",
+    "doc": "Database type (DB.ENUM, DB.STRING, DB.TIME, DB.DATE, and so on)",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.zoomcode",
+    "doc": "Field zoomcode. Possible values are: 0",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.zoomindex",
+    "doc": "Number of table-index to start session zoomed to from a field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.zoomreturn$",
+    "doc": "Name of return field of zoom session on current field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "attr.zoomsession$",
+    "doc": "Session zoomed to from field.",
+    "deprecated": false,
+    "kind": "attr"
+  },
+  {
+    "name": "choice",
+    "doc": "Command ID of active command.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "curr.key",
+    "doc": "Current key number of main table. Not available in before.program.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "date",
+    "doc": "Number of days since 01-01-0001 (local time).",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "date$",
+    "doc": "Current system date (DDMMYY).",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "e",
+    "doc": "Error code of last file action.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "fattr.currfld$",
+    "doc": "Name of current field.",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.descr$",
+    "doc": "Description of current form. (deprecated)",
+    "deprecated": true,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.ftype",
+    "doc": "Type of current form (1, 2, 3, or 4).",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.helpfile$",
+    "doc": "Name of help file for current form. (deprecated)",
+    "deprecated": true,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.horizontal",
+    "doc": "True for horizontal occurrences.",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.init",
+    "doc": "Indicates if the form has been initialized.",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.nrtabs",
+    "doc": "Number of tabs on current form (dynamic forms only).",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.occurnr",
+    "doc": "Number of occurrences on current form.",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.seqno",
+    "doc": "Sequence number of current field in form. (deprecated)",
+    "deprecated": true,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.toplines",
+    "doc": "The number of lines above the multioccurrence fields (default: 3). Set in the before.program section. (deprecated)",
+    "deprecated": true,
+    "kind": "fattr"
+  },
+  {
+    "name": "fattr.total.line",
+    "doc": "If set in before.program section, this indicates that a total line must be displayed in the grid (see also display.total.fields()). Can have the values true or false.",
+    "deprecated": false,
+    "kind": "fattr"
+  },
+  {
+    "name": "filled.occ",
+    "doc": "Number of filled occurrences.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "form.curr",
+    "doc": "Current form number.",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "form.next",
+    "doc": "Next form number. -1 if no next form",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "form.prev",
+    "doc": "Previous form number. -1 if no previous form",
+    "deprecated": false,
+    "kind": "session"
+  },
+  {
+    "name": "lattr.autobefores",
+    "doc": "A boolean indicating whether or not before.field layouts are automatically repeated at the top of a page if the page break does not correspond with a sort break. The default value is true. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.autoreset",
+    "doc": "A boolean indicating whether or not Report script functions is automatically performed in the case of breaks of layouts in sorting fields. The default value is true. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.break",
+    "doc": "A boolean that is set to true during printing of before.field layouts when the layout is printed as the result of a sort field change. It is set to false when a before.field layout is printed because of a page break. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.enddata",
+    "doc": "A boolean indicating whether or not the end of the data has been reached. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.header",
+    "doc": "A boolean that is set to true during printing of header layouts and during printing of before.field layouts at the top of a page. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.language$",
+    "doc": "The language code of the report. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.lineno",
+    "doc": "The current line number. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.multicol",
+    "doc": "Indicates whether or not multiple columns are used when more than one layout fits on a line. Possible values are: MULTICOL_NONE Normal output; no columns are used. MULTICOL_ORDER_HORIZONTAL Output is arranged in multiple columns, ordered horizontally. For example: rec_1 rec_2 rec_3 rec_4 rec_5 rec_6 MULTICOL_ORDER_VERTICAL Output is arranged in multiple columns, ordered vertically (per page). For example: rec_1 rec_3 rec_5 rec_2 rec_4 rec_6 (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.multicol.count",
+    "doc": "Specifies the number of columns to use when multiple columns are specified (see lattr.multicol). The default value is 0. In this case, the report manager calculates the number of columns based of the report width and the layout width. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.multicol.repeat",
+    "doc": "A boolean indicating whether headers and footers are automatically repeated for each column. The default value is true. The width of the header and footer layouts width must be equal to or less than the width of the detail layout. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.pageno",
+    "doc": "Current page number. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.print",
+    "doc": "Indicates whether or not a layout is to be printed. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.prline",
+    "doc": "After expansion of a variable in a report, this is filled with the text line that is printed. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.recordtimes",
+    "doc": "Indicates the number of times the layout will be printed. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textexpand",
+    "doc": "A boolean indicating whether or not variables included in text fields can be expanded. The default is false. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textlang$",
+    "doc": "The language code for printing text. The default is the language code of the report. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textline",
+    "doc": "A string containing the source text line from the text manager. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textlineno",
+    "doc": "The number of the line that must be printed. (R)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textlines.max",
+    "doc": "The maximum number of lines in the layout. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "lattr.textlines.min",
+    "doc": "The minimum number of lines in the layout. (R/W)",
+    "deprecated": false,
+    "kind": "lattr"
+  },
+  {
+    "name": "sattr.descr$",
+    "doc": "Description of the session.",
+    "deprecated": false,
+    "kind": "attr"
+  }
+]
