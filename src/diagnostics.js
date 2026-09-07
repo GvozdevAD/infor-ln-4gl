@@ -1,5 +1,8 @@
 const vscode = require("vscode");
 const { analyzeDocument } = require("./blocks");
+const { analyzeBrackets } = require("./brackets");
+const { analyzeContinuation } = require("./continuation");
+const { analyzeDalUiOverlap } = require("./dal-ui-overlap");
 
 /** @type {vscode.DiagnosticCollection | undefined} */
 let collection;
@@ -24,7 +27,26 @@ function refresh(document) {
   }
 
   const strictComments = cfg.get("diagnostics.strictComments", true);
-  const issues = analyzeDocument(document.getText(), { strictComments });
+  const duplicateCase = cfg.get("diagnostics.duplicateCase", true);
+  const deprecatedLongIf = cfg.get("diagnostics.deprecatedLongIf", true);
+  const brackets = cfg.get("diagnostics.brackets", true);
+  const continuation = cfg.get("diagnostics.continuation", true);
+  const dalUiOverlap = cfg.get("diagnostics.dalUiOverlap", true);
+  const text = document.getText();
+  const issues = analyzeDocument(text, {
+    strictComments,
+    duplicateCase,
+    deprecatedLongIf,
+  });
+  if (brackets) {
+    issues.push(...analyzeBrackets(text));
+  }
+  if (continuation) {
+    issues.push(...analyzeContinuation(text));
+  }
+  if (dalUiOverlap) {
+    issues.push(...analyzeDalUiOverlap(text));
+  }
   /** @type {vscode.Diagnostic[]} */
   const diags = issues.map((issue) => {
     const range = new vscode.Range(
@@ -33,10 +55,12 @@ function refresh(document) {
       issue.line,
       issue.end,
     );
-    const severity =
-      issue.severity === "warning"
-        ? vscode.DiagnosticSeverity.Warning
-        : vscode.DiagnosticSeverity.Error;
+    let severity = vscode.DiagnosticSeverity.Error;
+    if (issue.severity === "warning") {
+      severity = vscode.DiagnosticSeverity.Warning;
+    } else if (issue.severity === "info") {
+      severity = vscode.DiagnosticSeverity.Information;
+    }
     const d = new vscode.Diagnostic(range, issue.message, severity);
     d.source = "Infor LN 4GL";
     d.code = issue.code;

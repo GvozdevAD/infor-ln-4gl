@@ -3,7 +3,7 @@
  * Changes leading whitespace only; never trims trailing spaces or rewrites code.
  */
 
-const { scanLine } = require("./text");
+const { scanLine, codePart } = require("./text");
 const {
   PAIRS,
   tokensOnLine,
@@ -12,6 +12,7 @@ const {
   isPreprocessorLine,
 } = require("./keywords");
 const { SECTION_LINE, FUNCTION_LINE } = require("./parse");
+const { isInsideUsageDoc, isUsagePairSpec } = require("./usage-context");
 
 const SELECT_BODY_KEYS = new Set([
   "selectdo",
@@ -20,11 +21,30 @@ const SELECT_BODY_KEYS = new Set([
   "selecteos",
 ]);
 
-const CONTROL_PAIRS = PAIRS.filter((p) => p.open[0] !== "select");
+const CONTROL_PAIRS = PAIRS.filter(
+  (p) => p.open[0] !== "select" && p.open[0] !== "on case",
+);
+/** @type {typeof PAIRS[number] | undefined} */
+const ON_CASE_SPEC = PAIRS.find((p) => p.open[0] === "on case");
+
+const ON_CASE_LABEL = /^\s*(case\s+.+\s*:|default\s*:)/i;
+
+/**
+ * @param {Frame[]} stack
+ * @returns {Frame | undefined}
+ */
+function topOnCaseFrame(stack) {
+  for (let i = stack.length - 1; i >= 0; i--) {
+    if (stack[i].kind === "oncase") {
+      return stack[i];
+    }
+  }
+  return undefined;
+}
 
 /**
  * @typedef {{
- *   kind: "control" | "select" | "brace",
+ *   kind: "control" | "select" | "brace" | "oncase",
  *   openLevel: number,
  *   inSelectBody?: boolean,
  * }} Frame
@@ -135,7 +155,10 @@ function computeIndentLevels(text) {
       continue;
     }
 
-    const sectionMatch = raw.match(SECTION_LINE);
+    const code = codePart(raw);
+    const isOnCaseLabelLine = ON_CASE_LABEL.test(code);
+
+    const sectionMatch = !isOnCaseLabelLine && raw.match(SECTION_LINE);
     if (sectionMatch) {
       levels.push(0);
       const name = sectionMatch[1];
@@ -146,12 +169,27 @@ function computeIndentLevels(text) {
     const isFn = FUNCTION_LINE.test(raw);
     const tokens = tokensOnLine(raw, { inBlock: startedInBlock });
     const braces = bracesOnLine(raw, startedInBlock);
+    const inUsage = isInsideUsageDoc(text, lineNo);
 
     /** @type {{ kind: string, index: number }[]} */
     const events = [];
     for (let ti = 0; ti < tokens.length; ti++) {
       const t = tokens[ti];
       const w = t.word.toLowerCase();
+      if (inUsage) {
+        // Only Usage open/close affect indent; prose keywords do not.
+        for (const spec of CONTROL_PAIRS) {
+          if (!isUsagePairSpec(spec)) {
+            continue;
+          }
+          const role = roleInPair(t.word, spec);
+          if (role) {
+            events.push({ kind: role, index: t.start });
+            break;
+          }
+        }
+        continue;
+      }
       if (SELECT_BODY_KEYS.has(w)) {
         events.push({ kind: "select-middle", index: t.start });
         continue;
@@ -163,6 +201,17 @@ function computeIndentLevels(text) {
       if (w === "endselect") {
         events.push({ kind: "select-close", index: t.start });
         continue;
+      }
+      if (ON_CASE_SPEC) {
+        const onCaseRole = roleInPair(t.word, ON_CASE_SPEC);
+        if (onCaseRole === "open") {
+          events.push({ kind: "oncase-open", index: t.start });
+          continue;
+        }
+        if (onCaseRole === "close") {
+          events.push({ kind: "oncase-close", index: t.start });
+          continue;
+        }
       }
       for (const spec of CONTROL_PAIRS) {
         const role = roleInPair(t.word, spec);
@@ -185,7 +234,19 @@ function computeIndentLevels(text) {
     events.sort((a, b) => a.index - b.index);
 
     let lineLevel = isFn ? 0 : contentLevel(stack, sectionBase);
-    if (!isFn && events.length) {
+    const onCaseFrame = topOnCaseFrame(stack);
+    const opensOnCase = events.some((e) => e.kind === "oncase-open");
+    const closesOnCase = events.some((e) => e.kind === "oncase-close");
+
+    if (!isFn && onCaseFrame && !opensOnCase) {
+      if (closesOnCase) {
+        lineLevel = onCaseFrame.openLevel;
+      } else if (ON_CASE_LABEL.test(code)) {
+        lineLevel = onCaseFrame.openLevel + 1;
+      } else {
+        lineLevel = onCaseFrame.openLevel + 2;
+      }
+    } else if (!isFn && events.length) {
       const first = events[0];
       if (
         first.kind === "close" ||
@@ -237,6 +298,18 @@ function computeIndentLevels(text) {
       } else if (ev.kind === "select-close") {
         for (let i = stack.length - 1; i >= 0; i--) {
           if (stack[i].kind === "select") {
+            stack.splice(i, 1);
+            break;
+          }
+        }
+      } else if (ev.kind === "oncase-open") {
+        stack.push({
+          kind: "oncase",
+          openLevel: lineLevel,
+        });
+      } else if (ev.kind === "oncase-close") {
+        for (let i = stack.length - 1; i >= 0; i--) {
+          if (stack[i].kind === "oncase") {
             stack.splice(i, 1);
             break;
           }

@@ -2,6 +2,7 @@ const vscode = require("vscode");
 
 const FOR_BY = "ln-4gl.forBy";
 const WHILE_DO = "ln-4gl.whileDo";
+const DEPRECATED_LONG_IF = "ln-4gl.deprecatedLongIf";
 
 /**
  * @param {vscode.TextDocument} document
@@ -55,6 +56,20 @@ function provideCodeActions(document, range, context) {
         "",
       );
       actions.push(action);
+    } else if (code === DEPRECATED_LONG_IF) {
+      const action = new vscode.CodeAction(
+        "Add explicit comparison (<> 0)",
+        vscode.CodeActionKind.QuickFix,
+      );
+      action.diagnostics = [diag];
+      action.isPreferred = true;
+      action.edit = new vscode.WorkspaceEdit();
+      action.edit.replace(
+        document.uri,
+        diag.range,
+        `${document.getText(diag.range)} <> 0`,
+      );
+      actions.push(action);
     }
   }
 
@@ -65,4 +80,4 @@ const codeActionProvider = {
   provideCodeActions,
 };
 
-module.exports = { codeActionProvider, FOR_BY, WHILE_DO };
+module.exports = { codeActionProvider, FOR_BY, WHILE_DO, DEPRECATED_LONG_IF };

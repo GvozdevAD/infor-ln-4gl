@@ -109,6 +109,70 @@ describe("formatText indent", () => {
     assert.match(out, /^    select t\.\* from t for update$/m);
     assert.match(out, /^        db\.update/m);
   });
+
+  it("indents on case labels and body", () => {
+    const src = [
+      "on.choice:",
+      "on case x",
+      "case 1:",
+      "y = 1",
+      "break",
+      "default:",
+      "y = 0",
+      "endcase",
+      "",
+    ].join("\n");
+    const out = formatText(src, opts);
+    assert.equal(
+      out,
+      [
+        "on.choice:",
+        "    on case x",
+        "        case 1:",
+        "            y = 1",
+        "            break",
+        "        default:",
+        "            y = 0",
+        "    endcase",
+        "",
+      ].join("\n"),
+    );
+  });
+
+  it("indents fall-through case labels at the same level", () => {
+    const src = [
+      "on case weekday",
+      "case 1:",
+      "case 2:",
+      "case 3:",
+      "beginweek()",
+      "break",
+      "endcase",
+      "",
+    ].join("\n");
+    const out = formatText(src, opts);
+    assert.match(out, /^ {4}case 1:$/m);
+    assert.match(out, /^ {4}case 2:$/m);
+    assert.match(out, /^ {4}case 3:$/m);
+    assert.match(out, /^ {8}beginweek\(\)$/m);
+  });
+
+  it("indents nested on case inside if", () => {
+    const src = [
+      "if a then",
+      "on case b",
+      "case 1:",
+      "c = 1",
+      "endcase",
+      "endif",
+      "",
+    ].join("\n");
+    const out = formatText(src, opts);
+    assert.match(out, /^    on case b$/m);
+    assert.match(out, /^        case 1:$/m);
+    assert.match(out, /^            c = 1$/m);
+    assert.match(out, /^    endcase$/m);
+  });
 });
 
 describe("formatText print-session", () => {

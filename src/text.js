@@ -1,26 +1,27 @@
 /**
  * Shared text helpers for LN 4GL providers.
  * Baan strings: no backslash escapes; embedded quotes are doubled ("").
- * Line comments start at | outside strings. Block comments use slash-star … star-slash.
+ * Line comments: pipe [|] to end of line (Progguide vocabulary).
+ * C-style slash-star comments are not part of the language.
  */
 
 /**
- * @typedef {"code" | "string" | "lineComment" | "blockComment"} ScanKind
+ * @typedef {"code" | "string" | "lineComment"} ScanKind
  * @typedef {{ kind: ScanKind, start: number, end: number }} ScanSpan
  */
 
 /**
- * Scan one line left-to-right. Optionally continue an open block comment
- * from a previous line (`inBlock` true).
+ * Scan one line left-to-right.
+ * `inBlock` is accepted for call-site compatibility and always returns false
+ * (Baan has no slash-star block comments).
  * @param {string} line
  * @param {{ inBlock?: boolean }} [opts]
  * @returns {{ spans: ScanSpan[], inBlock: boolean }}
  */
-function scanLine(line, opts = {}) {
+function scanLine(line, _opts = {}) {
   /** @type {ScanSpan[]} */
   const spans = [];
   let i = 0;
-  let inBlock = Boolean(opts.inBlock);
 
   const push = (kind, start, end) => {
     if (end > start) {
@@ -29,18 +30,6 @@ function scanLine(line, opts = {}) {
   };
 
   while (i < line.length) {
-    if (inBlock) {
-      const close = line.indexOf("*/", i);
-      if (close === -1) {
-        push("blockComment", i, line.length);
-        return { spans, inBlock: true };
-      }
-      push("blockComment", i, close + 2);
-      i = close + 2;
-      inBlock = false;
-      continue;
-    }
-
     const ch = line[i];
 
     if (ch === '"') {
@@ -61,31 +50,15 @@ function scanLine(line, opts = {}) {
       continue;
     }
 
-    if (ch === "|" ) {
+    if (ch === "|") {
       push("lineComment", i, line.length);
       break;
-    }
-
-    if (ch === "/" && line[i + 1] === "*") {
-      const start = i;
-      i += 2;
-      const close = line.indexOf("*/", i);
-      if (close === -1) {
-        push("blockComment", start, line.length);
-        return { spans, inBlock: true };
-      }
-      push("blockComment", start, close + 2);
-      i = close + 2;
-      continue;
     }
 
     const start = i;
     while (i < line.length) {
       const c = line[i];
       if (c === '"' || c === "|") {
-        break;
-      }
-      if (c === "/" && line[i + 1] === "*") {
         break;
       }
       i++;
@@ -98,8 +71,8 @@ function scanLine(line, opts = {}) {
 
 /**
  * Code portion of a line: everything before a | line comment that is
- * outside strings and slash-star block comments. String spans stay included
- * so callers can still see `"a|b"` as code.
+ * outside strings. String spans stay included so callers can still see
+ * `"a|b"` as code.
  * @param {string} line
  * @param {{ inBlock?: boolean }} [opts]
  */
@@ -110,17 +83,13 @@ function codePart(line, opts = {}) {
     if (span.kind === "lineComment") {
       break;
     }
-    if (span.kind === "blockComment") {
-      out += " ".repeat(span.end - span.start);
-      continue;
-    }
     out += line.slice(span.start, span.end);
   }
   return out;
 }
 
 /**
- * Strip | and slash-star block comments from full document text (for block analysis).
+ * Strip | line comments from full document text (for block analysis).
  * Strings are preserved; comment text is replaced with spaces (same length).
  * @param {string} text
  * @returns {string}
@@ -129,10 +98,8 @@ function stripComments(text) {
   const lines = text.split(/\r?\n/);
   /** @type {string[]} */
   const out = [];
-  let inBlock = false;
   for (const line of lines) {
-    const scanned = scanLine(line, { inBlock });
-    inBlock = scanned.inBlock;
+    const scanned = scanLine(line);
     let rebuilt = "";
     let pos = 0;
     for (const span of scanned.spans) {
@@ -162,20 +129,12 @@ function stripComments(text) {
  * @returns {ScanKind}
  */
 function kindAt(line, character, opts = {}) {
-  const { spans, inBlock } = scanLine(line, opts);
+  const { spans } = scanLine(line, opts);
   for (const span of spans) {
     if (character >= span.start && character < span.end) {
       return span.kind;
     }
-    // At end of span: treat as that span for caret sitting on last char+1 edge
-    if (character === span.end && span.kind !== "code") {
-      // fall through; prefer next span if any
-    }
   }
-  if (inBlock) {
-    return "blockComment";
-  }
-  // Caret at end of line after code
   if (spans.length) {
     const last = spans[spans.length - 1];
     if (character >= last.end) {
@@ -191,18 +150,14 @@ function kindAt(line, character, opts = {}) {
 }
 
 /**
- * True if position sits in a | line comment, a slash-star block comment, or a string.
+ * True if position sits in a | line comment or a string.
  * @param {import("vscode").TextDocument} document
  * @param {import("vscode").Position} position
  */
 function inCommentOrString(document, position) {
-  let inBlock = false;
-  for (let line = 0; line < position.line; line++) {
-    inBlock = scanLine(document.lineAt(line).text, { inBlock }).inBlock;
-  }
   const text = document.lineAt(position.line).text;
-  const kind = kindAt(text, position.character, { inBlock });
-  return kind === "lineComment" || kind === "blockComment" || kind === "string";
+  const kind = kindAt(text, position.character);
+  return kind === "lineComment" || kind === "string";
 }
 
 module.exports = {

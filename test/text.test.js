@@ -47,22 +47,29 @@ describe("scanLine / codePart", () => {
     assert.equal(kindAt(line, line.indexOf("|", 0)), "string"); // | inside quotes
     assert.equal(kindAt(line, line.lastIndexOf("|")), "lineComment");
   });
+
+  it("does not treat slash-star as a comment (Progguide: only |)", () => {
+    const line = "x = a /* not a comment */ / b";
+    assert.equal(codePart(line), line);
+    const { spans } = scanLine(line);
+    assert.ok(!spans.some((s) => s.kind === "lineComment"));
+    assert.ok(spans.every((s) => s.kind === "code" || s.kind === "string"));
+  });
 });
 
 describe("stripComments", () => {
-  it("blanks line and block comments but keeps strings", () => {
-    const text = 'a = "x|y" | hide\n/* block */\nb = 1';
+  it("blanks | line comments but keeps strings", () => {
+    const text = 'a = "x|y" | hide\nb = 1';
     const out = stripComments(text);
     assert.match(out, /a = "x\|y"/);
     assert.doesNotMatch(out, /hide/);
     assert.match(out, /b = 1/);
   });
 
-  it("handles multiline block comments", () => {
+  it("leaves /* */ as code (not a Baan comment)", () => {
     const text = "a = 1\n/* start\nstill\nend */\nb = 2";
     const out = stripComments(text);
-    assert.match(out, /a = 1/);
-    assert.match(out, /b = 2/);
-    assert.doesNotMatch(out, /start/);
+    assert.match(out, /\/\* start/);
+    assert.match(out, /end \*\//);
   });
 });
