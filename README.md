@@ -16,8 +16,8 @@ A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an L
 | Completion | Context-aware (SQL / sections / general); frequent APIs (`db.*`, strings, dates) plus error constants (`ELOCKED`, …) |
 | Snippets | High-value only: `sel`, `dalnew`, `upd`, `fld`, … Control blocks: `wh` / `forn` / `onc` (not `if` — type the keyword) |
 | Outline | 4GL sections (`field.*`, `choice.*`, …) and functions; nested events under parents |
-| Go to Definition | Jump to `function` in the same file; `#include` resolves beside the file or via `ln-4gl.includePath` |
-| Find References / Rename | Occurrences and F2 rename in the current file; builtins, keywords, error codes, and 4GL section headers are blocked |
+| Go to Definition | Jump to `function` in open `ln-4gl` tabs (and `ln-4gl.sessionFolder` when set); `#include` resolves beside the file or via `ln-4gl.includePath` |
+| Find References / Rename | References across open tabs (+ session folder); F2 rename stays in the current file; builtins, keywords, error codes, and 4GL section headers are blocked |
 | Hover | Short notes for sections, DAL hooks, common functions, error codes, `attr.*` |
 | Signature help | Parameter hints for frequent calls (`message`, `db.*`, `stpapi.*`, DAL1, …) |
 | Keyword pairs | Highlight matching `if`/`endif`, `select`/`endselect`, `for`/`endfor`, … |
@@ -41,10 +41,12 @@ Leave `files.trimTrailingWhitespace` **off** for these files; LN is picky about 
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `ln-4gl.includePath` | `[]` | Extra directories to search for `#include` files (absolute or relative to the current file) |
+| `ln-4gl.includePath` | `[]` | Extra directories for `#include` (absolute or relative to the current file); point at TEMP includes next to open `.bc` tabs |
+| `ln-4gl.sessionFolder` | `""` | Opt-in absolute TEMP folder to index `*.bc` / `*.cln` / `*.ln4gl` for Def / Refs / semantic tokens (non-recursive, max 100 files); empty = open tabs only |
 | `ln-4gl.diagnostics.enabled` | `true` | Block-matching diagnostics and idiom warnings |
 | `ln-4gl.diagnostics.strictComments` | `true` | Ignore `|` and `/* */` comments when analyzing blocks |
-| `ln-4gl.format.enabled` | `true` | Format Document (indent-only; does not trim trailing spaces) |
+| `ln-4gl.semanticHighlighting.localFunctionCalls` | `true` | Semantic highlight calls to functions from open tabs / sessionFolder |
+| `ln-4gl.semanticHighlighting.defineUsages` | `true` | Semantic highlight uses of `#define` names from the current file |
 
 ## Conflicts
 

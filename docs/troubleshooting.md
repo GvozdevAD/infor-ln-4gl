@@ -32,6 +32,17 @@ Keep `files.trimTrailingWhitespace` **off** for `ln-4gl`. LN Tools often stores 
 
 The include file must exist next to the current script or on `ln-4gl.includePath` (absolute path, or relative to the current file). There is no search of the LN server or VRC.
 
+Typical TEMP workflow (several LN sessions, scripts under `%TEMP%` or a session dump folder):
+
+```json
+{
+  "ln-4gl.includePath": ["C:/Users/you/AppData/Local/Temp/ln-session"],
+  "ln-4gl.sessionFolder": "C:/Users/you/AppData/Local/Temp/ln-session"
+}
+```
+
+`includePath` only resolves `#include` files that exist on disk. `sessionFolder` indexes script files in that folder for Go to Definition / Find References / semantic highlighting even when they are not open; leave it empty if you only want open editor tabs. Neither setting walks the whole disk.
+
 ## Remote-SSH still shows the old grammar
 
 Install the `.vsix` (or symlink) **on the remote host**, then reload the remote window. A local-only install does not apply to files opened over SSH.
@@ -46,7 +57,7 @@ Turn off block matching:
 }
 ```
 
-Or keep diagnostics but treat `|` / `/* */` as code (noisy):
+Or keep diagnostics but treat `|` comments as code (noisy):
 
 ```json
 {
@@ -54,4 +65,19 @@ Or keep diagnostics but treat `|` / `/* */` as code (noisy):
 }
 ```
 
-Preprocessor `#if` / `#endif` and SQL `for update` are ignored by the block checker. Keywords inside strings are ignored.
+Preprocessor `#if` / `#endif` and SQL `for update` are ignored by the block checker. Keywords inside strings are ignored. Embedded SQL `CASE … ENDCASE` does not trigger `ON CASE` block errors.
+
+Duplicate `CASE` warnings and deprecated long-IF checks can be turned off individually:
+
+```json
+{
+  "ln-4gl.diagnostics.duplicateCase": false,
+  "ln-4gl.diagnostics.deprecatedLongIf": false
+}
+```
+
+`deprecatedLongIf` skips identifiers known as `boolean` in the current file (function parameters or variable declarations). Domain-typed names (`domain tcyesno flag`) have no Data Dictionary resolve yet, so a bare `if flag then` still warns — use an explicit comparison, or disable the check if that is noisy.
+
+## ON CASE formatting
+
+Format Document indents `ON CASE` with three levels: `on case` / `endcase` at the block base, `case N:` / `default:` one level in, statements two levels in. Fall-through labels (`case 1:` followed by `case 2:` with no body) stay at the label level. Only leading whitespace changes; trailing spaces are preserved.

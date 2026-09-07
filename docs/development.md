@@ -1,6 +1,6 @@
 # Development
 
-Requires Node.js and, for the grammar generator, Python 3.
+Requires Node.js and, for generators, Python 3.
 
 ## Debug
 
@@ -11,12 +11,14 @@ A filesystem symlink is an alternative to F5; see [install.md](install.md).
 ## Scripts
 
 ```bash
-npm test              # parse / outline unit tests (node --test)
-npm run test:grammar  # TextMate token fixtures (vscode-tmgrammar-test)
+npm test              # unit tests (node --test)
+npm run test:grammar  # TextMate token fixtures
 npm run check:grammar # rebuild grammar; fail if committed artifacts drift
-npm run check:errors  # verify errors-catalog.json matches completions + docs
-npm run check:catalog # verify api-catalog.json matches completions + signatures
-npm run ci            # all of the above
+npm run check:errors  # errors-catalog.json matches completions + docs
+npm run check:catalog # api-catalog.json matches completions + signatures
+npm run check:catalog-quality # catalog depth / void returns / syntax sanity
+npm run check:predefined # predefined variables snapshot
+npm run ci            # full local CI set
 npm run package       # produce infor-ln-4gl-*.vsix
 ```
 
@@ -24,17 +26,17 @@ The VSIX does not include `scripts/`, `test/`, or `docs/` (see `.vscodeignore`).
 
 ## Regenerating the grammar
 
-Keyword lists were extracted from Vim `runtime/syntax/baan.vim`. Pattern layout follows [SublimeBaan](https://github.com/masal/SublimeBaan).
+Canonical 3GL/SQL reserved words live in `scripts/baan_guide_lexicon.py` (Infor ES Programmers Guide 10.8.0). Vim `baan.vim` dumps in `data/baan-vim-keywords.json` are a secondary source. Pattern layout follows [SublimeBaan](https://github.com/masal/SublimeBaan).
 
 ```bash
 python3 scripts/build-grammar.py
 ```
 
-That rewrites `syntaxes/ln-4gl.tmLanguage.json` and `data/completions.json`. It also merges new 4GL section docs from `data/sections-catalog.json` into `data/docs.json` (without overwriting existing keys). Do not edit generated files by hand; change the generator, catalog JSON, or `data/baan-vim-keywords.json` and rebuild.
+Rewrites `syntaxes/ln-4gl.tmLanguage.json` and updates `data/completions.json`. Merges new 4GL section docs from `data/sections-catalog.json` into `data/docs.json` without overwriting existing keys. Do not edit generated grammar by hand.
 
 ## Regenerating error codes
 
-Runtime error codes come from Infor ES Programmers Guide JSON (local path only; not committed):
+Needs a local Progguide JSON tree (not committed):
 
 ```bash
 python3 scripts/build-errors.py \
@@ -43,43 +45,60 @@ python3 scripts/build-errors.py \
 python3 scripts/build-grammar.py
 ```
 
-That writes `data/errors-catalog.json` (committed snapshot) and updates `completions.errors` + `docs.json`. CI runs `npm run check:errors` against the snapshot without progguide.
+Writes `data/errors-catalog.json` and updates `completions.errors` + `docs.json`. CI runs `npm run check:errors` against the committed snapshot.
 
 ## Regenerating the API catalog
 
-Runtime API functions and DAL hooks come from Infor ES Programmers Guide function pages (local path only; not committed):
+Needs local Progguide function pages (default: sibling `../ln-progguide-rag/data`, or `--progguide` / `LN_PROGGUIDE_PAGES`):
 
 ```bash
-python3 scripts/build-catalog.py \
-  --progguide /path/to/ln-progguide/dist/data/progguide \
-  --merge
+python3 scripts/build-catalog.py --merge
 python3 scripts/build-grammar.py
 ```
 
-That writes committed snapshots:
+Committed outputs used at runtime:
 
 | File | Role |
 |---|---|
-| `data/api-catalog.json` | ~1600+ API entries (doc, syntax, context, DAL `replaces`) |
-| `data/links.json` | Hook relations for future DocumentLinkProvider |
-| `data/signatures.json` | Signature help labels/parameters |
-| `data/completions.json` | `functions` + `dalHooks` from catalog |
+| `data/api-catalog.json` | API / hook entries (doc, syntax, returns, …) |
+| `data/signatures.json` | Signature help |
+| `data/completions.json` | `functions` + `dalHooks` (and related lists) |
 
-Manual DAL hook → UI section mappings live in `data/dal-notes.json` and are merged at build time.
+DAL hook → UI section mappings: `data/dal-notes.json` (merged at build).
 
-CI runs `npm run check:catalog` against the snapshot without progguide.
+CI: `npm run check:catalog` and `npm run check:catalog-quality`.
 
-The VSIX grows by roughly 2–4 MB from the catalog JSON files; providers load them once at activation.
+## Diagnostics settings
+
+| Setting | Default | Effect |
+|---|---|---|
+| `ln-4gl.diagnostics.enabled` | `true` | Master switch for block matching, idiom warnings, brackets, and continuation |
+| `ln-4gl.diagnostics.strictComments` | `true` | Ignore `\|` line comments when scanning blocks |
+| `ln-4gl.diagnostics.duplicateCase` | `true` | Warn on duplicate `CASE expr:` inside `ON CASE` |
+| `ln-4gl.diagnostics.deprecatedLongIf` | `true` | Warn on bare `if identifier then` unless the identifier is typed `boolean` in-file |
+| `ln-4gl.diagnostics.brackets` | `true` | Mismatched / unclosed `()` `{}` `[]` |
+| `ln-4gl.diagnostics.continuation` | `true` | Missing `^` on continued strings / `#define` bodies |
+
+Quick Fix is available for `for … by` → `step`, stray `while … do`, and deprecated long-IF (`<> 0`).
+
+## Semantic highlighting
+
+- Calls to `function` / `function extern` names from open `ln-4gl` tabs (and `ln-4gl.sessionFolder`) get a semantic `function` token when followed by `(`.
+- Uses of names introduced by `#define` in the **current file** get a semantic `macro` token (e.g. `START.EFFECTIVE.DATE`).
+
+| Setting | Default | Effect |
+|---|---|---|
+| `editor.semanticHighlighting.enabled` | `true` for `[ln-4gl]` | Master switch; without it themes ignore semantic tokens |
+| `ln-4gl.semanticHighlighting.localFunctionCalls` | `true` | Calls to indexed local/open-tab functions |
+| `ln-4gl.semanticHighlighting.defineUsages` | `true` | Usages of `#define` names from the current file |
 
 ## Layout
 
 | Path | Role |
 |---|---|
-| `src/` | Language providers (no bundler; `main` is `src/extension.js`) |
+| `src/` | Language providers (`main` is `src/extension.js`) |
 | `syntaxes/` | Generated TextMate grammar |
-| `data/` | Completions, hover text, signatures, section/error catalogs |
+| `data/` | Completions, hover, signatures, catalogs |
 | `snippets/` | User snippets |
-| `scripts/build-grammar.py` | Grammar + completions generator |
-| `scripts/build-errors.py` | Error codes from Progguide JSON |
-| `scripts/build-catalog.py` | API catalog from Progguide function pages |
-| `test/` | Parse tests and grammar fixtures |
+| `scripts/` | Generators and checks (not in VSIX) |
+| `test/` | Unit tests and grammar fixtures |

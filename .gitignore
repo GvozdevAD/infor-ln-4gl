@@ -1,4 +1,14 @@
 *.vsix
 node_modules/
 .DS_Store
-docs/roadmap.md
+**/__pycache__/
+*.py[cod]
+
+# Maintainer plans / notes (not part of the published extension docs)
+internal/
+
+# Offline doc-hit dumps for catalog enrich (never commit)
+**/mcp-hits*.jsonl
+**/*mcp*hits*.jsonl
+**/doc-hits*.jsonl
+**/*doc-hits*.jsonl
