@@ -1,0 +1,10 @@
+{
+  "before.save.object": ["before.write", "before.rewrite"],
+  "before.get.object": ["before.read", "after.read"],
+  "after.get.object": ["after.read"],
+  "before.new.object": ["before.write"],
+  "after.new.object": ["after.write"],
+  "before.destroy.object": ["before.delete"],
+  "after.destroy.object": ["after.delete"],
+  "field.update": ["when.field.changes"]
+}

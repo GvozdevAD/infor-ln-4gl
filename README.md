@@ -1,114 +1,59 @@
 # Infor LN 4GL for VS Code
 
+[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/GvozdevAD.infor-ln-4gl?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=GvozdevAD.infor-ln-4gl)
 [![CI](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml/badge.svg)](https://github.com/GvozdevAD/infor-ln-4gl/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Syntax highlighting, snippets, completion, Outline, Go to Definition, hover, and signature help for **Infor LN / Baan 3GL and 4GL**.
 
-This is a notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an LN Studio workspace over Remote-SSH. It does **not** replace LN Studio: no check-out, no `bic` compile, no forms, no JCA adapter.
+A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an LN Studio workspace over Remote-SSH. It does **not** replace LN Studio: no check-out, no `bic` compile, no forms, no JCA adapter.
 
-## Install
-
-### From VSIX (recommended)
-
-Build a package, then install it in VS Code or Cursor (on a **Remote-SSH** host, run Install from VSIX in the remote window):
-
-```bash
-npm install
-npm run package
-```
-
-That produces `infor-ln-4gl-0.1.0.vsix`. Command Palette → **Extensions: Install from VSIX…** → pick the file → reload.
-
-Open `examples/print-session.ui.bc`. The status bar should show **Infor LN 4GL**.
-
-### Development symlink
-
-For local editing of this repo without repackaging:
-
-```bash
-# VS Code
-ln -s /absolute/path/to/this/repo ~/.vscode/extensions/infor-ln-4gl-0.1.0
-
-# Cursor
-ln -s /absolute/path/to/this/repo ~/.cursor/extensions/infor-ln-4gl-0.1.0
-```
-
-On Windows (the machine you SSH into):
-
-```powershell
-cmd /c mklink /J "%USERPROFILE%\.vscode\extensions\infor-ln-4gl-0.1.0" "C:\path\to\this\repo"
-```
-
-To debug: open this folder and run **Launch Extension** (`F5`).
-
-## Conflict with jeffersyuan.baan
-
-The Marketplace extension [bc / jeffersyuan.baan](https://marketplace.visualstudio.com/items?itemName=jeffersyuan.baan) also claims `.bc` and `.cln`. If both are enabled, language mode may flip to **Baan**. Prefer **Infor LN 4GL** (Command Palette → **Change Language Mode**), or disable `bc`.
-
-## What you get
+## Features
 
 | Feature | Notes |
 |---|---|
 | Highlighting | 3GL, 4GL sections, SQL, DAL hooks, `table.field`, `table.*`, table ids, `:hostvar`, `attr.*` |
-| Completion | Context-aware (SQL / sections / general); frequent functions with snippets |
+| Completion | Context-aware (SQL / sections / general); frequent APIs (`db.*`, strings, dates) plus error constants (`ELOCKED`, …) |
 | Snippets | High-value only: `sel`, `dalnew`, `upd`, `fld`, … Control blocks: `wh` / `forn` / `onc` (not `if` — type the keyword) |
 | Outline | 4GL sections (`field.*`, `choice.*`, …) and functions; nested events under parents |
-| Go to Definition | Jump to `function` in the same file; `#include` resolves beside the file or via `ln-4gl.includePath` |
-| Hover | Short notes for sections, DAL hooks, common functions, `attr.*` |
-| Signature help | Parameter hints for frequent calls (`message`, `stpapi.*`, DAL1, …) |
+| Go to Definition | Jump to `function` in open `ln-4gl` tabs (and `ln-4gl.sessionFolder` when set); `#include` resolves beside the file or via `ln-4gl.includePath` |
+| Find References / Rename | References across open tabs (+ session folder); F2 rename stays in the current file; builtins, keywords, error codes, and 4GL section headers are blocked |
+| Hover | Short notes for sections, DAL hooks, common functions, error codes, `attr.*` |
+| Signature help | Parameter hints for frequent calls (`message`, `db.*`, `stpapi.*`, DAL1, …) |
 | Keyword pairs | Highlight matching `if`/`endif`, `select`/`endselect`, `for`/`endfor`, … |
-| Word pattern | dots count: `tdsls401.orno` and `before.input` are one word |
+| Document highlights | Pair keywords or all occurrences of the identifier under the cursor |
+| Folding | `if`/`select`/`function` blocks, braces, and 4GL sections |
+| Format Document | Indent only (`if`/`selectdo`/braces/4GL sections); never trims trailing spaces; format on save off by default |
+| Diagnostics | Unmatched `endif` / `endselect` / …; Quick Fix for `for … by` → `step` and stray `while … do` |
+| Word pattern | Dots count: `tdsls401.orno` and `before.input` are one word |
 
 Files: `*.bc`, `*.cln`, `*.ln4gl`. For Studio dumps without an extension, run **Change Language Mode** → Infor LN 4GL, or add a file association.
 
-## Suggested workflow on a Mac
+## Workflow
 
 1. Copy a script from LN UI (`ttadv2530m000`) into a `.bc` file, or Remote-SSH to the Windows box and open the LN Studio workspace.
 2. Edit here (highlighting + snippets).
 3. Paste back into Tools, or in Studio press **Build** so the dirty local file is compiled on the LN server.
 
-Do not turn on `files.trimTrailingWhitespace` for these files; LN is picky about what it stored.
+Leave `files.trimTrailingWhitespace` **off** for these files; LN is picky about what it stored.
 
-## Language notes
+## Settings
 
-**4GL** (UI / report scripts) uses event sections with a colon:
+| Setting | Default | Purpose |
+|---|---|---|
+| `ln-4gl.includePath` | `[]` | Extra directories for `#include` (absolute or relative to the current file); point at TEMP includes next to open `.bc` tabs |
+| `ln-4gl.sessionFolder` | `""` | Opt-in absolute TEMP folder to index `*.bc` / `*.cln` / `*.ln4gl` for Def / Refs / semantic tokens (non-recursive, max 100 files); empty = open tabs only |
+| `ln-4gl.diagnostics.enabled` | `true` | Block-matching diagnostics and idiom warnings |
+| `ln-4gl.diagnostics.strictComments` | `true` | Ignore `|` and `/* */` comments when analyzing blocks |
+| `ln-4gl.semanticHighlighting.localFunctionCalls` | `true` | Semantic highlight calls to functions from open tabs / sessionFolder |
+| `ln-4gl.semanticHighlighting.defineUsages` | `true` | Semantic highlight uses of `#define` names from the current file |
 
-```baan
-field.tdsls401.orno:
-before.input:
-    | UI only
-```
+## Conflicts
 
-**3GL** (DLL, `function main`, most DAL) is procedural. DAL hooks are functions, not sections:
+These Marketplace extensions also claim `.bc` (and some claim `.cln`). If another one is enabled, language mode may flip away from **Infor LN 4GL**. Prefer this language mode, or disable the other extension:
 
-```baan
-function extern long before.save.object()
-{
-    return(0)
-}
-```
-
-The preprocessor (`#include`, `#ifdef`) exists only for 3GL. `bic` compiles 3GL; 4GL goes through `std_gen` first.
-
-## Regenerating the grammar
-
-Keyword lists were extracted from Vim `runtime/syntax/baan.vim`. Pattern layout follows [SublimeBaan](https://github.com/masal/SublimeBaan).
-
-```bash
-python3 scripts/build-grammar.py
-```
-
-That rewrites `syntaxes/ln-4gl.tmLanguage.json` and `data/completions.json`. The VSIX does not include `scripts/` or `test/` (see `.vscodeignore`).
-
-## Development
-
-```bash
-npm test              # parse / outline unit tests (node --test)
-npm run test:grammar  # TextMate token fixtures (vscode-tmgrammar-test)
-npm run check:grammar # rebuild grammar; fail if committed artifacts drift
-npm run ci            # all of the above
-```
+- [bc / jeffersyuan.baan](https://marketplace.visualstudio.com/items?itemName=jeffersyuan.baan)
+- [Baan C VSCode / AnonymousGCA.baan-c-vscode](https://marketplace.visualstudio.com/items?itemName=AnonymousGCA.baan-c-vscode)
 
 ## What this will not do
 
@@ -116,8 +61,15 @@ npm run ci            # all of the above
 - Check out / check in VRC components
 - Compile or type-check against domains and tables
 
-Those stay on the LN server. For the language itself see **Infor ES Programmers Guide** (Support Portal KB2924522).
+Those stay on the LN server. For the language itself see **Infor ES Programmers Guide** (Infor Customer Portal KB2924522; cited in [Infor LN documentation](https://docs.infor.com/ln/2026.x/en-us/lnesolh/lndebugworkbenchug/iam1633953930176.html)).
+
+## Docs
+
+- [Install](docs/install.md) — Marketplace, VSIX, symlink
+- [3GL vs 4GL](docs/language.md)
+- [Development and packaging](docs/development.md)
+- [Troubleshooting](docs/troubleshooting.md)
 
 ## License
 
-MIT. Keyword inventory derived from the Vim runtime syntax file `baan.vim` (Erik Remmelzwaal, originally Erwin Smit / Her van de Vliert). TextMate layering inspired by SublimeBaan.
+MIT. Keyword inventory derived from the Vim runtime syntax file `baan.vim` (Erik Remmelzwaal, originally Erwin Smit / Her van de Vliert). TextMate layering inspired by [SublimeBaan](https://github.com/masal/SublimeBaan).

@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
-"""Build the TextMate grammar from keyword lists extracted from Vim's baan.vim."""
+"""Build the TextMate grammar from guide lexicon + Vim keyword dumps."""
 
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from baan_guide_lexicon import (
+    SQL_GAP,
+    SQL_SECTION,
+    STOCK_FALSE_3GL,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "data" / "baan-vim-keywords.json").read_text())
@@ -12,7 +20,7 @@ DATA = json.loads((ROOT / "data" / "baan-vim-keywords.json").read_text())
 
 def alt(words: list[str]) -> str:
     escaped = []
-    for word in sorted(set(words), key=lambda w: (-len(w), w.lower())):
+    for word in sorted(set(words), key=lambda w: (-len(w), w.lower(), w)):
         escaped.append(
             word.replace("\\", "\\\\")
             .replace("$", r"\$")
@@ -27,7 +35,9 @@ def word(words: list[str]) -> str:
 
 
 def chunked(words: list[str], size: int = 90):
-    ordered = sorted(set(words), key=str.lower)
+    # Tie-break on exact spelling so xmlFoo / xmlfoo stay ordered across runs
+    # (set iteration order is not stable when str.lower keys collide).
+    ordered = sorted(set(words), key=lambda w: (w.lower(), w))
     for i in range(0, len(ordered), size):
         yield ordered[i : i + size]
 
@@ -36,27 +46,27 @@ def main() -> None:
     types = DATA["types"] + ["function"]
     storage = DATA["storage"]
     # empty → constants; fixed → storage; function → types / function-header only
+    skip_3gl = {
+        "and",
+        "or",
+        "not",
+        "in",
+        "to",
+        "wherebind",
+        "empty",
+        "fixed",
+        "function",
+        "global",
+        *{w.lower() for w in STOCK_FALSE_3GL},
+    }
     keywords_3gl = [
-        w
-        for w in DATA["keywords3gl"]
-        if w.lower()
-        not in {
-            "and",
-            "or",
-            "not",
-            "in",
-            "to",
-            "wherebind",
-            "empty",
-            "fixed",
-            "function",
-            "global",
-        }
+        w for w in DATA["keywords3gl"] if w.lower() not in skip_3gl
     ]
     keywords_3gl += [
         "if",
         "then",
         "else",
+        "elif",
         "endif",
         "while",
         "endwhile",
@@ -75,8 +85,22 @@ def main() -> None:
         "and",
         "or",
         "not",
+        "call",
+        "dllusage",
+        "enddllusage",
+        "functionusage",
+        "endfunctionusage",
     ]
-    sql = DATA["sql"] + [
+    sql_phrases = [
+        "order by",
+        "group by",
+        "for update",
+        "refers to",
+        "inner join",
+        "outer join",
+        "as set with",
+    ]
+    sql = list(DATA["sql"]) + [
         "select",
         "selectdo",
         "selectempty",
@@ -84,26 +108,59 @@ def main() -> None:
         "selecterror",
         "endselect",
         "delete",
+        "deleteempty",
+        "deleteerror",
+        "deleteeos",
         "enddelete",
         "update",
+        "updateempty",
+        "updateerror",
+        "updateeos",
         "endupdate",
         "insert",
-        "order by",
-        "group by",
-        "for update",
-        "refers to",
-        "inner join",
         "exists",
-        "as set with",
         "from",
         "where",
         "in",
         "as",
+        *sorted(SQL_GAP | SQL_SECTION),
+        *sql_phrases,
     ]
-    # Keep vim's typo out of the grammar; LN spelling is "exists".
-    sql = [w for w in sql if w.lower() != "exsists"]
+    # Keep vim typos out of the grammar; LN spelling is "exists".
+    sql = [w for w in sql if w.lower() not in {"exsists", "fetch"}]
 
-    dal_named = DATA["dalHooks"]
+    api_catalog_path = ROOT / "data" / "api-catalog.json"
+    catalog_names: list[str] = []
+    catalog_functions: list[str] = []
+    catalog_dal_hooks: list[str] = []
+    catalog_ui_objects: list[str] = []
+    if api_catalog_path.is_file():
+        api_catalog = json.loads(api_catalog_path.read_text(encoding="utf-8"))
+        catalog_names = [
+            e["name"]
+            for e in api_catalog
+            if e.get("kind") in {"function", "dalFieldHook", "uiObject"}
+        ]
+        catalog_functions = sorted(
+            {
+                e["name"]
+                for e in api_catalog
+                if e.get("kind") in {"function", "dalFieldHook"}
+            },
+            key=str.lower,
+        )
+        catalog_ui_objects = sorted(
+            {e["name"] for e in api_catalog if e.get("kind") == "uiObject"},
+            key=str.lower,
+        )
+        catalog_dal_hooks = sorted(
+            {e["name"] for e in api_catalog if e.get("kind") == "dalHook"},
+            key=str.lower,
+        )
+        dal_named = catalog_dal_hooks
+    else:
+        dal_named = DATA["dalHooks"]
+
     extra_4gl_runtime = [
         "abort.transaction",
         "choice.again",
@@ -150,7 +207,9 @@ def main() -> None:
         "switch.to.company",
         "zoom.to$",
     ]
-    bshell = DATA["bshell"] + DATA["bshellDollar"] + extra_4gl_runtime
+    bshell = sorted(
+        set(DATA["bshell"] + DATA["bshellDollar"] + extra_4gl_runtime + catalog_names)
+    )
 
     highlight_constants = [
         "true",
@@ -217,14 +276,16 @@ def main() -> None:
         "name": "Infor LN 4GL",
         "scopeName": "source.ln4gl",
         "comment": (
-            "Keyword lists derived from Vim runtime syntax/baan.vim "
-            "(Erik Remmelzwaal / Erwin Smit / Her van de Vliert). "
-            "Pattern structure inspired by masal/SublimeBaan."
+            "Keyword lists from Infor ES Programmers Guide 10.8.0 lexicon "
+            "(scripts/baan_guide_lexicon.py) merged with Vim baan.vim dumps. "
+            "Pattern structure inspired by masal/SublimeBaan. "
+            "Baan strings have no backslash escapes (embedded quotes are doubled); "
+            "#strings must precede #comments so | inside quotes is not a comment."
         ),
         "patterns": [
+            {"include": "#strings"},
             {"include": "#comments"},
             {"include": "#dll-usage"},
-            {"include": "#strings"},
             {"include": "#preprocessor"},
             {"include": "#sections-4gl"},
             {"include": "#sql"},
@@ -263,12 +324,19 @@ def main() -> None:
                         "endCaptures": {
                             "1": {"name": "keyword.other.documentation.ln4gl"}
                         },
+                        "patterns": [
+                            {
+                                "name": "keyword.other.documentation.label.ln4gl",
+                                "match": r"(?i)^\s*(Input|Output|Return)\s*:",
+                            }
+                        ],
                     }
                 ]
             },
             "strings": {
                 "name": "string.quoted.double.ln4gl",
                 "begin": r'"',
+                # No backslash escapes: \ is a plain character (e.g. "C:\temp\file").
                 # Do not end on the first quote of an LN "" escape (vscode-textmate
                 # prefers the end pattern over inner matches for a single ").
                 "end": r'"(?!")',
@@ -295,7 +363,11 @@ def main() -> None:
                 "patterns": [
                     {
                         "name": "entity.name.section.program.ln4gl",
-                        "match": r"(?i)^\s*(declaration|functions|before\.program|on\.error|after\.program|after\.update\.db\.commit|before\.display\.object|before\.new\.object)\s*:",
+                        "match": r"(?i)^\s*(declaration|functions|before\.program|on\.error|after\.program|after\.update\.db\.commit|before\.display\.object|on\.display\.total\.line|before\.new\.object|after\.new\.object|after\.form\.read|after\.receive\.data)\s*:",
+                    },
+                    {
+                        "name": "entity.name.section.report.ln4gl",
+                        "match": r"(?i)^\s*((?:before\.report|after\.report|header|footer|detail|before\.field|after\.field)\.\d+|(?:before|after)\.layout)\s*:",
                     },
                     {
                         "name": "entity.name.section.form.ln4gl",
@@ -362,7 +434,7 @@ def main() -> None:
                 "patterns": [
                     {
                         "name": "variable.language.attribute.ln4gl",
-                        "match": r"(?i)(?<![\w.$])(?:attr|fattr|sattr)\.[A-Za-z_][\w.$]*(?![\w.$])",
+                        "match": r"(?i)(?<![\w.$])(?:attr|fattr|sattr|lattr)\.[A-Za-z_][\w.$]*(?![\w.$])",
                     },
                     {
                         "name": "variable.language.session.ln4gl",
@@ -449,80 +521,27 @@ def main() -> None:
     out.write_text(json.dumps(grammar, indent=2) + "\n")
     print(f"wrote {out} ({out.stat().st_size} bytes)")
 
-    common_functions = [
-        "message",
-        "mess",
-        "expr.compile",
-        "expr.free",
-        "dal.new",
-        "dal.update",
-        "dal.destroy",
-        "dal.set.error.message",
-        "dal.get.error.message",
-        "dal.new.object",
-        "dal.change.object",
-        "dal.save.object",
-        "dal.destroy.object",
-        "dal.set.field",
-        "get.var",
-        "put.var",
-        "rprt_open",
-        "rprt_close",
-        "rprt_send",
-        "zoom.to$",
-        "execute",
-        "choice.again",
-        "get.screen.defaults",
-        "display",
-        "display.fld",
-        "display.all",
-        "enable.fields",
-        "disable.fields",
-        "enable.commands",
-        "disable.commands",
-        "set.input.error",
-        "abort.transaction",
-        "commit.transaction",
-        "db.insert",
-        "db.update",
-        "db.delete",
-        "db.retry.point",
-        "do.occ",
-        "do.all.occ",
-        "sprintf$",
-        "strip$",
-        "tolower$",
-        "toupper$",
-        "len",
-        "lval",
-        "val",
-        "str$",
-        "enum.descr$",
-        "get.compnr",
-        "switch.to.company",
-        "start.session",
-        "query.extend.select",
-        "query.extend.from",
-        "query.extend.where",
-        "query.extend.select.in.zoom",
-        "query.extend.from.in.zoom",
-        "query.extend.where.in.zoom",
-        "stpapi.put.field",
-        "stpapi.get.field",
-        "stpapi.insert",
-        "stpapi.update",
-        "stpapi.delete",
-        "stpapi.save",
-        "stpapi.find",
-        "stpapi.browse.set",
-        "stpapi.print.report",
-        "stpapi.end.session",
-    ]
+    error_codes = []
+    errors_catalog = ROOT / "data" / "errors-catalog.json"
+    if errors_catalog.is_file():
+        for entry in json.loads(errors_catalog.read_text(encoding="utf-8")):
+            error_codes.append(entry["code"])
+    else:
+        existing = ROOT / "data" / "completions.json"
+        if existing.is_file():
+            error_codes = json.loads(existing.read_text(encoding="utf-8")).get("errors", [])
 
-    completions = {
-        "keywords": sorted(set(keywords_3gl + types + storage)),
-        "sql": sorted(set(sql)),
-        "sections": [
+    sections_catalog_path = ROOT / "data" / "sections-catalog.json"
+    sections = []
+    section_docs: dict[str, str] = {}
+    if sections_catalog_path.is_file():
+        for entry in json.loads(sections_catalog_path.read_text(encoding="utf-8")):
+            sections.append(entry["name"])
+            key = entry["name"].rstrip(":")
+            section_docs[key] = entry["doc"]
+        sections = sorted(set(sections), key=str.lower)
+    else:
+        sections = [
             "declaration:",
             "functions:",
             "before.program:",
@@ -538,14 +557,70 @@ def main() -> None:
             "init.form:",
             "init.group:",
             "selection.filter:",
-        ],
-        "dalHooks": sorted(set(dal_named)),
-        "constants": sorted(set(highlight_constants + session_named)),
-        "functions": sorted(set(common_functions)),
+        ]
+
+    preprocessor = [
+        "#include",
+        "#define",
+        "#undef",
+        "#ifdef",
+        "#ifndef",
+        "#elif",
+        "#else",
+        "#endif",
+        "#pragma",
+        "#ident",
+    ]
+
+    functions = catalog_functions
+    dal_hooks = catalog_dal_hooks
+    if not functions:
+        cpath_existing = ROOT / "data" / "completions.json"
+        if cpath_existing.is_file():
+            existing = json.loads(cpath_existing.read_text(encoding="utf-8"))
+            functions = existing.get("functions", [])
+            dal_hooks = existing.get("dalHooks", dal_named)
+        else:
+            functions = []
+            dal_hooks = dal_named
+
+    predefined_names: list[str] = []
+    predefined_path = ROOT / "data" / "predefined-vars.json"
+    if predefined_path.is_file():
+        for entry in json.loads(predefined_path.read_text(encoding="utf-8")):
+            name = entry.get("name")
+            if isinstance(name, str) and name:
+                predefined_names.append(name)
+
+    completions = {
+        "keywords": sorted(set(keywords_3gl + types + storage)),
+        "sql": sorted(set(sql)),
+        "sections": sections,
+        "preprocessor": preprocessor,
+        "dalHooks": sorted(set(dal_hooks)),
+        "constants": sorted(
+            set(highlight_constants + session_named + predefined_names + catalog_ui_objects)
+        ),
+        "functions": sorted(set(functions)),
+        "errors": sorted(set(error_codes), key=str.lower),
     }
     cpath = ROOT / "data" / "completions.json"
     cpath.write_text(json.dumps(completions, indent=2) + "\n")
     print(f"wrote {cpath}")
+
+    if section_docs:
+        docs_path = ROOT / "data" / "docs.json"
+        docs = json.loads(docs_path.read_text(encoding="utf-8"))
+        for key, doc in section_docs.items():
+            if key not in docs:
+                docs[key] = doc
+            elif key in {"before.new.object", "before.display.object"}:
+                docs[key] = doc
+        docs_path.write_text(
+            json.dumps(docs, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        print(f"merged {len(section_docs)} section docs into {docs_path}")
 
 
 if __name__ == "__main__":

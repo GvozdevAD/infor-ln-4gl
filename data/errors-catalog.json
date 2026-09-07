@@ -1,0 +1,470 @@
+[
+  {
+    "code": "EDUPL",
+    "number": 100,
+    "summary": "Duplicate Record",
+    "doc": "100 EDUPL \u2014 Duplicate Record"
+  },
+  {
+    "code": "ENOTOPEN",
+    "number": 101,
+    "summary": "Table is not open",
+    "doc": "101 ENOTOPEN \u2014 Table is not open"
+  },
+  {
+    "code": "EBADARG",
+    "number": 102,
+    "summary": "Illegal argument",
+    "doc": "102 EBADARG \u2014 Illegal argument"
+  },
+  {
+    "code": "EBADKEY",
+    "number": 103,
+    "summary": "Illegal key description",
+    "doc": "103 EBADKEY \u2014 Illegal key description"
+  },
+  {
+    "code": "ENOTEXCL",
+    "number": 106,
+    "summary": "Non-exclusive access",
+    "doc": "106 ENOTEXCL \u2014 Non-exclusive access"
+  },
+  {
+    "code": "ELOCKED",
+    "number": 107,
+    "summary": "Record locked",
+    "doc": "107 ELOCKED \u2014 Record locked"
+  },
+  {
+    "code": "EKEXISTS",
+    "number": 108,
+    "summary": "Key already exists",
+    "doc": "108 EKEXISTS \u2014 Key already exists"
+  },
+  {
+    "code": "EPRIMKEY",
+    "number": 109,
+    "summary": "Key does not exist",
+    "doc": "109 EPRIMKEY \u2014 Key does not exist"
+  },
+  {
+    "code": "EENDFILE",
+    "number": 110,
+    "summary": "End/begin of file",
+    "doc": "110 EENDFILE \u2014 End/begin of file"
+  },
+  {
+    "code": "ENOREC",
+    "number": 111,
+    "summary": "No record found",
+    "doc": "111 ENOREC \u2014 No record found"
+  },
+  {
+    "code": "ENOCURR",
+    "number": 112,
+    "summary": "No current record",
+    "doc": "112 ENOCURR \u2014 No current record"
+  },
+  {
+    "code": "EFLOCKED",
+    "number": 113,
+    "summary": "Table locked",
+    "doc": "113 EFLOCKED \u2014 Table locked"
+  },
+  {
+    "code": "EFNAME",
+    "number": 114,
+    "summary": "Index could not be created",
+    "doc": "114 EFNAME \u2014 Index could not be created"
+  },
+  {
+    "code": "EROWCHANGED",
+    "number": 201,
+    "summary": "Row changed by other user",
+    "doc": "201 EROWCHANGED \u2014 Row changed by other user"
+  },
+  {
+    "code": "ETRANSACTIONON",
+    "number": 203,
+    "summary": "Transaction is on",
+    "doc": "203 ETRANSACTIONON \u2014 Transaction is on"
+  },
+  {
+    "code": "EISREADONLY",
+    "number": 204,
+    "summary": "Transaction is read-only",
+    "doc": "204 EISREADONLY \u2014 Transaction is read-only"
+  },
+  {
+    "code": "ENOTINRANGE",
+    "number": 205,
+    "summary": "Value is out of range",
+    "doc": "205 ENOTINRANGE \u2014 Value is out of range"
+  },
+  {
+    "code": "ENOTLOCKED",
+    "number": 206,
+    "summary": "Record not locked",
+    "doc": "206 ENOTLOCKED \u2014 Record not locked"
+  },
+  {
+    "code": "EAUDIT",
+    "number": 207,
+    "summary": "Error of audit trailer",
+    "doc": "207 EAUDIT \u2014 Error of audit trailer"
+  },
+  {
+    "code": "EPERMISSION",
+    "number": 208,
+    "summary": "Permission denied",
+    "doc": "208 EPERMISSION \u2014 Permission denied"
+  },
+  {
+    "code": "EMIRROR",
+    "number": 209,
+    "summary": "Mirroring error",
+    "doc": "209 EMIRROR \u2014 Mirroring error"
+  },
+  {
+    "code": "EMLOCKED",
+    "number": 210,
+    "summary": "Record in mirroring is locked",
+    "doc": "210 EMLOCKED \u2014 Record in mirroring is locked"
+  },
+  {
+    "code": "ETRANSACTIONOPEN",
+    "number": 213,
+    "summary": "Transaction is started, but not updated",
+    "doc": "213 ETRANSACTIONOPEN \u2014 Transaction is started, but not updated"
+  },
+  {
+    "code": "EUNALLOWEDCOMPNR",
+    "number": 214,
+    "summary": "Operation not allowed for a logical company",
+    "doc": "214 EUNALLOWEDCOMPNR \u2014 Operation not allowed for a logical company"
+  },
+  {
+    "code": "EDBDILLEGAL",
+    "number": 215,
+    "summary": "Illegal internal condition",
+    "doc": "215 EDBDILLEGAL \u2014 Illegal internal condition"
+  },
+  {
+    "code": "ECORRUPTROLE",
+    "number": 217,
+    "summary": "Role file is corrupt",
+    "doc": "217 ECORRUPTROLE \u2014 Role file is corrupt"
+  },
+  {
+    "code": "EAUDSETUP",
+    "number": 251,
+    "summary": "Incorrect audit server setup",
+    "doc": "251 EAUDSETUP \u2014 Incorrect audit server setup"
+  },
+  {
+    "code": "EAUDCORRUPT",
+    "number": 252,
+    "summary": "An audit file is corrupt",
+    "doc": "252 EAUDCORRUPT \u2014 An audit file is corrupt"
+  },
+  {
+    "code": "EAUDLOCKED",
+    "number": 253,
+    "summary": "An audit file is locked",
+    "doc": "253 EAUDLOCKED \u2014 An audit file is locked"
+  },
+  {
+    "code": "EAUDABORT",
+    "number": 254,
+    "summary": "Commit transaction on the audit server has failed.",
+    "doc": "254 EAUDABORT \u2014 Commit transaction on the audit server has failed."
+  },
+  {
+    "code": "EEXTENSIONHOOKERROR",
+    "number": 299,
+    "summary": "Error raised by hook in extension",
+    "doc": "299 EEXTENSIONHOOKERROR \u2014 Error raised by hook in extension"
+  },
+  {
+    "code": "ESQLQUERY",
+    "number": 301,
+    "summary": "SQL query failed",
+    "doc": "301 ESQLQUERY \u2014 SQL query failed"
+  },
+  {
+    "code": "ESQLSYNTAX",
+    "number": 302,
+    "summary": "Syntax error in SQL statement",
+    "doc": "302 ESQLSYNTAX \u2014 Syntax error in SQL statement"
+  },
+  {
+    "code": "ESQLREFER",
+    "number": 303,
+    "summary": "SQL reference not found",
+    "doc": "303 ESQLREFER \u2014 SQL reference not found"
+  },
+  {
+    "code": "ESQLUNDEFINED",
+    "number": 304,
+    "summary": "Undefined SQL error.",
+    "doc": "304 ESQLUNDEFINED \u2014 Undefined SQL error."
+  },
+  {
+    "code": "ESQLDIVBYZERO",
+    "number": 306,
+    "summary": "Division by zero",
+    "doc": "306 ESQLDIVBYZERO \u2014 Division by zero"
+  },
+  {
+    "code": "ESQLSTRINGTRUNCATION",
+    "number": 307,
+    "summary": "SQL String truncation",
+    "doc": "307 ESQLSTRINGTRUNCATION \u2014 SQL String truncation"
+  },
+  {
+    "code": "ESQLINDEXOUTOFDIMS",
+    "number": 308,
+    "summary": "Array column index out of range",
+    "doc": "308 ESQLINDEXOUTOFDIMS \u2014 Array column index out of range"
+  },
+  {
+    "code": "ESQLSUBSTRINGERROR",
+    "number": 309,
+    "summary": "SQL invalid substring length",
+    "doc": "309 ESQLSUBSTRINGERROR \u2014 SQL invalid substring length"
+  },
+  {
+    "code": "ESQLCARDINALITYVIOLATION",
+    "number": 310,
+    "summary": "SQL subquery (with comparison) returns more than 1 row",
+    "doc": "310 ESQLCARDINALITYVIOLATION \u2014 SQL subquery (with comparison) returns more than 1 row"
+  },
+  {
+    "code": "ESQLFILEIO",
+    "number": 311,
+    "summary": "SQL file i/o error",
+    "doc": "311 ESQLFILEIO \u2014 SQL file i/o error"
+  },
+  {
+    "code": "ESQLINVALIDPARAMETERTYPE",
+    "number": 312,
+    "summary": "SQL Invalid parameter type",
+    "doc": "312 ESQLINVALIDPARAMETERTYPE \u2014 SQL Invalid parameter type"
+  },
+  {
+    "code": "ESQLINVALIDESCCHAR",
+    "number": 319,
+    "summary": "Invalid escape character",
+    "doc": "319 ESQLINVALIDESCCHAR \u2014 Invalid escape character"
+  },
+  {
+    "code": "ESQLINVALIDESCSEQ",
+    "number": 325,
+    "summary": "Invalid escape sequence",
+    "doc": "325 ESQLINVALIDESCSEQ \u2014 Invalid escape sequence"
+  },
+  {
+    "code": "EBADFILEFMT",
+    "number": 401,
+    "summary": "Bad file format",
+    "doc": "401 EBADFILEFMT \u2014 Bad file format"
+  },
+  {
+    "code": "ECONFIG",
+    "number": 402,
+    "summary": "Configuration error",
+    "doc": "402 ECONFIG \u2014 Configuration error"
+  },
+  {
+    "code": "EMEMORY",
+    "number": 501,
+    "summary": "Internal memory error",
+    "doc": "501 EMEMORY \u2014 Internal memory error"
+  },
+  {
+    "code": "EBDBON",
+    "number": 502,
+    "summary": "User already logged in to database",
+    "doc": "502 EBDBON \u2014 User already logged in to database"
+  },
+  {
+    "code": "EBADADRS",
+    "number": 503,
+    "summary": "Illegal address",
+    "doc": "503 EBADADRS \u2014 Illegal address"
+  },
+  {
+    "code": "EBADFLD",
+    "number": 504,
+    "summary": "Bad column",
+    "doc": "504 EBADFLD \u2014 Bad column"
+  },
+  {
+    "code": "ENOSERVER",
+    "number": 505,
+    "summary": "Server not available",
+    "doc": "505 ENOSERVER \u2014 Server not available"
+  },
+  {
+    "code": "ENOTABLE",
+    "number": 506,
+    "summary": "Table does not exist",
+    "doc": "506 ENOTABLE \u2014 Table does not exist"
+  },
+  {
+    "code": "ETABLEEXIST",
+    "number": 507,
+    "summary": "Table already exists",
+    "doc": "507 ETABLEEXIST \u2014 Table already exists"
+  },
+  {
+    "code": "EBDBNOTON",
+    "number": 508,
+    "summary": "Not logged on to a database",
+    "doc": "508 EBDBNOTON \u2014 Not logged on to a database"
+  },
+  {
+    "code": "EBADCURSOR",
+    "number": 509,
+    "summary": "Bad cursor",
+    "doc": "509 EBADCURSOR \u2014 Bad cursor"
+  },
+  {
+    "code": "EDBNOTON",
+    "number": 510,
+    "summary": "Database not on",
+    "doc": "510 EDBNOTON \u2014 Database not on"
+  },
+  {
+    "code": "EWRONGVERSION",
+    "number": 511,
+    "summary": "Wrong databasedriver version.",
+    "doc": "511 EWRONGVERSION \u2014 Wrong databasedriver version."
+  },
+  {
+    "code": "EDDCORRUPT",
+    "number": 512,
+    "summary": "Incorrect table definition",
+    "doc": "512 EDDCORRUPT \u2014 Incorrect table definition"
+  },
+  {
+    "code": "ENODD",
+    "number": 513,
+    "summary": "Table definition not found",
+    "doc": "513 ENODD \u2014 Table definition not found"
+  },
+  {
+    "code": "ESECURITY",
+    "number": 514,
+    "summary": "No permission",
+    "doc": "514 ESECURITY \u2014 No permission"
+  },
+  {
+    "code": "ELICENSEERROR",
+    "number": 515,
+    "summary": "License error or corrupt shared memory",
+    "doc": "515 ELICENSEERROR \u2014 License error or corrupt shared memory"
+  },
+  {
+    "code": "EDELAYED",
+    "number": 517,
+    "summary": "General error for delayed locking",
+    "doc": "517 EDELAYED \u2014 General error for delayed locking"
+  },
+  {
+    "code": "ENOSESSION",
+    "number": 518,
+    "summary": "No valid session code",
+    "doc": "518 ENOSESSION \u2014 No valid session code"
+  },
+  {
+    "code": "ENOCOMPNR",
+    "number": 519,
+    "summary": "No valid company number",
+    "doc": "519 ENOCOMPNR \u2014 No valid company number"
+  },
+  {
+    "code": "EBUFUPD",
+    "number": 520,
+    "summary": "Buffered update failed",
+    "doc": "520 EBUFUPD \u2014 Buffered update failed"
+  },
+  {
+    "code": "ENOSHM",
+    "number": 521,
+    "summary": "No shared memory",
+    "doc": "521 ENOSHM \u2014 No shared memory"
+  },
+  {
+    "code": "EBDBDBCONNECTIONLOST",
+    "number": 522,
+    "summary": "Connection to the database has been lost",
+    "doc": "522 EBDBDBCONNECTIONLOST \u2014 Connection to the database has been lost"
+  },
+  {
+    "code": "EFULL",
+    "number": 523,
+    "summary": "Database is full",
+    "doc": "523 EFULL \u2014 Database is full"
+  },
+  {
+    "code": "EDBLOGONDENIED",
+    "number": 540,
+    "summary": "Database logon denied",
+    "doc": "540 EDBLOGONDENIED \u2014 Database logon denied"
+  },
+  {
+    "code": "EREFERENCE",
+    "number": 600,
+    "summary": "Reference error",
+    "doc": "600 EREFERENCE \u2014 Reference error"
+  },
+  {
+    "code": "EREFLOCKED",
+    "number": 601,
+    "summary": "Reference table locked",
+    "doc": "601 EREFLOCKED \u2014 Reference table locked"
+  },
+  {
+    "code": "EUNDEFREF",
+    "number": 602,
+    "summary": "Undefined reference",
+    "doc": "602 EUNDEFREF \u2014 Undefined reference"
+  },
+  {
+    "code": "EREFUPDATE",
+    "number": 604,
+    "summary": "Reference not updated",
+    "doc": "604 EREFUPDATE \u2014 Reference not updated"
+  },
+  {
+    "code": "EREFEXISTS",
+    "number": 605,
+    "summary": "Delete failed due to reference",
+    "doc": "605 EREFEXISTS \u2014 Delete failed due to reference"
+  },
+  {
+    "code": "EREFNOTEXISTS",
+    "number": 606,
+    "summary": "Reference does not exist",
+    "doc": "606 EREFNOTEXISTS \u2014 Reference does not exist"
+  },
+  {
+    "code": "ENOREFTBL",
+    "number": 607,
+    "summary": "Reference table not found",
+    "doc": "607 ENOREFTBL \u2014 Reference table not found"
+  },
+  {
+    "code": "ESETLOCALE",
+    "number": 700,
+    "summary": "Failed to set locale",
+    "doc": "700 ESETLOCALE \u2014 Failed to set locale"
+  },
+  {
+    "code": "EABORT",
+    "number": 850,
+    "summary": "Transaction aborted",
+    "doc": "850 EABORT \u2014 Transaction aborted"
+  }
+]

@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const { inCommentOrString } = require("./text");
+const { sectionLineIndex, replacesLinksOnLine } = require("./replaces-links");
 
 const INCLUDE_RE =
   /^\s*#\s*include\s+(?:"([^"]+)"|<([^>]+)>)/i;
@@ -99,6 +100,20 @@ const documentLinkProvider = {
       }
       const range = new vscode.Range(i, inc.start, i, inc.end);
       links.push(new vscode.DocumentLink(range, uri));
+    }
+
+    const sections = sectionLineIndex(document.getText());
+    for (let i = 0; i < document.lineCount; i++) {
+      const line = document.lineAt(i).text;
+      for (const hit of replacesLinksOnLine(line, sections, i)) {
+        const range = new vscode.Range(i, hit.start, i, hit.end);
+        const link = new vscode.DocumentLink(
+          range,
+          document.uri.with({ fragment: `L${hit.targetLine + 1}` }),
+        );
+        link.tooltip = `Replaces UI section ${hit.section}:`;
+        links.push(link);
+      }
     }
     return links;
   },

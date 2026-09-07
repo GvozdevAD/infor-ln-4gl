@@ -1,7 +1,7 @@
 {
   "selectdo": {
-    "prefix": "sel",
-    "description": "Embedded SQL selectdo block",
+    "prefix": ["select", "sel", "selectdo"],
+    "description": "Embedded SQL selectdo block (select / from / selectdo / endselect)",
     "body": [
       "select ${1:table}.*",
       "from $1",
@@ -14,7 +14,7 @@
     ]
   },
   "select for update": {
-    "prefix": "selfor",
+    "prefix": ["selfor", "selectfor"],
     "description": "select … for update with selectdo / selectempty",
     "body": [
       "select ${1:table}.*",
@@ -66,6 +66,24 @@
     "body": [
       "choice.${1:print.data}:",
       "on.choice:",
+      "\t$0"
+    ]
+  },
+  "report header layout": {
+    "prefix": "header",
+    "description": "Report header.N with before.layout",
+    "body": [
+      "header.${1:1}:",
+      "before.layout:",
+      "\t$0"
+    ]
+  },
+  "report detail layout": {
+    "prefix": "detail",
+    "description": "Report detail.N with before.layout",
+    "body": [
+      "detail.${1:1}:",
+      "before.layout:",
       "\t$0"
     ]
   },
@@ -121,13 +139,19 @@
   },
   "DAL before.save.object": {
     "prefix": "dalsave",
-    "description": "DAL2 before.save.object hook",
+    "description": "DAL2 before.save.object hook (long mode)",
     "body": [
-      "function extern long before.save.object()",
+      "function extern long before.save.object(long mode)",
       "{",
-      "\tif ${1:table}.${2:field} = \"\" then",
-      "\t\treturn(DALHOOKERROR)",
-      "\tendif",
+      "\ton case mode",
+      "\tcase DAL_NEW:",
+      "\t\tif ${1:table}.${2:field} = \"\" then",
+      "\t\t\treturn(DALHOOKERROR)",
+      "\t\tendif",
+      "\t\tbreak",
+      "\tcase DAL_UPDATE:",
+      "\t\tbreak",
+      "\tendcase",
       "\treturn(0)",
       "}"
     ]
@@ -178,6 +202,38 @@
       "$0"
     ]
   },
+  "DAL field.is.valid": {
+    "prefix": "dalvalid",
+    "description": "DAL2 field.is.valid hook (table.field suffix)",
+    "body": [
+      "function extern boolean ${1:table}.${2:field}.is.valid(long mode)",
+      "{",
+      "\t$0",
+      "\treturn(true)",
+      "}"
+    ]
+  },
+  "DAL field.is.mandatory": {
+    "prefix": "dalmand",
+    "description": "DAL2 field.is.mandatory hook",
+    "body": [
+      "function extern boolean ${1:table}.${2:field}.is.mandatory()",
+      "{",
+      "\t$0",
+      "\treturn(true)",
+      "}"
+    ]
+  },
+  "DAL field.update": {
+    "prefix": "dalupd",
+    "description": "DAL2 field.update hook",
+    "body": [
+      "function extern void ${1:table}.${2:field}.update()",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
   "upd": {
     "prefix": "upd",
     "description": "db.retry.point + select for update + db.update / db.insert",
@@ -211,13 +267,26 @@
     ]
   },
   "dllusage": {
-    "prefix": "dllu",
-    "description": "DLL documentation block",
+    "prefix": ["dllu", "DllUsage", "dllusage"],
+    "description": "DLL object description (bic_info6.2 -u)",
     "body": [
-      "dllusage",
-      "\t${1:Library description}",
-      "enddllusage",
+      "DllUsage",
+      "${1:Object description}",
+      "EndDllUsage",
       "",
+      "$0"
+    ]
+  },
+  "functionusage": {
+    "prefix": ["fu", "FunctionUsage", "functionusage"],
+    "description": "Function documentation (bic_info6.2 -eu): description + Input/Output/Return",
+    "body": [
+      "FunctionUsage",
+      "${1:description}",
+      "Input:\t${2:-}",
+      "Output:\t${3:-}",
+      "Return:\t${4:description}",
+      "EndFunctionUsage",
       "$0"
     ]
   },
@@ -274,6 +343,68 @@
       "#ifdef ${1:SYMBOL}",
       "$0",
       "#endif"
+    ]
+  },
+  "ifndef guard": {
+    "prefix": "ppifndef",
+    "description": "Preprocessor include guard (#ifndef / #define / #endif)",
+    "body": [
+      "#ifndef ${1:GUARD}",
+      "#define $1",
+      "$0",
+      "#endif"
+    ]
+  },
+  "form section": {
+    "prefix": "form",
+    "description": "4GL form section",
+    "body": [
+      "form.${1:1}:",
+      "init.form:",
+      "\t$0",
+      "before.form:",
+      "\t",
+      "after.form:",
+      "\t"
+    ]
+  },
+  "group section": {
+    "prefix": "group",
+    "description": "4GL group section",
+    "body": [
+      "group.${1:1}:",
+      "init.group:",
+      "\t$0",
+      "before.group:",
+      "\t",
+      "after.group:",
+      "\t"
+    ]
+  },
+  "main table io": {
+    "prefix": "maintable",
+    "description": "4GL main.table.io section",
+    "body": [
+      "main.table.io:",
+      "before.read:",
+      "\t$0",
+      "after.read:",
+      "\t",
+      "before.write:",
+      "\t",
+      "after.write:",
+      "\t"
+    ]
+  },
+  "zoom from section": {
+    "prefix": "zoom",
+    "description": "4GL zoom.from section",
+    "body": [
+      "zoom.from.${1:field}:",
+      "on.entry:",
+      "\t$0",
+      "on.exit:",
+      "\t"
     ]
   }
 }

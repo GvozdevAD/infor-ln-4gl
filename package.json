@@ -2,10 +2,11 @@
   "name": "infor-ln-4gl",
   "displayName": "Infor LN 4GL",
   "description": "Syntax highlighting, snippets, completion, Outline, and Go to Definition for Infor LN / Baan 3GL and 4GL.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "GvozdevAD",
   "license": "MIT",
   "icon": "images/icon.png",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=GvozdevAD.infor-ln-4gl",
   "repository": {
     "type": "git",
     "url": "https://github.com/GvozdevAD/infor-ln-4gl.git"
@@ -15,7 +16,8 @@
   },
   "categories": [
     "Programming Languages",
-    "Snippets"
+    "Snippets",
+    "Linters"
   ],
   "keywords": [
     "infor",
@@ -31,7 +33,14 @@
     "test": "node --test test/**/*.test.js",
     "test:grammar": "vscode-tmgrammar-test -g syntaxes/ln-4gl.tmLanguage.json 'test/grammar/*.bc'",
     "check:grammar": "python3 scripts/build-grammar.py && git diff --exit-code -- syntaxes/ln-4gl.tmLanguage.json data/completions.json",
-    "ci": "npm test && npm run test:grammar && npm run check:grammar"
+    "check:errors": "python3 scripts/build-errors.py --check",
+    "check:catalog": "python3 scripts/build-catalog.py --check",
+    "check:catalog-quality": "python3 scripts/build-catalog.py --quality",
+    "audit:catalog-docs": "python3 scripts/audit-catalog-docs.py",
+    "check:audit-catalog-docs": "python3 scripts/audit-catalog-docs.py --check",
+    "enrich:catalog": "python3 scripts/enrich-catalog.py",
+    "check:predefined": "python3 scripts/build-predefined-vars.py --check",
+    "ci": "npm test && npm run test:grammar && npm run check:grammar && npm run check:errors && npm run check:catalog && npm run check:catalog-quality && npm run check:audit-catalog-docs && npm run check:predefined"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.9.2",
@@ -69,6 +78,16 @@
         "path": "./snippets/ln-4gl.json"
       }
     ],
+    "semanticTokenTypes": [
+      {
+        "id": "function",
+        "description": "Function call"
+      },
+      {
+        "id": "macro",
+        "description": "Use of a name introduced by #define in the current file"
+      }
+    ],
     "configuration": {
       "title": "Infor LN 4GL",
       "properties": {
@@ -78,7 +97,62 @@
             "type": "string"
           },
           "default": [],
-          "description": "Extra directories to search for #include files (absolute or relative to the current file)."
+          "description": "Extra directories to search for #include files (absolute or relative to the current file). Useful for LN TEMP dumps: point at the folder that holds shared includes beside the open .bc tabs."
+        },
+        "ln-4gl.sessionFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to a TEMP (or other) folder whose *.bc / *.cln / *.ln4gl files are indexed for Go to Definition, Find References, and local-function semantic highlighting. Empty = open editor tabs only. Non-recursive; capped at 100 files. Does not scan the whole disk."
+        },
+        "ln-4gl.diagnostics.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable block-matching diagnostics (unmatched endif/endselect, …) and idiom warnings."
+        },
+        "ln-4gl.diagnostics.strictComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ignore | line comments when analyzing blocks."
+        },
+        "ln-4gl.diagnostics.duplicateCase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn on duplicate CASE expressions inside ON CASE blocks."
+        },
+        "ln-4gl.diagnostics.deprecatedLongIf": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when a bare identifier is used as an IF condition (deprecated long-as-boolean)."
+        },
+        "ln-4gl.diagnostics.brackets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report mismatched or unclosed (), {}, [] outside strings and comments."
+        },
+        "ln-4gl.diagnostics.continuation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report missing '^' continuation for unclosed strings and multi-line #define bodies."
+        },
+        "ln-4gl.diagnostics.dalUiOverlap": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show info when a DAL hook and the UI sections it replaces both appear in the same file."
+        },
+        "ln-4gl.format.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Format Document (indent-only; does not trim trailing whitespace)."
+        },
+        "ln-4gl.semanticHighlighting.localFunctionCalls": {
+          "type": "boolean",
+          "default": true,
+          "description": "Semantic highlighting for calls to functions declared in open ln-4gl tabs (and ln-4gl.sessionFolder when set), e.g. DLL wrappers with dotted names."
+        },
+        "ln-4gl.semanticHighlighting.defineUsages": {
+          "type": "boolean",
+          "default": true,
+          "description": "Semantic highlighting for uses of names introduced by #define in the current file (e.g. START.EFFECTIVE.DATE)."
         }
       }
     },
@@ -86,6 +160,8 @@
       "[ln-4gl]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
+        "editor.formatOnSave": false,
+        "editor.semanticHighlighting.enabled": true,
         "editor.wordBasedSuggestions": "allDocuments",
         "files.insertFinalNewline": true,
         "files.trimTrailingWhitespace": false

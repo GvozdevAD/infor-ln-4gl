@@ -1,80 +1,15 @@
 const vscode = require("vscode");
-const { inCommentOrString, codePart } = require("./text");
-
-/** @typedef {{ open: string[], close: string[], middle?: string[] }} PairSpec */
-
-/** @type {PairSpec[]} */
-const PAIRS = [
-  { open: ["if"], close: ["endif"], middle: ["else"] },
-  { open: ["for"], close: ["endfor"] },
-  { open: ["while"], close: ["endwhile"] },
-  { open: ["repeat"], close: ["until"] },
-  { open: ["select"], close: ["endselect"] },
-  { open: ["case", "on case"], close: ["endcase"] },
-];
+const { inCommentOrString } = require("./text");
+const { PAIRS, tokensOnLine, roleInPair, isForUpdate } = require("./keywords");
+const { wordAt, findOccurrences } = require("./idents");
 
 /**
- * Collect keyword tokens on a line (outside strings), with column starts.
- * @param {string} line
- * @returns {{ word: string, start: number, end: number }[]}
- */
-function tokensOnLine(line) {
-  const code = codePart(line);
-  /** @type {{ word: string, start: number, end: number }[]} */
-  const tokens = [];
-  // Multi-word first
-  const multi = /\bon\s+case\b/gi;
-  let m;
-  const occupied = [];
-  while ((m = multi.exec(code)) !== null) {
-    tokens.push({
-      word: "on case",
-      start: m.index,
-      end: m.index + m[0].length,
-    });
-    occupied.push([m.index, m.index + m[0].length]);
-  }
-
-  const re = /\b[A-Za-z_][\w.]*\b/g;
-  while ((m = re.exec(code)) !== null) {
-    const start = m.index;
-    const end = start + m[0].length;
-    if (occupied.some(([a, b]) => start >= a && end <= b)) {
-      continue;
-    }
-    tokens.push({ word: m[0], start, end });
-  }
-  return tokens.sort((a, b) => a.start - b.start);
-}
-
-/**
- * @param {string} word
- * @param {PairSpec} spec
- */
-function roleInPair(word, spec) {
-  const w = word.toLowerCase();
-  if (spec.open.some((o) => o === w)) {
-    return "open";
-  }
-  if (spec.close.some((c) => c === w)) {
-    return "close";
-  }
-  if (spec.middle && spec.middle.some((mid) => mid === w)) {
-    return "middle";
-  }
-  return null;
-}
-
-/**
+ * Keyword-pair highlights (if/endif, select/endselect, …).
  * @param {vscode.TextDocument} document
  * @param {vscode.Position} position
  * @returns {vscode.DocumentHighlight[] | undefined}
  */
-function highlightsFor(document, position) {
-  if (inCommentOrString(document, position)) {
-    return undefined;
-  }
-
+function pairHighlights(document, position) {
   const lineText = document.lineAt(position.line).text;
   const tokens = tokensOnLine(lineText);
   const here = tokens.find(
@@ -90,15 +25,20 @@ function highlightsFor(document, position) {
     return undefined;
   }
 
-  /** @type {{ line: number, start: number, end: number, role: string }[]} */
+  /** @type {{ line: number, start: number, end: number, role: string, _close?: object, _open?: object, _middles?: object[] }[]} */
   const stack = [];
-  /** @type {{ line: number, start: number, end: number, role: string }[]} */
+  /** @type {{ line: number, start: number, end: number, role: string, _close?: object, _open?: object, _middles?: object[] }[]} */
   const all = [];
 
   for (let line = 0; line < document.lineCount; line++) {
-    for (const t of tokensOnLine(document.lineAt(line).text)) {
+    const lineTokens = tokensOnLine(document.lineAt(line).text);
+    for (let ti = 0; ti < lineTokens.length; ti++) {
+      const t = lineTokens[ti];
       const role = roleInPair(t.word, spec);
       if (!role) {
+        continue;
+      }
+      if (role === "open" && isForUpdate(lineTokens, ti)) {
         continue;
       }
       const node = { line, start: t.start, end: t.end, role };
@@ -169,6 +109,41 @@ function highlightsFor(document, position) {
   return result;
 }
 
+/**
+ * Identifier occurrence highlights.
+ * @param {vscode.TextDocument} document
+ * @param {vscode.Position} position
+ * @returns {vscode.DocumentHighlight[] | undefined}
+ */
+function identHighlights(document, position) {
+  const hit = wordAt(document.getText(), position.line, position.character);
+  if (!hit) {
+    return undefined;
+  }
+  const occs = findOccurrences(document.getText(), hit.word);
+  if (!occs.length) {
+    return undefined;
+  }
+  return occs.map(
+    (occ) =>
+      new vscode.DocumentHighlight(
+        new vscode.Range(occ.line, occ.start, occ.line, occ.end),
+        vscode.DocumentHighlightKind.Text,
+      ),
+  );
+}
+
+/**
+ * @param {vscode.TextDocument} document
+ * @param {vscode.Position} position
+ */
+function highlightsFor(document, position) {
+  if (inCommentOrString(document, position)) {
+    return undefined;
+  }
+  return pairHighlights(document, position) || identHighlights(document, position);
+}
+
 const documentHighlightProvider = {
   /**
    * @param {vscode.TextDocument} document
@@ -179,4 +154,4 @@ const documentHighlightProvider = {
   },
 };
 
-module.exports = { documentHighlightProvider };
+module.exports = { documentHighlightProvider, highlightsFor };

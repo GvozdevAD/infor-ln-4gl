@@ -1,0 +1,11 @@
+| SYNTAX TEST "source.ln4gl" "Baan strings: no backslash escape, doubled quotes, pipe"
+
+path = "C:\temp\file.txt"
+|       ^^^^^^^^^^^^^^^^^ string.quoted.double.ln4gl
+
+message("a""b")
+|         ^^ constant.character.escape.ln4gl
+
+x = "a|b" | real comment
+|   ^^^^^ string.quoted.double.ln4gl
+|         ^ comment.line.vertical-bar.ln4gl

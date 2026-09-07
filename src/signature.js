@@ -1,11 +1,6 @@
 const vscode = require("vscode");
-const signatures = require("../data/signatures.json");
 const { inCommentOrString, codePart } = require("./text");
-
-/** @type {Map<string, { label: string, parameters: string[] }>} */
-const SIG_MAP = new Map(
-  Object.entries(signatures).map(([k, v]) => [k.toLowerCase(), v]),
-);
+const { resolveSignature } = require("./local-signature");
 
 /**
  * Find call info: function name and active argument index at position.
@@ -27,7 +22,7 @@ function callAt(document, position) {
   while (lineNo >= 0) {
     while (i >= 0) {
       const ch = text[i];
-      if (ch === ")" ) {
+      if (ch === ")") {
         depth++;
       } else if (ch === "(") {
         if (depth === 0) {
@@ -77,7 +72,7 @@ const signatureHelpProvider = {
       return undefined;
     }
 
-    const sig = SIG_MAP.get(call.name.toLowerCase());
+    const sig = resolveSignature(document.getText(), call.name);
     if (!sig) {
       return undefined;
     }
@@ -98,4 +93,4 @@ const signatureHelpProvider = {
   },
 };
 
-module.exports = { signatureHelpProvider };
+module.exports = { signatureHelpProvider, callAt };

@@ -1,7 +1,7 @@
 const vscode = require("vscode");
-const { functionIndex } = require("./parse");
 const { inCommentOrString } = require("./text");
 const { includeDefinition } = require("./include");
+const { findDefinition } = require("./open-docs-store");
 
 const definitionProvider = {
   /**
@@ -29,13 +29,13 @@ const definitionProvider = {
       return undefined;
     }
 
-    const def = functionIndex(document.getText()).get(word.toLowerCase());
+    const def = findDefinition(word, document.uri.toString());
     if (!def) {
       return undefined;
     }
 
     return new vscode.Location(
-      document.uri,
+      vscode.Uri.parse(def.uri),
       new vscode.Range(def.line, def.nameStart, def.line, def.nameEnd),
     );
   },
