@@ -12,14 +12,75 @@ const { referenceProvider } = require("./references");
 const { renameProvider } = require("./rename");
 const { foldingRangeProvider } = require("./foldingProvider");
 const { documentFormattingEditProvider } = require("./formatProvider");
+const { semanticTokensProvider, legend } = require("./semanticTokensProvider");
+const { detectScriptKind, scriptKindLabel } = require("./script-context");
+const {
+  activateOpenDocsStore,
+  deactivateOpenDocsStore,
+} = require("./open-docs-store");
+
+/** @type {vscode.StatusBarItem | undefined} */
+let scriptKindStatus;
+/** @type {NodeJS.Timeout | undefined} */
+let statusDebounce;
+
+/**
+ * @param {vscode.TextEditor | undefined} editor
+ */
+function refreshScriptKindStatus(editor) {
+  if (!scriptKindStatus) {
+    return;
+  }
+  if (!editor || editor.document.languageId !== "ln-4gl") {
+    scriptKindStatus.hide();
+    return;
+  }
+  const kind = detectScriptKind(editor.document);
+  scriptKindStatus.text = scriptKindLabel(kind);
+  scriptKindStatus.tooltip = `Detected Infor LN script kind: ${kind}`;
+  scriptKindStatus.show();
+}
+
+/**
+ * @param {vscode.TextDocument} document
+ */
+function scheduleStatusRefresh(document) {
+  if (document.languageId !== "ln-4gl") {
+    return;
+  }
+  if (statusDebounce) {
+    clearTimeout(statusDebounce);
+  }
+  statusDebounce = setTimeout(() => {
+    statusDebounce = undefined;
+    const editor = vscode.window.activeTextEditor;
+    if (editor && editor.document === document) {
+      refreshScriptKindStatus(editor);
+    }
+  }, 200);
+}
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
   activateDiagnostics(context);
+  activateOpenDocsStore(context);
+
+  scriptKindStatus = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    100,
+  );
+  context.subscriptions.push(scriptKindStatus);
+  refreshScriptKindStatus(vscode.window.activeTextEditor);
 
   context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      refreshScriptKindStatus(editor);
+    }),
+    vscode.workspace.onDidChangeTextDocument((e) => {
+      scheduleStatusRefresh(e.document);
+    }),
     vscode.languages.registerDocumentSymbolProvider(
       "ln-4gl",
       documentSymbolProvider,
@@ -58,11 +119,22 @@ function activate(context) {
     vscode.languages.registerCodeActionsProvider("ln-4gl", codeActionProvider, {
       providedCodeActionKinds: [vscode.CodeActionKind.QuickFix],
     }),
+    vscode.languages.registerDocumentSemanticTokensProvider(
+      "ln-4gl",
+      semanticTokensProvider,
+      legend,
+    ),
   );
 }
 
 function deactivate() {
   deactivateDiagnostics();
+  deactivateOpenDocsStore();
+  if (statusDebounce) {
+    clearTimeout(statusDebounce);
+    statusDebounce = undefined;
+  }
+  scriptKindStatus = undefined;
 }
 
 module.exports = { activate, deactivate };

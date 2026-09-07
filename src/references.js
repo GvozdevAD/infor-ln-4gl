@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 const { inCommentOrString } = require("./text");
-const { wordAt, findOccurrences } = require("./idents");
+const { wordAt } = require("./idents");
+const { findReferences } = require("./open-docs-store");
 
 const referenceProvider = {
   /**
@@ -20,10 +21,10 @@ const referenceProvider = {
     if (!hit) {
       return [];
     }
-    return findOccurrences(document.getText(), hit.word).map(
+    return findReferences(hit.word).map(
       (occ) =>
         new vscode.Location(
-          document.uri,
+          vscode.Uri.parse(occ.uri),
           new vscode.Range(occ.line, occ.start, occ.line, occ.end),
         ),
     );
