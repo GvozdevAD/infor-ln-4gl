@@ -2,7 +2,7 @@
   "name": "infor-ln-4gl",
   "displayName": "Infor LN 4GL",
   "description": "Syntax highlighting, snippets, completion, Outline, and Go to Definition for Infor LN / Baan 3GL and 4GL.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "GvozdevAD",
   "license": "MIT",
   "icon": "images/icon.png",

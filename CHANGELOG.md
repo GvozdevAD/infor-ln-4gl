@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-07
+
 ### Added
 
 - Open Documents Index: Go to Definition, Find References, and semantic highlighting across open `ln-4gl` tabs; optional `ln-4gl.sessionFolder` for a TEMP folder (non-recursive, max 100 scripts). Rename stays in-file.
