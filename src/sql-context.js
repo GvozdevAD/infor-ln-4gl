@@ -8,6 +8,20 @@ const SQL_TOKEN_RE =
   /\b(endselect|selectdo|selectempty|selecteos|selecterror|select)\b/gi;
 
 /**
+ * True if `select` at `selectStart` is a parenthesized SQL subquery `(select …)`,
+ * not a 4GL `select`…`endselect` block opener.
+ * @param {string} line
+ * @param {number} selectStart column of `select`
+ */
+function isSelectSubquery(line, selectStart) {
+  let i = selectStart - 1;
+  while (i >= 0 && /\s/.test(line[i])) {
+    i--;
+  }
+  return i >= 0 && line[i] === "(";
+}
+
+/**
  * Update select/endselect nesting depth from tokens on one line (right-to-left).
  * @param {string} lineText code portion of the line
  * @param {number} depth depth entering the line
@@ -15,17 +29,21 @@ const SQL_TOKEN_RE =
  */
 function sqlDepthAfterLine(lineText, depth) {
   const lower = lineText.toLowerCase();
-  /** @type {string[]} */
+  /** @type {{ tok: string, index: number }[]} */
   const tokens = [];
   let m;
+  SQL_TOKEN_RE.lastIndex = 0;
   while ((m = SQL_TOKEN_RE.exec(lower)) !== null) {
-    tokens.push(m[1].toLowerCase());
+    tokens.push({ tok: m[1].toLowerCase(), index: m.index });
   }
   for (let t = tokens.length - 1; t >= 0; t--) {
-    const tok = tokens[t];
+    const { tok, index } = tokens[t];
     if (tok === "endselect") {
       depth--;
     } else if (tok === "select") {
+      if (isSelectSubquery(lineText, index)) {
+        continue;
+      }
       depth++;
     }
   }
@@ -63,6 +81,7 @@ function isInsideEmbeddedSql(text, lineNo, charEnd) {
 }
 
 module.exports = {
+  isSelectSubquery,
   sqlDepthAfterLine,
   sqlDepthAtLine,
   isInsideEmbeddedSql,

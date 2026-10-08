@@ -35,6 +35,28 @@ describe("analyzeBlocks", () => {
     );
   });
 
+  it("ignores parenthesized SQL subquery select", () => {
+    const text = `
+select whinh310.rcno
+ from whinh310
+  where whinh310.stat = whinh.rhst.open
+  and (select count(*) from whinh312 where whinh312.rcno=whinh310.rcno)>0
+  order by whinh310.rcno asc
+selectdo
+    select whinh312.orno
+        from whinh312 where whinh312.rcno=:l.rcno
+        as set with 1 rows
+    selectdo
+    endselect
+endselect
+`;
+    const issues = analyzeBlocks(text);
+    assert.equal(
+      issues.filter((i) => i.message.toLowerCase().includes("select")).length,
+      0,
+    );
+  });
+
   it("ignores endif inside a string", () => {
     const text = 'message("endif")\n';
     const issues = analyzeBlocks(text);
