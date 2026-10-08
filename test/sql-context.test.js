@@ -17,4 +17,18 @@ describe("sql-context", () => {
     assert.ok(isInsideEmbeddedSql(text, 2));
     assert.equal(isInsideEmbeddedSql(text, 4), false);
   });
+
+  it("does not count parenthesized subquery as select depth", () => {
+    const text = `
+select t.*
+from t
+where (select count(*) from u where u.k=t.k)>0
+selectdo
+endselect
+after
+`;
+    // line index of "after" (0-based): blank, select, from, where, selectdo, endselect, after
+    assert.equal(isInsideEmbeddedSql(text, 6), false);
+    assert.ok(isInsideEmbeddedSql(text, 4));
+  });
 });

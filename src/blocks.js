@@ -10,7 +10,7 @@ const {
   isForUpdate,
   isPreprocessorLine,
 } = require("./keywords");
-const { isInsideEmbeddedSql } = require("./sql-context");
+const { isInsideEmbeddedSql, isSelectSubquery } = require("./sql-context");
 const { isInsideUsageDoc, isUsagePairSpec } = require("./usage-context");
 const { buildTypeIndex, lookupType } = require("./type-index");
 
@@ -66,6 +66,7 @@ function walkLines(text, opts, visit) {
  */
 function analyzeBlocks(text, opts = {}) {
   const includeComments = opts.strictComments === false;
+  const lines = text.split(/\r?\n/);
   /** @type {BlockIssue[]} */
   const issues = [];
 
@@ -101,6 +102,14 @@ function analyzeBlocks(text, opts = {}) {
           continue;
         }
         if (role === "open" && isForUpdate(tokens, ti)) {
+          continue;
+        }
+        // SQL scalar/IN subquery `(select …)` is not a select…endselect opener
+        if (
+          role === "open" &&
+          t.word.toLowerCase() === "select" &&
+          isSelectSubquery(lines[line], t.start)
+        ) {
           continue;
         }
 
