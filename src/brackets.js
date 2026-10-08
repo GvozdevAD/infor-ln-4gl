@@ -4,6 +4,7 @@
  */
 
 const { scanLintDocument } = require("./lint-scan");
+const { isInsideUsageDoc } = require("./usage-context");
 
 const PAIRS_OPEN = { "(": ")", "{": "}", "[": "]" };
 const PAIRS_CLOSE = { ")": "(", "}": "{", "]": "[" };
@@ -31,6 +32,11 @@ function analyzeBrackets(text) {
   const stack = [];
 
   for (const info of scanned) {
+    // Prose inside DllUsage / FunctionUsage must not drive bracket checks
+    // (e.g. "1) item", "(table.code)").
+    if (isInsideUsageDoc(text, info.lnum - 1)) {
+      continue;
+    }
     for (const c of info.codeChars) {
       const ch = c.char;
       if (PAIRS_OPEN[ch]) {

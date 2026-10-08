@@ -27,6 +27,26 @@ describe("analyzeBrackets", () => {
     const text = "function long ok()\n{\n\treturn(0)\n}\n";
     assert.equal(analyzeBrackets(text).length, 0);
   });
+
+  it("ignores brackets inside DllUsage / FunctionUsage prose", () => {
+    const text = `
+DllUsage
+Desc:   On Friday job (or manual run) sends mail:
+        1) unprocessed hours (bptmm120);
+        2) open materials (ticst001 iswh/issu/subd).
+EndDllUsage
+
+function extern void send.notifications()
+{
+        FunctionUsage
+        Desc:   Entry (0, 1 or 2 e-mails).
+                1) hours; 2) materials.
+        EndFunctionUsage
+        return
+}
+`;
+    assert.equal(analyzeBrackets(text).length, 0);
+  });
 });
 
 describe("analyzeContinuation", () => {
