@@ -30,7 +30,7 @@
   "main": "./src/extension.js",
   "scripts": {
     "package": "vsce package --no-dependencies",
-    "test": "node --test test/**/*.test.js",
+    "test": "node --test test/*.test.js test/revisions/*.test.js",
     "test:grammar": "vscode-tmgrammar-test -g syntaxes/ln-4gl.tmLanguage.json 'test/grammar/*.bc'",
     "check:grammar": "python3 scripts/build-grammar.py && git diff --exit-code -- syntaxes/ln-4gl.tmLanguage.json data/completions.json",
     "check:errors": "python3 scripts/build-errors.py --check",
@@ -62,9 +62,36 @@
           ".cln",
           ".ln4gl"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/bc-file-light.png",
+          "dark": "./images/bc-file-dark.png"
+        }
       }
     ],
+    "commands": [
+      {
+        "command": "ln-4gl.revisions.review",
+        "title": "Infor LN: Review Revisions…",
+        "icon": "$(diff)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ln-4gl.revisions.review",
+          "group": "ln-4gl@1",
+          "when": "editorLangId == ln-4gl"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "ln-4gl.revisions.review",
+          "group": "navigation",
+          "when": "editorLangId == ln-4gl"
+        }
+      ]
+    },
     "grammars": [
       {
         "language": "ln-4gl",
@@ -153,6 +180,17 @@
           "type": "boolean",
           "default": true,
           "description": "Semantic highlighting for uses of names introduced by #define in the current file (e.g. START.EFFECTIVE.DATE)."
+        },
+        "ln-4gl.revisions.defaultMode": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "sideBySide",
+            "inline",
+            "fullInline"
+          ],
+          "default": "ask",
+          "description": "Default view when running Infor LN: Review Revisions… (ask = QuickPick each time)."
         }
       }
     },
