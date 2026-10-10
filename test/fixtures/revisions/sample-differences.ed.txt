@@ -1,0 +1,24 @@
+19c19,21
+< |*    Rev.No. 45  nfB61C25devl  20 Окт 25 turin
+---
+> |*    Rev.No. 57  nfB61C25devl  27 Ноя 25 vyazovoy
+> |* https://example.local/browse/INFORNM-81
+> |*    Rev.No. 46  nfB61C25devl  15 Янв 26 turin
+21c29,30
+< #ident "@(#)demo  nfB61C25devl  Rev.No. 48  barkov_f"
+---
+> #ident "@(#)demo  nfB61C25devl  Rev.No. 57  vyazovoy"
+> #ident "@(#)demo  nfB61C26devl  Rev.No. 7  barkov_f"
+52a62,64
+> function extern long demo.import.multilink(
+>   domain zcwsg.xml    i.node)
+> }
+67c83,85
+<
+---
+>  
+>   domain nfidtf l.site.tflex
+>  
+272,273d426
+<   if l.sitm (10;5)="D2302" then
+<   l.opno =10

@@ -1,0 +1,6 @@
+function long demo.main()
+{
+        domain tcitem l.item
+        l.item = "OLD"
+        return(0)
+}

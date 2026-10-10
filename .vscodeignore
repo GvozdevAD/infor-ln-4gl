@@ -4,6 +4,7 @@ docs/**
 scripts/**
 test/**
 .github/**
+.cursor/**
 data/baan-vim-keywords.json
 data/links.json
 data/gaps.jsonl
@@ -12,3 +13,9 @@ data/catalog-overrides.json
 **/__pycache__/
 node_modules/**
 *.vsix
+# Accidental self-symlink / nested clone must never ship
+LanBaan
+LanBaan/**
+# Source artwork only — packaged icons are bc-file-*.png
+images/bc-icon-source.png
+images/Minimal bold BC code icon.png

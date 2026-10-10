@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Review Revisions…** — open Infor Differences (ed-diff) or two full `.bc` copies in the VS Code Diff Editor (side-by-side / inline / whole-file), red/green like git. Command Palette, editor context menu, and editor title.
+- Language file icons for `.bc` / `.cln` / `.ln4gl` (BC mark in Explorer).
+- Setting `ln-4gl.revisions.defaultMode`.
+
 ## [1.0.1] - 2026-10-09
 
 ### Fixed

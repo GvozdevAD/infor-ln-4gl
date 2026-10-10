@@ -81,3 +81,11 @@ Duplicate `CASE` warnings and deprecated long-IF checks can be turned off indivi
 ## ON CASE formatting
 
 Format Document indents `ON CASE` with three levels: `on case` / `endcase` at the block base, `case N:` / `default:` one level in, statements two levels in. Fall-through labels (`case 1:` followed by `case 2:` with no body) stay at the label level. Only leading whitespace changes; trailing spaces are preserved.
+
+## Review Revisions: “does not look like an Infor Differences report”
+
+The current file must be the ed-style **Differences** output (hunk headers like `19c19,27` and lines starting with `<` / `>`). Ordinary scripts are not reports — use **Pick two files…** or **Two open editors** instead. See [revisions.md](revisions.md).
+
+## Explorer shows a generic icon for `.bc`, not BC
+
+Language icons can be overridden by a **file icon theme** (e.g. Material Icon Theme) that already maps `.bc`. Switch to the default/Seti theme, or remove that theme’s `.bc` mapping. The BC icon ships with this extension for `ln-4gl`.

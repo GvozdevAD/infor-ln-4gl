@@ -26,6 +26,8 @@ A notepad for scripts you copy out of LN Tools (`ttadv2530m000`) or edit in an L
 | Format Document | Indent only (`if`/`selectdo`/braces/4GL sections); never trims trailing spaces; format on save off by default |
 | Diagnostics | Unmatched `endif` / `endselect` / …; Quick Fix for `for … by` → `step` and stray `while … do` |
 | Word pattern | Dots count: `tdsls401.orno` and `before.input` are one word |
+| Review Revisions | Diff Editor for Infor Differences reports or two saved revisions (side-by-side / inline); see [docs/revisions.md](docs/revisions.md) |
+| File icon | BC icon for `.bc` / `.cln` / `.ln4gl` in the Explorer |
 
 Files: `*.bc`, `*.cln`, `*.ln4gl`. For Studio dumps without an extension, run **Change Language Mode** → Infor LN 4GL, or add a file association.
 

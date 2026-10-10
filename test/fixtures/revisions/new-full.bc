@@ -1,0 +1,8 @@
+function long demo.main()
+{
+        domain tcitem l.item
+        l.item = "NEW"
+        domain tcyesno l.flag
+        l.flag = tcyesno.yes
+        return(0)
+}

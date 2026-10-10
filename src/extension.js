@@ -18,6 +18,7 @@ const {
   activateOpenDocsStore,
   deactivateOpenDocsStore,
 } = require("./open-docs-store");
+const { activateRevisions } = require("./revisions");
 
 /** @type {vscode.StatusBarItem | undefined} */
 let scriptKindStatus;
@@ -66,6 +67,7 @@ function scheduleStatusRefresh(document) {
 function activate(context) {
   activateDiagnostics(context);
   activateOpenDocsStore(context);
+  activateRevisions(context);
 
   scriptKindStatus = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
