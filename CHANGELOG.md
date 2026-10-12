@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Language file icons for `.bc` / `.cln` / `.ln4gl` (BC mark in Explorer).
 - Setting `ln-4gl.revisions.defaultMode`.
 
+### Fixed
+
+- Folding no longer swallows blank lines between functions/sections, so collapsed functions stay visually separated.
+
+
 ## [1.0.1] - 2026-10-09
 
 ### Fixed
