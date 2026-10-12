@@ -25,13 +25,19 @@ function computeFoldRanges(text) {
   const ranges = [];
   const lines = text.split(/\r?\n/);
 
+  // Parse endLine runs to the line before the next sibling (includes blanks).
+  // Trim trailing empty lines so folded functions/sections do not swallow
+  // the blank separators the author left between them.
   for (const node of parseDocument(text)) {
     if (node.endLine > node.line) {
-      ranges.push({
-        start: node.line,
-        end: node.endLine,
-        kind: node.kind === "function" ? "block" : "region",
-      });
+      const end = trimTrailingBlankLines(lines, node.line, node.endLine);
+      if (end > node.line) {
+        ranges.push({
+          start: node.line,
+          end,
+          kind: node.kind === "function" ? "block" : "region",
+        });
+      }
     }
   }
 
@@ -96,6 +102,20 @@ function computeFoldRanges(text) {
   }
 
   return dedupeRanges(ranges);
+}
+
+/**
+ * @param {string[]} lines
+ * @param {number} start
+ * @param {number} end
+ * @returns {number}
+ */
+function trimTrailingBlankLines(lines, start, end) {
+  let e = end;
+  while (e > start && /^\s*$/.test(lines[e] ?? "")) {
+    e -= 1;
+  }
+  return e;
 }
 
 /**

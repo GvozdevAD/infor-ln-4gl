@@ -46,6 +46,32 @@ describe("computeFoldRanges", () => {
     assert.ok(ranges.some((r) => r.start === 1 && r.end === 3));
   });
 
+  it("does not fold blank lines between functions", () => {
+    const text = [
+      "function long a()",
+      "{",
+      "        return(0)",
+      "}",
+      "",
+      "function long b()",
+      "{",
+      "        return(0)",
+      "}",
+      "",
+    ].join("\n");
+    const ranges = computeFoldRanges(text);
+    const fnA = ranges.filter((r) => r.start === 0 && r.kind === "block");
+    assert.ok(fnA.length >= 1);
+    assert.ok(
+      fnA.every((r) => r.end === 3),
+      `function a fold must end on closing brace (3), got ${fnA.map((r) => r.end).join(",")}`,
+    );
+    assert.ok(
+      !ranges.some((r) => r.start <= 4 && r.end >= 4 && r.start === 0),
+      "blank line between functions must stay outside function-a fold",
+    );
+  });
+
   it("folds on case/endcase", () => {
     const text = "on case x\n\tcase 1:\n\t\tbreak\nendcase\n";
     const ranges = computeFoldRanges(text);
